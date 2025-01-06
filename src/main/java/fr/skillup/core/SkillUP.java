@@ -1,0 +1,21 @@
+package fr.skillup.core;
+
+import fr.skillup.controllers.HomeController;
+import fr.skillup.core.window.Window;
+import javafx.application.Application;
+import javafx.stage.Stage;
+
+public class SkillUP extends Application {
+
+    private static Window window;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        SkillUP.window = new Window();
+        SkillUP.window.show(HomeController.class);
+    }
+}
