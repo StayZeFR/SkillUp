@@ -8,7 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 public class Window extends Stage {
 
     public Window() {
-        this.setTitle("SkillUP");
+        this.setTitle("?");
     }
 
     public Window(String title) {

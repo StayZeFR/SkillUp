@@ -1,6 +1,7 @@
 module fr.skillup.skillup {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
 
     opens fr.skillup.controllers to javafx.fxml;
