@@ -1,9 +1,13 @@
 package fr.skillup.core.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.skillup.core.window.Window;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
 import java.io.*;
 import java.net.URL;
@@ -25,52 +29,31 @@ public abstract class Controller {
 
     public abstract void init();
 
-    protected void render(String view, String css, Map<String, String> params) {
-        String path = "/fr/skillup/views/" + view + ".fxml";
-        InputStream stream = this.getClass().getResourceAsStream(path);
-        if (stream == null) {
-            throw new IllegalArgumentException("FXML file not found: " + view);
-        }
+    protected void render(String view, Map<String, String> params) {
+        WebView webView = new WebView();
+        WebEngine webEngine = webView.getEngine();
+        System.out.println(this.getClass().getResource("/fr/skillup/views/" + view + ".html").toExternalForm());
 
-        StringBuilder builder = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(stream))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                builder.append(line).append("\n");
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        String content = builder.toString();
-        for (Map.Entry<String, String> entry : params.entrySet()) {
-            String tag = "{{" + entry.getKey() + "}}";
-            content = content.replace(tag, entry.getValue());
-        }
-
-        FXMLLoader loader = new FXMLLoader();
-        try {
-            Parent root = loader.load(new ByteArrayInputStream(content.getBytes()));
-            this.window.setScene(new Scene(root));
-            if (!css.isEmpty()) {
-                URL file = this.getClass().getResource("/fr/skillup/assets/css/" + css + ".css");
-                if (file == null) {
-                    throw new IllegalArgumentException("CSS file not found: " + css);
+        webView.getEngine().load(Objects.requireNonNull(this.getClass().getResource("/fr/skillup/views/" + view + ".html")).toExternalForm());
+        webEngine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
+            if (newState == javafx.concurrent.Worker.State.SUCCEEDED) {
+                if (!params.isEmpty()) {
+                    try {
+                        ObjectMapper mapper = new ObjectMapper();
+                        String json = mapper.writeValueAsString(params);
+                        webEngine.executeScript("setParams(" + json + ");");
+                    } catch (JsonProcessingException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
-                root.getStylesheets().add(file.toExternalForm());
             }
-            this.window.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        });
+        this.window.setScene(new Scene(webView));
+        this.window.show();
     }
 
     protected void render(String view) {
-        this.render(view, "", new HashMap<>());
-    }
-
-    protected void render(String view, Map<String, String> params) {
-        this.render(view, "", params);
+        this.render(view, new HashMap<>());
     }
 
 }
