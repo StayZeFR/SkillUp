@@ -1,0 +1,4 @@
+#body {
+    /*-fx-background-color: linear-gradient(to top, #8287D6 8%, #A19EEB 27%, #B6B7F1 50%, #C6C8F7 71%, #CAD2F6 83%);*/
+    -fx-background-color: linear-gradient(to bottom, #D4DEF8, #94D6FF);
+}
