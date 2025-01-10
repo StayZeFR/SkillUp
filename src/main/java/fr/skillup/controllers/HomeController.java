@@ -15,7 +15,7 @@ public class HomeController extends Controller {
     @Override
     public void init() {
         Map<String, String> params = new HashMap<>();
-        params.put("click", "Peux tu cliquer ?");
-        this.render("home_view", "global", params);
+        params.put("name", "Ilann BLANDIN");
+        this.render("home_view", params);
     }
 }

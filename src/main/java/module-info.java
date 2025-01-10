@@ -1,8 +1,8 @@
 module fr.skillup.skillup {
-    requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.web;
+    requires com.fasterxml.jackson.databind;
     requires java.sql;
-    requires javafxsvg;
 
 
     opens fr.skillup.controllers to javafx.fxml;
