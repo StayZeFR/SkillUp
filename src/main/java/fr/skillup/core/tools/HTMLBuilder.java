@@ -4,7 +4,11 @@ import javafx.scene.web.WebView;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
+
+import java.nio.file.Paths;
+import java.util.List;
 
 public class HTMLBuilder {
 
@@ -19,18 +23,27 @@ public class HTMLBuilder {
                 String parentPath = extend.attr("parent");
                 String sectionId = extend.attr("id");
 
-                // Charger le layout parent
                 String parentHtml = new String(HTMLBuilder.class.getResourceAsStream("/fr/skillup/views/" + parentPath).readAllBytes());
                 Document parentDoc = Jsoup.parse(parentHtml);
 
-                // Insérer les sections dans le layout parent
-                Element sectionPlaceholder = parentDoc.selectFirst("create-section[title=" + sectionId + "]");
-                if (sectionPlaceholder != null) {
-                    sectionPlaceholder.html(extend.html()); // Remplace le contenu du placeholder par celui de <extend>
+                Element parentHead = parentDoc.head();
+                Element childHead = mainDoc.head();
+                for (Element element : parentHead.children()) {
+                    childHead.appendChild(element.clone());
                 }
 
-                // Fusionner le layout modifié dans le document principal
-                extend.replaceWith(parentDoc.body());
+                Element sectionPlaceholder = parentDoc.selectFirst("create-section[title=" + sectionId + "]");
+                if (sectionPlaceholder != null) {
+                    sectionPlaceholder.html(extend.html());
+                }
+
+                Element parentBody = parentDoc.body();
+                List<Node> parentBodyNodes = Jsoup.parseBodyFragment(parentBody.html()).body().childNodes();
+
+                for (Node node : parentBodyNodes) {
+                    extend.before(node);
+                }
+                extend.remove();
             }
 
             Elements renderSections = mainDoc.select("render-section");
@@ -39,14 +52,17 @@ public class HTMLBuilder {
 
                 Element layoutSection = mainDoc.selectFirst("create-section[title=" + sectionName + "]");
                 if (layoutSection != null) {
-                    layoutSection.html(renderSection.html()); // Remplace le contenu du placeholder par celui de <render-section>
+                    layoutSection.html(renderSection.html());
                 }
 
                 renderSection.remove();
             }
 
-            mainDoc.select("extend").unwrap(); // Supprime les balises <extend> mais conserve leur contenu
-            mainDoc.select("create-section").unwrap(); // Supprime les balises <create-section> mais conserve leur contenu
+            mainDoc.select("extend").unwrap();
+            mainDoc.select("create-section").unwrap();
+
+            String basePath = Paths.get("src/main/resources/fr/skillup").toUri().toString();
+            mainDoc.head().prependElement("base").attr("href", basePath);
 
             return mainDoc.html();
 
