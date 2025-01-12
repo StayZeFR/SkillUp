@@ -1,3 +1,26 @@
-p {
-    background-color: blue;
+body {
+    background: linear-gradient(to bottom, #94D6FF 0%, #D4DEF8 100%);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body > main {
+    width: 93%;
+    height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 65px;
+    display: grid;
+    grid-template-columns: clamp(200px, 20%, 500px) auto;
+    grid-template-rows: 100%;
+}
+
+body > main > #sidebar {
+    display: flex;
+    flex-direction: column;
+    background-color: red;
 }

@@ -17,12 +17,13 @@ public class Bridge {
     }
 
     public Controller getController(String controller) {
-        try {
+        /*try {
             String path = "/fr/skillup/controllers/" + controller + ".class";
             return (Controller) Class.forName(path).newInstance();
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             throw new RuntimeException(e);
-        }
+        }*/
+        return null;
     }
 
     public String readView(String view) {

@@ -1,18 +1,12 @@
 package fr.skillup.core.controller;
 
-import fr.skillup.core.bridge.Bridge;
-import fr.skillup.core.tools.HTMLBuilder;
+import fr.skillup.core.utils.HTMLBuilder;
 import fr.skillup.core.window.Window;
-import javafx.concurrent.Worker;
 import javafx.scene.Scene;
-import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import netscape.javascript.JSObject;
 
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public abstract class Controller {
 

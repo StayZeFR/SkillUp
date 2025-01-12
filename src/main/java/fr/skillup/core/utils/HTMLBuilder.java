@@ -1,13 +1,12 @@
-package fr.skillup.core.tools;
+package fr.skillup.core.utils;
 
-import javafx.scene.web.WebView;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 
-import java.nio.file.Paths;
+import java.net.URL;
 import java.util.List;
 
 public class HTMLBuilder {
@@ -61,8 +60,10 @@ public class HTMLBuilder {
             mainDoc.select("extend").unwrap();
             mainDoc.select("create-section").unwrap();
 
-            String basePath = Paths.get("src/main/resources/fr/skillup").toUri().toString();
-            mainDoc.head().prependElement("base").attr("href", basePath);
+            URL basePath = HTMLBuilder.class.getResource("/fr/skillup/");
+            mainDoc.head().prependElement("base").attr("href", basePath.toString());
+
+            System.out.println(mainDoc.html());
 
             return mainDoc.html();
 

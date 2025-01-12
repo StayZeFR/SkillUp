@@ -8,16 +8,18 @@ module fr.skillup {
     requires org.jsoup;
 
 
+    opens fr.skillup to javafx.fxml;
+    opens fr.skillup.core to javafx.fxml;
     opens fr.skillup.controllers to javafx.fxml;
     opens fr.skillup.controllers.layouts to javafx.fxml;
-    opens fr.skillup.core to javafx.fxml;
     opens fr.skillup.core.annotations to javafx.fxml;
     opens fr.skillup.core.controller to javafx.fxml;
     opens fr.skillup.core.window to javafx.fxml;
     opens fr.skillup.core.bridge to javafx.fxml;
+    exports fr.skillup;
+    exports fr.skillup.core;
     exports fr.skillup.controllers;
     exports fr.skillup.controllers.layouts;
-    exports fr.skillup.core;
     exports fr.skillup.core.annotations;
     exports fr.skillup.core.controller;
     exports fr.skillup.core.window;
