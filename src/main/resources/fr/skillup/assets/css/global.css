@@ -12,7 +12,7 @@ body > main {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.7);
     border-radius: 65px;
     display: grid;
     grid-template-columns: clamp(200px, 20%, 500px) auto;
@@ -22,5 +22,59 @@ body > main {
 body > main > #sidebar {
     display: flex;
     flex-direction: column;
-    background-color: red;
+    border-radius: 65px 0 0 65px;
+    background-color: white;
+}
+
+body > main > #sidebar > header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body > main > #sidebar > nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+body > main > #sidebar > nav > ul {
+    list-style-type: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body > main > #sidebar > nav > ul > li {
+    padding: 0;
+    margin: 0;
+}
+
+body > main > #sidebar > nav > ul > li > button {
+    width: 100%;
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 25px;
+    gap: 20px;
+    border-left: 3px solid white;
+}
+
+body > main > #sidebar > nav > ul > li > button > span {
+    font-size: 1.1em;
+    text-align: center;
+    vertical-align: center;
+    color: #8B8B8B;
+}
+
+body > main > #sidebar > nav > ul > li > button > svg {
+    width: 20px;
+    height: auto;
+    fill: #8B8B8B;
+}
+
+body > main > #sidebar > nav > ul > li > button.active {
+    background: linear-gradient(to right, #D4D5ED 0%, #E9EAF6 0%, #FFFFFF 100%);
+    border-left: 3px solid #070EC2;
 }

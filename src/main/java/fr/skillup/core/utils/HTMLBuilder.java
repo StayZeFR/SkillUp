@@ -61,9 +61,8 @@ public class HTMLBuilder {
             mainDoc.select("create-section").unwrap();
 
             URL basePath = HTMLBuilder.class.getResource("/fr/skillup/");
+            assert basePath != null;
             mainDoc.head().prependElement("base").attr("href", basePath.toString());
-
-            System.out.println(mainDoc.html());
 
             return mainDoc.html();
 

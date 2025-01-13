@@ -36,4 +36,8 @@ public class Bridge {
         }
         return "Hello world!";
     }
+
+    public void log(String message) {
+        System.out.println(message);
+    }
 }
