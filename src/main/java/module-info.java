@@ -12,7 +12,6 @@ module fr.skillup {
     opens fr.skillup.core to javafx.fxml;
     opens fr.skillup.controllers to javafx.fxml;
     opens fr.skillup.controllers.layouts to javafx.fxml;
-    opens fr.skillup.core.annotations to javafx.fxml;
     opens fr.skillup.core.controller to javafx.fxml;
     opens fr.skillup.core.window to javafx.fxml;
     opens fr.skillup.core.bridge to javafx.fxml;
@@ -20,7 +19,6 @@ module fr.skillup {
     exports fr.skillup.core;
     exports fr.skillup.controllers;
     exports fr.skillup.controllers.layouts;
-    exports fr.skillup.core.annotations;
     exports fr.skillup.core.controller;
     exports fr.skillup.core.window;
     exports fr.skillup.core.bridge;
