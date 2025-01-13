@@ -12,20 +12,12 @@ import java.util.Map;
 
 public abstract class Controller {
 
-    private Window window;
-
-    public void setWindow(Window window) {
-        this.window = window;
-    }
-
-    public Window getWindow() {
-        return this.window;
-    }
+    protected Window window = Window.getInstance();
 
     public abstract void init();
 
     protected void render(String view, Map<String, String> params) {
-        WebView webView = new WebView();
+        WebView webView = this.window.getWebView();
         webView.getEngine().loadContent(HTMLBuilder.buildView(view + ".html"), "text/html");
 
         webView.getEngine().getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
@@ -35,9 +27,6 @@ public abstract class Controller {
                 webView.getEngine().executeScript("Bridge.init()");
             }
         });
-
-        this.window.setScene(new Scene(webView));
-        this.window.show();
     }
 
     protected void render(String view) {

@@ -9,4 +9,8 @@ class Bridge {
         return Bridge.#bridge;
     }
 
+    static get(controller) {
+        return Bridge.#bridge.get(controller);
+    }
+
 }
