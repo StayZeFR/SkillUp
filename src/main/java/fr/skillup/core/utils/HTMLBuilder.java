@@ -8,10 +8,17 @@ import org.jsoup.select.Elements;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class HTMLBuilder {
 
-    public static String buildView(String resourcePath) {
+    /**
+     * Construit une vue HTML à partir d'un fichier de ressource
+     * @param resourcePath : Chemin du fichier de ressource
+     * @return String : Vue HTML
+     */
+    public static String buildView(String resourcePath, Map<String, Object> params) {
         try {
             String path = "/fr/skillup/views/" + resourcePath;
             String mainHtml = new String(HTMLBuilder.class.getResourceAsStream(path).readAllBytes());
@@ -20,7 +27,9 @@ public class HTMLBuilder {
             Elements extendElements = mainDoc.select("extend");
             for (Element extend : extendElements) {
                 String parentPath = extend.attr("parent");
-                String sectionId = extend.attr("id");
+
+                String randomId = UUID.randomUUID().toString();
+                extend.attr("id", randomId);
 
                 String parentHtml = new String(HTMLBuilder.class.getResourceAsStream("/fr/skillup/views/" + parentPath).readAllBytes());
                 Document parentDoc = Jsoup.parse(parentHtml);
@@ -31,7 +40,7 @@ public class HTMLBuilder {
                     childHead.appendChild(element.clone());
                 }
 
-                Element sectionPlaceholder = parentDoc.selectFirst("create-section[title=" + sectionId + "]");
+                Element sectionPlaceholder = parentDoc.selectFirst("create-section[title=" + randomId + "]");
                 if (sectionPlaceholder != null) {
                     sectionPlaceholder.html(extend.html());
                 }
@@ -63,13 +72,22 @@ public class HTMLBuilder {
             URL basePath = HTMLBuilder.class.getResource("/fr/skillup/");
             assert basePath != null;
             mainDoc.head().prependElement("base").attr("href", basePath.toString());
+            mainDoc.head().appendElement("script").attr("src", "assets/js/app.js");
+            mainDoc.head().appendElement("script").attr("src", "assets/js/bridge.js");
 
-            return mainDoc.html();
+            String html = HTMLBuilder.insertParams(mainDoc.html(), params);
 
+            return html;
         } catch (Exception e) {
             throw new RuntimeException("Erreur lors de la construction de la vue", e);
         }
     }
 
+    private static String insertParams(String html, Map<String, Object> params) {
+        for (Map.Entry<String, Object> entry : params.entrySet()) {
+            html = html.replace("{{" + entry.getKey() + "}}", entry.getValue().toString());
+        }
+        return html;
+    }
 
 }

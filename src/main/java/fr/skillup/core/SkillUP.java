@@ -20,5 +20,7 @@ public class SkillUP extends Application {
 
         SkillUP.window = new Window(Config.get("app.title"));
         SkillUP.window.show(HomeController.class);
+
+        SkillUP.window.show();
     }
 }

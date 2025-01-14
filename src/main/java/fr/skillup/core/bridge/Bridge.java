@@ -3,38 +3,24 @@ package fr.skillup.core.bridge;
 import fr.skillup.core.controller.Controller;
 import javafx.scene.web.WebView;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Objects;
+import java.lang.reflect.InvocationTargetException;
 
 public class Bridge {
-    private WebView webView;
+    private final WebView webView;
 
     public Bridge(WebView webView) {
         this.webView = webView;
     }
 
-    public Controller getController(String controller) {
-        /*try {
-            String path = "/fr/skillup/controllers/" + controller + ".class";
-            return (Controller) Class.forName(path).newInstance();
-        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }*/
-        return null;
-    }
-
-    public String readView(String view) {
-        System.out.println("Reading view: " + view);
+    public Controller get(String controller) {
+        Class<? extends Controller> clazz = null;
         try {
-            byte[] bytes = Files.readAllBytes(Path.of(Objects.requireNonNull(this.getClass().getResource("/fr/skillup/views/" + view + ".html")).toURI().getPath()));
-            System.out.println(new String(bytes));
-        } catch (IOException | URISyntaxException e) {
+            clazz = Class.forName("fr.skillup.controllers." + controller).asSubclass(Controller.class);
+            return clazz.getConstructor().newInstance();
+        } catch (ClassNotFoundException | InvocationTargetException | InstantiationException | IllegalAccessException |
+                 NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
-        return "Hello world!";
     }
 
     public void log(String message) {

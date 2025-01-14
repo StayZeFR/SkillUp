@@ -1,9 +1,10 @@
-document.addEventListener("DOMContentLoaded", function () {
-    let navButtons = document.querySelectorAll(".nav");
-    navButtons.forEach(function (btn) {
-        btn.addEventListener("click", function (e) {
-            let target = e.target.getAttribute("target");
-            App.log("Navigating to " + target);
-        });
+$(document).ready(function () {
+    if (window.params.get("view")) {
+        $(".nav[data-target='" + window.params.get("view") + "']").addClass("active");
+    }
+
+    $(".nav").click(function () {
+        let target = $(this).attr("data-target");
+        Bridge.get("layouts.DefaultLayoutController").moveTo(target);
     });
 });
