@@ -8,6 +8,7 @@ import org.jsoup.select.Elements;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class HTMLBuilder {
@@ -17,7 +18,7 @@ public class HTMLBuilder {
      * @param resourcePath : Chemin du fichier de ressource
      * @return String : Vue HTML
      */
-    public static String buildView(String resourcePath) {
+    public static String buildView(String resourcePath, Map<String, Object> params) {
         try {
             String path = "/fr/skillup/views/" + resourcePath;
             String mainHtml = new String(HTMLBuilder.class.getResourceAsStream(path).readAllBytes());
@@ -74,10 +75,19 @@ public class HTMLBuilder {
             mainDoc.head().appendElement("script").attr("src", "assets/js/app.js");
             mainDoc.head().appendElement("script").attr("src", "assets/js/bridge.js");
 
-            return mainDoc.html();
+            String html = HTMLBuilder.insertParams(mainDoc.html(), params);
+
+            return html;
         } catch (Exception e) {
             throw new RuntimeException("Erreur lors de la construction de la vue", e);
         }
+    }
+
+    private static String insertParams(String html, Map<String, Object> params) {
+        for (Map.Entry<String, Object> entry : params.entrySet()) {
+            html = html.replace("{{" + entry.getKey() + "}}", entry.getValue().toString());
+        }
+        return html;
     }
 
 }

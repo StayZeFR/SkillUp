@@ -17,6 +17,7 @@ body > main {
     display: grid;
     grid-template-columns: clamp(200px, 20%, 500px) auto;
     grid-template-rows: 100%;
+    overflow: hidden;
 }
 
 body > main > #sidebar {
@@ -77,4 +78,8 @@ body > main > #sidebar > nav > ul > li > button > svg {
 body > main > #sidebar > nav > ul > li > button.active {
     background: linear-gradient(to right, #D4D5ED 0%, #E9EAF6 0%, #FFFFFF 100%);
     border-left: 3px solid #070EC2;
+}
+
+body > main > #content {
+    padding: 15px;
 }

@@ -9,9 +9,8 @@ public class HomeController extends Controller {
 
     @Override
     public void init() {
-        Map<String, String> params = new HashMap<>();
-        params.put("name", "Ilann BLANDIN");
-        //this.render("layouts/default_layout", params);
+        Map<String, Object> params = new HashMap<>();
+        params.put("view", "home");
         this.render("home_view", params);
     }
 }
