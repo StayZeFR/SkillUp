@@ -72,8 +72,12 @@ public class HTMLBuilder {
             URL basePath = HTMLBuilder.class.getResource("/fr/skillup/");
             assert basePath != null;
             mainDoc.head().prependElement("base").attr("href", basePath.toString());
-            mainDoc.head().appendElement("script").attr("src", "assets/js/app.js");
-            mainDoc.head().appendElement("script").attr("src", "assets/js/bridge.js");
+
+            Element titleElement = mainDoc.head().selectFirst("title");
+            if (titleElement != null) {
+                titleElement.after("<script src=\"assets/js/app.js\"></script>");
+                titleElement.after("<script src=\"assets/js/bridge.js\"></script>");
+            }
 
             String html = HTMLBuilder.insertParams(mainDoc.html(), params);
 

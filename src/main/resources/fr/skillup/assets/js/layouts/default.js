@@ -1,5 +1,6 @@
-$(document).ready(function () {
+App.onLoad(() => {
     if (window.params.get("view")) {
+        $(".nav").removeClass("active");
         $(".nav[data-target='" + window.params.get("view") + "']").addClass("active");
     }
 
