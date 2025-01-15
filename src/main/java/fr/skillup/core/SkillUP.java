@@ -2,6 +2,7 @@ package fr.skillup.core;
 
 import fr.skillup.controllers.HomeController;
 import fr.skillup.core.config.Config;
+import fr.skillup.core.database.Database;
 import fr.skillup.core.window.Window;
 import javafx.application.Application;
 import javafx.stage.Stage;
