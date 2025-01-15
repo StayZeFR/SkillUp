@@ -9,3 +9,7 @@ App.onLoad(() => {
         Bridge.get("layouts.DefaultLayoutController").moveTo(target);
     });
 });
+
+document.addEventListener("DOMContentLoaded", (event) => {
+    console.log('hello world');
+});
