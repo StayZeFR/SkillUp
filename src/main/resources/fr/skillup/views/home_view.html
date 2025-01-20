@@ -4,11 +4,11 @@
 
 <render-section name="content">
     <div class="container-personnel-management">
-        <h1>Personnel management</h1>
+        <h1>People management</h1>
         <select class="select-skills" id="selectskills">
             <option selected id="text-filter-skills">Filter by skills </option>
             <optgroup label="Strategy" class="label"></optgroup>
-            <option value="A.1." >IS and Business Strategy Alignment</option>
+            <option value="A.1." class="option">IS and Business Strategy Alignment</option>
             <option value="A.2.">Service Level Management</option>
             <option value="A.3.">Business Plan Development</option>
             <option value="A.4.">Product or Project Planning</option>
@@ -17,19 +17,323 @@
             <optgroup label="Development"></optgroup>
             <option value="B.1.">Design and Development</option>
         </select>
+
+        <select class="select-skills" id="selectnom">
+            <option selected id="text-filter-skills">Filter by name </option>
+        </select>
+
     </div>
 
     <div class="container-personnel">
+
         <div class="people-card">
-            <img src="assets/images/olie.jpg"alt="People Picture" class="profile-picture">
-            <div class="info">
-                <p class="name">Olie GALASSO</p>
-                <p class="job">Project Manager</p>
+            <div class="info-card">
+                <img src="assets/images/olie.jpg" alt="People Picture" class="profile-picture">
+                <div class="info">
+                    <p class="name">Olie Galasso</p>
+                    <p class="job">Engineer</p>
+                </div>
+                <div>
+                    <button class="open1">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="pen">
+                            <path
+                                    d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                            <path
+                                    d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                        </svg>
+                    </button>
+
+                </div>
             </div>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
-                <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
-            </svg>
+            <div class="skill-people">
+                <div class="skill-text-dev">
+                    <img src="assets/images/dev.svg" alt="dev-skill" class="skill-icon">
+                    <p>Testing</p>
+                </div>
+                <div class="skill-text-support">
+                    <img src="assets/images/support.svg" alt="support-skill" class="skill-icon">
+                    <p>Service Delivery</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="people-card">
+            <div class="info-card">
+                <img src="assets/images/jon.jpg" alt="People Picture" class="profile-picture">
+                <div class="info">
+                    <p class="name">Jon Seastrunk</p>
+                    <p class="job">Project Manager</p>
+                </div>
+                <div>
+                    <button class="open1">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="pen">
+                            <path
+                                    d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                            <path
+                                    d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="skill-people">
+                <div class="skill-text-management">
+                    <img src="assets/images/management.svg" alt="management-skill" class="skill-icon">
+                    <p>Information and Knowledge Management</p>
+                </div>
+                <div class="skill-text-governance">
+                    <img src="assets/images/governance.svg" alt="governance-skill" class="skill-icon">
+                    <p>Relationship Management</p>
+                </div>
+                <div class="skill-text-other">
+                    <img src="assets/images/defaut.svg" alt="defaut-skill" class="skill-icon">
+                    <p class="more-skills">+2 others</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="people-card">
+            <div class="info-card">
+                <img src="assets/images/ted.jpg" alt="People Picture" class="profile-picture">
+                <div class="info">
+                    <p class="name">Ted Luat</p>
+                    <p class="job">Project Manager</p>
+                </div>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="pen">
+                        <path
+                                d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                        <path
+                                d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="skill-people">
+                <div class="skill-text-strategy">
+                    <img src="assets/images/strategy.svg" alt="strategy-skill" class="skill-icon">
+                    <p>Service Level Management</p>
+                </div>
+                <div class="skill-text-strategy">
+                    <img src="assets/images/strategy.svg" alt="strategy-skill" class="skill-icon">
+                    <p>Technology Watching</p>
+                </div>
+                <div class="skill-text-other">
+                    <img src="assets/images/defaut.svg" alt="defaut-skill" class="skill-icon">
+                    <p class="more-skills">+4 others</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="people-card">
+            <div class="info-card">
+                <img src="assets/images/myron.png" alt="People Picture" class="profile-picture">
+                <div class="info">
+                    <p class="name">Myron Quaife</p>
+                    <p class="job">Engineer</p>
+                </div>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="pen">
+                        <path
+                                d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                        <path
+                                d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="skill-people">
+                <div class="skill-text-strategy">
+                    <img src="assets/images/strategy.svg" alt="strategy-skill" class="skill-icon">
+                    <p>Architecture Design</p>
+                </div>
+                <div class="skill-text-strategy">
+                    <img src="assets/images/strategy.svg" alt="strategy-skill" class="skill-icon">
+                    <p>Technology Watching</p>
+                </div>
+                <div class="skill-text-other">
+                    <img src="assets/images/defaut.svg" alt="defaut-skill" class="skill-icon">
+                    <p class="more-skills">+5 others</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="people-card">
+            <div class="info-card">
+                <img src="assets/images/hollis.jpg" alt="People Picture" class="profile-picture">
+                <div class="info">
+                    <p class="name">Hollis Syres</p>
+                    <p class="job">FullStack Developer</p>
+                </div>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="pen">
+                        <path
+                                d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                        <path
+                                d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="skill-people">
+                <div class="skill-text-support">
+                    <img src="assets/images/support.svg" alt="support-skill" class="skill-icon">
+                    <p>Change Support</p>
+                </div>
+                <div class="skill-text-governance">
+                    <img src="assets/images/governance.svg" alt="governance-skill" class="skill-icon">
+                    <p>Technology Watching</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="people-card">
+            <div class="info-card">
+                <img src="assets/images/norbert.jpg" alt="People Picture" class="profile-picture">
+                <div class="info">
+                    <p class="name">Norbert Tebeest</p>
+                    <p class="job">Project Manager</p>
+                </div>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="pen">
+                        <path
+                                d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                        <path
+                                d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="skill-people">
+                <div class="skill-text-support">
+                    <img src="assets/images/support.svg" alt="support-skill" class="skill-icon">
+                    <p>Change Support</p>
+                </div>
+                <div class="skill-text-management">
+                    <img src="assets/images/management.svg" alt="management-skill" class="skill-icon">
+                    <p>Contract Management</p>
+                </div>
+                <div class="skill-text-other">
+                    <img src="assets/images/defaut.svg" alt="defaut-skill" class="skill-icon">
+                    <p class="more-skills">+2 others</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="people-card">
+            <div class="info-card">
+                <img src="assets/images/alvaro.png" alt="People Picture" class="profile-picture">
+                <div class="info">
+                    <p class="name">Alvaro Callum</p>
+                    <p class="job">FullStack Developer</p>
+                </div>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="pen">
+                        <path
+                                d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                        <path
+                                d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="skill-people">
+                <div class="skill-text-strategy">
+                    <img src="assets/images/strategy.svg" alt="strategy-skill" class="skill-icon">
+                    <p>IS and Business Strategy Alignment</p>
+                </div>
+                <div class="skill-text-strategy">
+                    <img src="assets/images/strategy.svg" alt="strategy-skill" class="skill-icon">
+                    <p>Service Level Management</p>
+                </div>
+                <div class="skill-text-other">
+                    <img src="assets/images/defaut.svg" alt="defaut-skill" class="skill-icon">
+                    <p class="more-skills">+5 autres</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="people-card">
+            <div class="info-card">
+                <img src="assets/images/emanuel.png" alt="People Picture" class="profile-picture">
+                <div class="info">
+                    <p class="name">Emanuel Ferrill</p>
+                    <p class="job">Engineer</p>
+                </div>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="pen">
+                        <path
+                                d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                        <path
+                                d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="skill-people">
+                <div class="skill-text-strategy">
+                    <img src="assets/images/strategy.svg" alt="strategy-skill" class="skill-icon">
+                    <p>Architecture Design</p>
+                </div>
+                <div class="skill-text-dev">
+                    <img src="assets/images/dev.svg" alt="dev-skill" class="skill-icon">
+                    <p>Solution Deployment</p>
+                </div>
+                <div class="skill-text-other">
+                    <img src="assets/images/defaut.svg" alt="defaut-skill" class="skill-icon">
+                    <p class="more-skills">+5 others</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="people-card">
+            <div class="info-card">
+                <img src="assets/images/brandon.jpg" alt="People Picture" class="profile-picture">
+                <div class="info">
+                    <p class="name">Brandon Aufmuth</p>
+                    <p class="job">FullStack Developer</p>
+                </div>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="pen">
+                        <path
+                                d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                        <path
+                                d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="skill-people">
+                <div class="skill-text-strategy">
+                    <img src="assets/images/strategy.svg" alt="strategy-skill" class="skill-icon">
+                    <p>IS and Business Strategy Alignment</p>
+                </div>
+                <div class="skill-text-strategy">
+                    <img src="assets/images/strategy.svg" alt="strategy-skill" class="skill-icon">
+                    <p>Application Design</p>
+                </div>
+                <div class="skill-text-other">
+                    <img src="assets/images/defaut.svg" alt="defaut-skill" class="skill-icon">
+                    <p class="more-skills">+2 others</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    //modal
+    <div class="modal_container">
+        <div class="modal">
+            <div class="titleclose">
+                <div class="info-card">
+                    <img src="assets/images/hollis.jpg" alt="People Picture" class="profile-picture-modale">
+                    <div class="info-general">
+                        <p class="name-modal">Hollis Syres</p>
+                        <p class="job-modal">FullStack Developer</p>
+                    </div>
+                    <div>
+                        <button class="close">x</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class ="personnal-info-modal">
+                <h1 class="titre-info-modal">Informations</h1>
+            </div>
+            <div class ="skill-info-modal">
+                <h1 class="titre-info-modal">Skills</h1>
+            </div>
         </div>
     </div>
 </render-section>

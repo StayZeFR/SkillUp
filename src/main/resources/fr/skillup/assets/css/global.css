@@ -18,12 +18,16 @@ body > main {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.7);
     border-radius: 65px;
     display: grid;
     grid-template-columns: clamp(200px, 20%, 500px) auto;
     grid-template-rows: 100%;
     overflow: hidden;
+    background: rgba(255, 255, 255, 0.26);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.6px);
+    -webkit-backdrop-filter: blur(4.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 body > main > #sidebar {
@@ -31,6 +35,7 @@ body > main > #sidebar {
     flex-direction: column;
     border-radius: 65px 0 0 65px;
     background-color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 body > main > #sidebar > header {
@@ -59,7 +64,7 @@ body > main > #sidebar > nav > ul {
 }
 
 body > main > #sidebar > nav > ul > li {
-    padding: 0;
+    padding-top: 20px;
     margin: 0;
 }
 
@@ -90,7 +95,8 @@ body > main > #sidebar > nav > ul > li > button > svg {
 
 body > main > #sidebar > nav > ul > li > button.active {
     background: linear-gradient(to right, #D4D5ED 0%, #E9EAF6 0%, #FFFFFF 100%);
-    border-left: 3px solid #070EC2;
+    border-left: 5px solid #070EC2;
+    height: 60px;
 
 }
 
