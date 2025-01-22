@@ -2,26 +2,23 @@ package fr.skillup.core;
 
 import fr.skillup.controllers.HomeController;
 import fr.skillup.core.config.Config;
-import fr.skillup.core.database.Database;
 import fr.skillup.core.window.Window;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class SkillUP extends Application {
 
-    private static Window window;
-
     public static void run(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         Config.load();
 
-        SkillUP.window = new Window(Config.get("app.title"));
-        SkillUP.window.show(HomeController.class);
-
-        SkillUP.window.show();
+        Window window = new Window(Config.get("app.title"));
+        window.show(HomeController.class);
+        window.setMinWidth(Double.parseDouble(Config.get("app.min.width")));
+        window.setMinHeight(Double.parseDouble(Config.get("app.min.height")));
     }
 }

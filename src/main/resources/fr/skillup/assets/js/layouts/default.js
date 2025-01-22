@@ -4,8 +4,14 @@ App.onLoad(() => {
         $(".nav[data-target='" + window.params.get("view") + "']").addClass("active");
     }
 
-    $(".nav").click(function () {
-        let target = $(this).attr("data-target");
-        Bridge.get("layouts.DefaultLayoutController").moveTo(target);
+    Array.from(document.getElementsByClassName("nav")).forEach(nav => {
+        nav.addEventListener("click", () => {
+            if (!nav.classList.contains("active")) {
+                let target = nav.getAttribute("data-target");
+                Bridge.call("layouts.DefaultLayoutController", "moveTo", [
+                    target
+                ]);
+            }
+        });
     });
 });
