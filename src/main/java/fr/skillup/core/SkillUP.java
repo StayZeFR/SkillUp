@@ -4,6 +4,7 @@ import fr.skillup.controllers.HomeController;
 import fr.skillup.core.config.Config;
 import fr.skillup.core.window.Window;
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class SkillUP extends Application {
@@ -20,5 +21,8 @@ public class SkillUP extends Application {
         window.show(HomeController.class);
         window.setMinWidth(Double.parseDouble(Config.get("app.min.width")));
         window.setMinHeight(Double.parseDouble(Config.get("app.min.height")));
+        Window.getInstance().getIcons().add((new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/fr/skillup/assets/images/favicon.png")))));
+
+        SkillUP.window.show();
     }
 }

@@ -1,5 +1,10 @@
+* {
+    font-family: "Roboto", sans-serif !important;
+}
+
+
 body {
-    background: linear-gradient(to bottom, #94D6FF 0%, #D4DEF8 100%);
+    background: linear-gradient(to bottom, #B6B7F1 0%, #D4DEF8 100%);
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -12,12 +17,16 @@ body > main {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.7);
     border-radius: 65px;
     display: grid;
     grid-template-columns: clamp(200px, 20%, 500px) auto;
     grid-template-rows: 100%;
     overflow: hidden;
+    background: rgba(255, 255, 255, 0.26);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.6px);
+    -webkit-backdrop-filter: blur(4.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 body > main > #sidebar {
@@ -25,12 +34,19 @@ body > main > #sidebar {
     flex-direction: column;
     border-radius: 65px 0 0 65px;
     background-color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 body > main > #sidebar > header {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 30px 0;
+}
+
+body > main > #sidebar > header > div > img {
+    width: 150px;
+    height: auto;
 }
 
 body > main > #sidebar > nav {
@@ -47,7 +63,7 @@ body > main > #sidebar > nav > ul {
 }
 
 body > main > #sidebar > nav > ul > li {
-    padding: 0;
+    padding-top: 20px;
     margin: 0;
 }
 
@@ -58,8 +74,9 @@ body > main > #sidebar > nav > ul > li > button {
     display: flex;
     flex-direction: row;
     padding: 10px 25px;
-    gap: 20px;
+    gap: 10px;
     border-left: 3px solid white;
+    align-items: center;
 }
 
 body > main > #sidebar > nav > ul > li > button > span {
@@ -77,9 +94,30 @@ body > main > #sidebar > nav > ul > li > button > svg {
 
 body > main > #sidebar > nav > ul > li > button.active {
     background: linear-gradient(to right, #D4D5ED 0%, #E9EAF6 0%, #FFFFFF 100%);
-    border-left: 3px solid #070EC2;
+    border-left: 5px solid #070EC2;
+    height: 60px;
+
+}
+
+body > main > #sidebar > nav > ul > li > button.active > span {
+    color: #070EC2;
+    font-weight: 700;
+}
+
+body > main > #sidebar > nav > ul > li > button.active > svg {
+    fill : #070EC2;
 }
 
 body > main > #content {
-    padding: 30px;
+    padding: 15px;
+}
+
+body > main > #sidebar > nav > ul > li > button:hover > span {
+    color: #070EC2;
+}
+
+body > main > #sidebar > nav > ul > li > button:hover > svg {
+    width: 20px;
+    height: auto;
+    fill: #070EC2;
 }
