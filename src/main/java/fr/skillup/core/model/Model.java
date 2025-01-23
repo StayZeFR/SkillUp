@@ -58,6 +58,14 @@ public abstract class Model {
             statement.close();
         } catch (SQLException e) {
             Logger.getLogger(Model.class.getName()).severe(e.getMessage());
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    Logger.getLogger(Model.class.getName()).severe(e.getMessage());
+                }
+            }
         }
         return result;
     }

@@ -3,6 +3,7 @@ package fr.skillup.core.config;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 public class Config {
 
@@ -13,7 +14,7 @@ public class Config {
         try {
             Config.properties.load(Objects.requireNonNull(Config.class.getResource("/config.properties")).openStream());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            Logger.getLogger(Config.class.getName()).severe(e.getMessage());
         }
     }
 

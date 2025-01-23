@@ -4,6 +4,7 @@
     height: calc(100% - 60px);
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 10px;
     background-color: white;
     border-radius: 30px;

@@ -1,40 +1,50 @@
 App.onLoad(() => {
     const categories = JSON.parse(Bridge.get("SkillsController", "getCategories"));
+    const skills = JSON.parse(Bridge.get("SkillsController", "getSkills"));
     if (categories !== null) {
         categories.forEach(category => {
-            document.getElementById("filter-category").innerHTML += "<option value='" + category["id"] + "'>" + category["label"] + "</option>";
+            document.getElementById("filter-category-list").innerHTML += "<div class='select-item' data-value='" + category["id"] + "'>" + category["label"] + "</div>";
         });
     }
 
-    let skills = JSON.parse(Bridge.get("SkillsController", "getSkills"));
+    let skillsFiltered = skills;
     let max = getMax();
     window.addEventListener("resize", () => {
         max = getMax();
-        initTable(skills, 0, max);
+        initTable(skillsFiltered, 0, max);
+    });
+
+    document.getElementById("filter-category").addEventListener("change", () => {
+
+    });
+    document.getElementById("filter-label").addEventListener("input", () => {
+        const label = document.getElementById("filter-label").value;
+        skillsFiltered = skills.filter(skill => skill["skill_label"].toLowerCase().includes(label.toLowerCase()));
+        initTable(skillsFiltered, 0, max);
     });
 
     document.getElementById("first-page-button").addEventListener("click", () => {
-        initTable(skills, 0, max);
+        initTable(skillsFiltered, 0, max);
     });
     document.getElementById("previous-page-button").addEventListener("click", () => {
         let start = parseInt(document.getElementById("current-page").innerText) - 2;
         if (start < 0) {
             start = 0;
         }
-        initTable(skills, start * max, max);
+        initTable(skillsFiltered, start * max, max);
     });
     document.getElementById("next-page-button").addEventListener("click", () => {
         let start = parseInt(document.getElementById("current-page").innerText);
         if (start < Math.ceil(skills.length / max)) {
-            initTable(skills, start * max, max);
+            initTable(skillsFiltered, start * max, max);
         }
     });
     document.getElementById("last-page-button").addEventListener("click", () => {
         let start = Math.ceil(skills.length / max) - 1;
-        initTable(skills, start * max, max);
+        initTable(skillsFiltered, start * max, max);
     });
 
-    initTable(skills, 0, max);
+    initTable(skillsFiltered, 0, max);
 });
 
 function getMax() {
