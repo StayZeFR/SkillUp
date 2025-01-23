@@ -3,6 +3,8 @@
     font-family: "Roboto", sans-serif !important;
 }
 
+
+
 h1{
     font-size: 30px;
     line-height: 50px;
@@ -108,12 +110,14 @@ h1{
 
 .pen {
     fill: #313132;
-    width: 20px;
+    width: 30px;
     height: auto;
     position: absolute;
     top:20px;
     right:10px;
     cursor : pointer;
+     border: none;
+     background-color : transparent;
 }
 .pen:hover{
     fill: #070EC2;
