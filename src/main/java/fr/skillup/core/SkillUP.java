@@ -1,5 +1,6 @@
 package fr.skillup.core;
 
+import fr.skillup.controllers.BootstrapController;
 import fr.skillup.controllers.HomeController;
 import fr.skillup.core.config.Config;
 import fr.skillup.core.window.Window;

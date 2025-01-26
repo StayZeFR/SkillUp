@@ -38,13 +38,7 @@ public class Window extends Stage {
      * @param params : Paramètres à passer au controller
      */
     public void show(Class<? extends Controller> clazz, Map<String, Object> params) {
-        try {
-            Controller controller = clazz.getDeclaredConstructor().newInstance();
-            controller.setParams(params);
-            controller.init();
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            Logger.getLogger(Window.class.getName()).severe(e.getMessage());
-        }
+        this.show(clazz, params, this.webView);
     }
 
     /**
@@ -55,12 +49,27 @@ public class Window extends Stage {
         this.show(clazz, new HashMap<>());
     }
 
+    private void show(Class<? extends Controller> clazz, Map<String, Object> params, WebView webView) {
+        try {
+            Controller controller = clazz.getDeclaredConstructor().newInstance();
+            controller.setWebView(webView);
+            controller.setParams(params);
+            controller.init();
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            Logger.getLogger(Window.class.getName()).severe(e.getMessage());
+        }
+    }
+
     /**
      * Récupérer le WebView de la fenêtre
      * @return WebView : WebView de la fenêtre
      */
     public WebView getWebView() {
         return this.webView;
+    }
+
+    public void setBootstrap(Class<? extends Controller> clazz) {
+
     }
 
     /**
