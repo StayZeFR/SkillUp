@@ -4,26 +4,26 @@
     height: calc(100% - 60px);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 10px;
-    background-color: white;
     border-radius: 30px;
-    padding: 30px;
 }
 
 #skills > header {
 }
 
-#skills > header > h1 {
-    font-size: 2em;
-    padding: 0;
-    margin: 0;
+h1 {
+    font-size: 30px;
+    line-height: 50px;
+    color: #313132;
+    padding-left : 20px;
+    font-family: Kumbh Sans;
 }
 
-#skills > #filters {
+#filters {
     display: flex;
-    flex-direction: row;
-    gap: 30px;
+    flex-direction: row !important;
+    width : 100%;
+    gap : 40px;
+    align-items : center;
 }
 
 #skills > #filters > .filter {
@@ -38,8 +38,6 @@
 #skills > #filters > .filter-control {
     outline: none;
     background-color: white;
-    border: 1px solid #8B8B8B;
-    border-radius: 10px;
     color: #8B8B8B;
     overflow: hidden;
     width: clamp(200px, 50%, 300px);
@@ -72,22 +70,36 @@
 }
 
 #skills > #table {
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    width : 90%;
+    padding:20px;
+    justify-content: justify;
+    align-items: flex-start;
+    height: auto;
+    margin : 20px auto;
+    margin-top : 10px;
+    border-radius: 18px;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.80);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.6px);
+    -webkit-backdrop-filter: blur(4.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 #skills > #table > table {
     width: 100%;
     border-collapse: collapse;
+    table-layout : fixed;
 }
 
 #skills > #table > table > thead > tr > th {
     padding: 10px;
     text-align: left;
-    color: #A5A4A2;
+    color: #070EC2;
     font-size: 1.2em;
 }
 
@@ -95,16 +107,12 @@
     width: 3em;
 }
 
-#skills > #table > table > thead > tr {
-    border-bottom: 1px solid #8B8B8B;
-}
 
 #skills > #table > table > tbody#table-skills {
     overflow: scroll;
 }
 
 #skills > #table > table > tbody > tr {
-    border-bottom: 1px solid #8B8B8B;
     color: #313132;
 }
 
@@ -137,17 +145,74 @@
 #skills > #table > #pages {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content : center;
+    align-items : center;
     gap: 10px;
     padding: 5px;
+    width:100%;
+    margin-top : 10px;
+    margin-bottom : 0px;
 }
 
 #skills > #table > #pages > div > svg {
     width: 1.1em;
     height: auto;
+    display: flex;
+    justify-content : center;
+    align-items : center;
 }
 
 #skills > #table > #pages > .button-page:hover {
     scale: 1.1;
     cursor: pointer;
+    color : #070EC2;
+}
+
+#skills > #table > #pages > .button-page:active {
+    scale: 1.1;
+    cursor: pointer;
+}
+
+#filter-contener{
+    width : 90%;
+    padding:20px;
+    margin : 20px auto;
+    margin-bottom : 0;
+    display: flex;
+    align-items: flex-start;
+    border-radius: 18px;
+    height: auto;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.26);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.6px);
+    -webkit-backdrop-filter: blur(4.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#filter-category{
+    margin-left : 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-right : 10px;
+    }
+
+#filter-category-list{
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    margin-left : 20px;
+    margin-right : 10px;
+}
+
+.filter {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px;
+    border-radius : 10px;
+    margin-left : 20px;
+}
+
+
+.category {
+    width:130px;
+    justify-content : justify;
+
 }
