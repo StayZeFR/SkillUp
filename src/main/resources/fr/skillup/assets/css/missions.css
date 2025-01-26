@@ -1,0 +1,11 @@
+#missions {
+    width: 100%;
+    height: calc(100% - 30px);
+    background-color: white;
+    box-sizing: border-box;
+}
+
+#missions > .kanban > .column > header > svg {
+    width: 20px;
+    height: auto;
+}
