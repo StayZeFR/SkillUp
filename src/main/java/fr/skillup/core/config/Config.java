@@ -9,6 +9,9 @@ public class Config {
 
     private static Properties properties;
 
+    /**
+     * Charge le fichier de configuration
+     */
     public static void load() {
         Config.properties = new Properties();
         try {
