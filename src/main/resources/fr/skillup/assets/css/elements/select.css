@@ -28,7 +28,7 @@
     background-color: white;
     border: 1px solid #8B8B8B;
     border-radius: 10px;
-    color: #8B8B8B;
+    color: #000000;
     padding: 10px;
 }
 
@@ -39,6 +39,14 @@
 
 .select > .select-items > .select-item:hover {
     font-weight: bold;
+    color : #7B69ED;
+    background-color : #D4D5ED;
+}
+
+.select > .select-items > .select-item:active {
+    font-weight: bold;
+    background-color : #7B69ED;
+    color : white;
 }
 
 .select > .select-hide {
