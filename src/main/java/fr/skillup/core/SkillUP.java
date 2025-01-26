@@ -4,23 +4,25 @@ import fr.skillup.controllers.HomeController;
 import fr.skillup.core.config.Config;
 import fr.skillup.core.window.Window;
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-public class SkillUP extends Application {
+import java.util.Objects;
 
-    private static Window window;
+public class SkillUP extends Application {
 
     public static void run(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         Config.load();
 
-        SkillUP.window = new Window(Config.get("app.title"));
-        SkillUP.window.show(HomeController.class);
-
-        SkillUP.window.show();
+        Window window = new Window(Config.get("app.title"));
+        window.show(HomeController.class);
+        window.setMinWidth(Double.parseDouble(Config.get("app.min.width")));
+        window.setMinHeight(Double.parseDouble(Config.get("app.min.height")));
+        Window.getInstance().getIcons().add((new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/fr/skillup/assets/images/favicon.png")))));
     }
 }

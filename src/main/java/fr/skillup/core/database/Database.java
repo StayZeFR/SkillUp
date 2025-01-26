@@ -5,8 +5,9 @@ import fr.skillup.core.config.Config;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
-public class Database {
+public abstract class Database {
 
     private static final String HOST = Config.get("db.host");
     private static final String PORT = Config.get("db.port");
@@ -21,7 +22,7 @@ public class Database {
             try {
                 Database.connection = DriverManager.getConnection("jdbc:mysql://" + HOST + ":" + PORT + "/" + NAME, USER, PASSWORD);
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                Logger.getLogger(Database.class.getName()).severe("Impossible de se connecter à la base de données");
             }
         }
         return Database.connection;

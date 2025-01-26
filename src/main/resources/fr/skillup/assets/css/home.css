@@ -1,0 +1,712 @@
+
+* {
+    font-family: "Roboto", sans-serif !important;
+}
+
+
+
+h1{
+    font-size: 30px;
+    line-height: 50px;
+    color: #313132;
+    padding-left : 20px;
+    font-family: Kumbh Sans;
+}
+
+.container-personnel-management{
+    width : 90%;
+    padding:20px;
+    margin : 20px auto;
+    display: flex;
+    justify-content: justify;
+    align-items: flex-start;
+    border-radius: 18px;
+    height: auto;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.26);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.6px);
+    -webkit-backdrop-filter: blur(4.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.container-personnel{
+    width :90%;
+    height:50%;
+    padding : 20px;
+    margin : 20px auto;
+    justify-content: justify;
+    align-items: flex-start;
+    border-radius: 18px;
+    height: auto;
+    background: rgba(255, 255, 255, 0.26);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.6px);
+    -webkit-backdrop-filter: blur(4.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    overflow-y: scroll;
+
+}
+
+.people-card{
+    width: 265px;
+    height: 175px;
+    box-shadow: 0px 1.5px 9px #D4D5ED;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.80);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.6px);
+    -webkit-backdrop-filter: blur(4.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    flex-direction: column;
+    margin-top : 10px;
+    margin-right: 0px;
+    padding-right :0px;
+    position:relative;
+}
+.info-card{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+
+.profile-picture {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin:20px;
+    margin-right:0px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.info {
+    flex-grow: 1;
+    margin-left: 15px;/
+}
+
+.name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #313132;
+    margin:0;
+    padding:0;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-top : 30px;
+}
+
+.job {
+    font-size: 14px;
+    color: #929294;
+    margin:0;
+    padding:0;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.pen {
+    fill: #313132;
+    width: 30px;
+    height: auto;
+    position: absolute;
+    top:20px;
+    right:10px;
+    cursor : pointer;
+     border: none;
+     background-color : transparent;
+}
+.pen:hover{
+    fill: #070EC2;
+    background-color: #DEE1F8;
+    border-radius : 5px;
+}
+
+.select-skills{
+    appearance: none;
+    border-radius : 10px;
+    padding:10px;
+    margin-left : 10px;
+    margin-bottom : 20px;
+    border: 1px solid #131AC3;
+    box-shadow: 0px 1.5px 9px #ccc;
+    background: rgba(255, 255, 255, 0.80);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.6px);
+    -webkit-backdrop-filter: blur(4.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color:#8B8B8B;
+    background-image: url('assets/images/arrow.svg');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+
+}
+
+.skill-people{
+    margin-left :20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    font-family: Kumbh Sans;
+}
+.skill-icon{
+    width: 15px;
+    height: auto;
+    margin-right :10px;
+}
+
+.skill-text-dev{
+    font-size: 9px;
+    color: black;
+    padding:0px;
+    background-color : #F3E8FD;
+    border-radius : 20px;
+    margin:0px;
+    width:auto;
+    padding-left : 10px;
+    padding-right : 10px;
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    align-items : center;
+}
+
+.skill-text-dev:hover {
+    font-weight : 700;
+}
+
+.skill-text-support{
+    font-size: 9px;
+    color: black;
+    padding:0px;
+    background-color : #FFEFE2;
+    border-radius : 20px;
+    margin:0px;
+    width:auto;
+    padding-left : 10px;
+    padding-right : 10px;
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    align-items : center;
+}
+.skill-text-support:hover {
+    font-weight : 700;
+}
+
+.skill-text-strategy{
+    font-size: 9px;
+    color: black;
+    padding:0px;
+    background-color : #E7FDF6;
+    border-radius : 20px;
+    margin:0px;
+    width:auto;
+    padding-left : 10px;
+    padding-right : 10px;
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    align-items : center;
+}
+.skill-text-strategy:hover {
+    font-weight : 700;
+}
+
+.skill-text-governance{
+    font-size: 9px;
+    color: black;
+    padding:0px;
+    background-color : #E0F8FB;
+    border-radius : 20px;
+    margin:0px;
+    width:auto;
+    padding-left : 10px;
+    padding-right : 10px;
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    align-items : center;
+}
+.skill-text-governance:hover {
+    font-weight : 700;
+}
+
+.skill-text-management{
+    font-size: 9px;
+    color: black;
+    padding:0px;
+    background-color : #FAF3DE;
+    border-radius : 20px;
+    margin:0px;
+    width:auto;
+    padding-left : 10px;
+    padding-right : 10px;
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    align-items : center;
+}
+.skill-text-management:hover {
+    font-weight : 700;
+}
+.skill-text-other{
+    font-size: 9px;
+    color: black;
+    padding:0px;
+    background-color : #F3F3F3;
+    border-radius : 20px;
+    margin:0px;
+    width:auto;
+    padding-left : 10px;
+    padding-right : 10px;
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    align-items : center;
+}
+.skill-text-other:hover {
+    font-weight : 700;
+}
+
+
+/*
+.modal_container {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal_container.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal {
+    padding: 20px;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 450px;
+    width: 500px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.6px);
+    -webkit-backdrop-filter: blur(4.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+}
+
+.titleclose {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close {
+    border: none;
+    background-color: white;
+    color: #C5C5C6;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top:20px;
+    right:10px;
+}
+
+.profile-picture-modale{
+    width: 110px;
+    height: 110px;
+    border-radius: 25%;
+    object-fit: cover;
+    margin:20px;
+    margin-right:0px;
+}
+
+.name-modal {
+    color : #313132;
+    font-weight: 700;
+    font-size : 30px;
+    white-space: nowrap;
+    overflow: hidden;
+    margin:0;
+    padding:0;
+    margin-top : 40px;
+}
+
+.job-modal {
+    margin:0;
+    padding:0;
+    font-weight: 700;
+    color : #C5C5C6;
+    font-size : 20px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.personnal-info-modal h1{
+    font-size : 20px;
+    text-align: left;
+
+* {
+    font-family: "Roboto", sans-serif !important;
+}
+
+h1{
+    font-size: 30px;
+    line-height: 50px;
+    color: #313132;
+    padding-left : 20px;
+    font-family: Kumbh Sans;
+}
+
+.container-personnel-management{
+    width : 90%;
+    padding:20px;
+    margin : 20px auto;
+    display: flex;
+    justify-content: justify;
+    align-items: flex-start;
+    border-radius: 18px;
+    height: auto;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.26);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.6px);
+    -webkit-backdrop-filter: blur(4.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.container-personnel{
+    width :90%;
+    height:50%;
+    padding : 20px;
+    margin : 20px auto;
+    justify-content: justify;
+    align-items: flex-start;
+    border-radius: 18px;
+    height: auto;
+    background: rgba(255, 255, 255, 0.26);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.6px);
+    -webkit-backdrop-filter: blur(4.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+.people-card{
+    width: 265px;
+    height: 175px;
+    box-shadow: 0px 1.5px 9px #D4D5ED;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.80);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.6px);
+    -webkit-backdrop-filter: blur(4.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    flex-direction: column;
+    margin-top : 10px;
+    margin-right: 0px;
+    padding-right :0px;
+    position:relative;
+}
+.info-card{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+
+.profile-picture {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin:20px;
+    margin-right:0px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.info {
+    flex-grow: 1;
+    margin-left: 15px;/
+}
+
+.name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #313132;
+    margin:0;
+    padding:0;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-top : 30px;
+}
+
+.job {
+    font-size: 14px;
+    color: #929294;
+    margin:0;
+    padding:0;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.pen {
+    fill: #313132;
+    width: 20px;
+    height: auto;
+    position: absolute;
+    top:20px;
+    right:10px;
+    cursor : pointer;
+}
+.pen:hover{
+    fill: #070EC2;
+    background-color: #DEE1F8;
+    border-radius : 5px;
+}
+
+.select-skills{
+    appearance: none;
+    border-radius : 10px;
+    padding:10px;
+    margin-left : 10px;
+    margin-bottom : 20px;
+    border: 1px solid #131AC3;
+    box-shadow: 0px 1.5px 9px #ccc;
+    background: rgba(255, 255, 255, 0.80);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.6px);
+    -webkit-backdrop-filter: blur(4.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color:#8B8B8B;
+    background-image: url('assets/images/arrow.svg');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+
+}
+
+.skill-people{
+    margin-left :20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    font-family: Kumbh Sans;
+}
+.skill-icon{
+    width: 15px;
+    height: auto;
+    margin-right :10px;
+}
+
+.skill-text-dev{
+    font-size: 9px;
+    color: black;
+    padding:0px;
+    background-color : #F3E8FD;
+    border-radius : 20px;
+    margin:0px;
+    width:auto;
+    padding-left : 10px;
+    padding-right : 10px;
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    align-items : center;
+}
+
+.skill-text-dev:hover {
+    font-weight : 700;
+}
+
+.skill-text-support{
+    font-size: 9px;
+    color: black;
+    padding:0px;
+    background-color : #FFEFE2;
+    border-radius : 20px;
+    margin:0px;
+    width:auto;
+    padding-left : 10px;
+    padding-right : 10px;
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    align-items : center;
+}
+.skill-text-support:hover {
+    font-weight : 700;
+}
+
+.skill-text-strategy{
+    font-size: 9px;
+    color: black;
+    padding:0px;
+    background-color : #E7FDF6;
+    border-radius : 20px;
+    margin:0px;
+    width:auto;
+    padding-left : 10px;
+    padding-right : 10px;
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    align-items : center;
+}
+.skill-text-strategy:hover {
+    font-weight : 700;
+}
+
+.skill-text-governance{
+    font-size: 9px;
+    color: black;
+    padding:0px;
+    background-color : #E0F8FB;
+    border-radius : 20px;
+    margin:0px;
+    width:auto;
+    padding-left : 10px;
+    padding-right : 10px;
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    align-items : center;
+}
+.skill-text-governance:hover {
+    font-weight : 700;
+}
+
+.skill-text-management{
+    font-size: 9px;
+    color: black;
+    padding:0px;
+    background-color : #FAF3DE;
+    border-radius : 20px;
+    margin:0px;
+    width:auto;
+    padding-left : 10px;
+    padding-right : 10px;
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    align-items : center;
+}
+.skill-text-management:hover {
+    font-weight : 700;
+}
+.skill-text-other{
+    font-size: 9px;
+    color: black;
+    padding:0px;
+    background-color : #F3F3F3;
+    border-radius : 20px;
+    margin:0px;
+    width:auto;
+    padding-left : 10px;
+    padding-right : 10px;
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    align-items : center;
+}
+.skill-text-other:hover {
+    font-weight : 700;
+}
+
+
+.modal_container {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal_container.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal {
+    padding: 20px;
+    border-radius: 50px;
+    flex-direction: column;
+    height: 450px;
+    width: 500px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.6px);
+    -webkit-backdrop-filter: blur(4.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+}
+
+.titleclose {
+    display: block;
+    justify-content: space-between;
+}
+
+.close {
+    border: none;
+    background-color: white;
+    color: #C5C5C6;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top:20px;
+    right:10px;
+}
+
+.profile-picture-modale{
+    width: 110px;
+    height: 110px;
+    border-radius: 25%;
+    object-fit: cover;
+    margin:20px;
+    margin-right:0px;
+}
+
+.name-modal {
+    color : #313132;
+    font-weight: 700;
+    font-size : 30px;
+    white-space: nowrap;
+    overflow: hidden;
+    margin:0;
+    padding:0;
+    margin-top : 40px;
+}
+
+.job-modal {
+    margin:0;
+    padding:0;
+    font-weight: 700;
+    color : #C5C5C6;
+    font-size : 20px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+

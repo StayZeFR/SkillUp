@@ -1,0 +1,248 @@
+* {
+    font-family: "Roboto", sans-serif !important;
+}
+
+
+body {
+    background: linear-gradient(to bottom, #B6B7F1 0%, #D4DEF8 100%);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body > main {
+    width: 93%;
+    height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 65px;
+    display: grid;
+    grid-template-columns: clamp(200px, 20%, 500px) auto;
+    grid-template-rows: 100%;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.26);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.6px);
+    -webkit-backdrop-filter: blur(4.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+body > main > #sidebar {
+    display: flex;
+    flex-direction: column;
+    border-radius: 65px 0 0 65px;
+    background-color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+    padding-right : 20px;
+    padding-left : 15px;
+}
+
+body > main > #sidebar > header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+}
+
+body > main > #sidebar > header > div > img {
+    width: 150px;
+    height: auto;
+}
+
+body > main > #sidebar > nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+body > main > #sidebar > nav > ul {
+    list-style-type: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body > main > #sidebar > nav > ul > li {
+    padding-top: 20px;
+    margin: 0;
+}
+
+body > main > #sidebar > nav > ul > li > button {
+    width: 100%;
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    padding-left: 20px;
+    padding-top : 10px;
+    box-sizing: border-box;
+}
+
+body > main > #sidebar > nav > ul > li > button > span {
+    font-size: 1.1em;
+    text-align: center;
+    vertical-align: center;
+    color: #8B8B8B;
+}
+
+body > main > #sidebar > nav > ul > li > button > svg {
+    width: 20px;
+    height: auto;
+    fill: #8B8B8B;
+}
+
+body > main > #sidebar > nav > ul > li > button.active {
+    background: #EAEBF6;
+    border-radius : 10px;
+}
+
+body > main > #sidebar > nav > ul > li > button.active > span {
+    color: #070EC2;
+    font-weight: 700;
+}
+
+body > main > #sidebar > nav > ul > li > button.active > svg {
+    fill : #070EC2;
+}
+
+body > main > #content {
+    padding: 15px;
+}
+
+body > main > #sidebar > nav > ul > li > button:hover > span {
+    color: #070EC2;
+}
+
+body > main > #sidebar > nav > ul > li > button:hover > svg {
+    width: 20px;
+    height: auto;
+    fill: #070EC2;
+}* {
+    font-family: "Roboto", sans-serif !important;
+}
+
+
+body {
+    background: linear-gradient(to bottom, #B6B7F1 0%, #D4DEF8 100%);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body > main {
+    width: 93%;
+    height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 65px;
+    display: grid;
+    grid-template-columns: clamp(200px, 20%, 500px) auto;
+    grid-template-rows: 100%;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.60);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.6px);
+    -webkit-backdrop-filter: blur(4.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+body > main > #sidebar {
+    display: flex;
+    flex-direction: column;
+    border-radius: 65px 0 0 65px;
+    background-color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+body > main > #sidebar > header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+}
+
+body > main > #sidebar > header > div > img {
+    width: 150px;
+    height: auto;
+}
+
+body > main > #sidebar > nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+body > main > #sidebar > nav > ul {
+    list-style-type: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body > main > #sidebar > nav > ul > li {
+    padding-top: 20px;
+    margin: 0;
+}
+
+body > main > #sidebar > nav > ul > li > button {
+    width: 100%;
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    padding-left: 20px;
+    padding-top : 5px;
+    height: 30px;
+}
+
+body > main > #sidebar > nav > ul > li > button > span {
+    font-size: 1.1em;
+    text-align: center;
+    vertical-align: center;
+    color: #8B8B8B;
+}
+
+body > main > #sidebar > nav > ul > li > button > svg {
+    width: 20px;
+    height: auto;
+    fill: #8B8B8B;
+}
+
+body > main > #sidebar > nav > ul > li > button.active {
+    background: #EAEBF6;
+    height: 60px;
+    border-radius : 10px;
+    margin : 5px;
+}
+
+body > main > #sidebar > nav > ul > li > button.active > span {
+    color: #070EC2;
+    font-weight: 700;
+}
+
+body > main > #sidebar > nav > ul > li > button.active > svg {
+    fill : #070EC2;
+}
+
+body > main > #content {
+    padding: 15px;
+}
+
+body > main > #sidebar > nav > ul > li > button:hover > span {
+    color: #070EC2;
+}
+
+body > main > #sidebar > nav > ul > li > button:hover > svg {
+    width: 20px;
+    height: auto;
+    fill: #070EC2;
+}

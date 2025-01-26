@@ -10,8 +10,13 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 public class HTMLBuilder {
+
+    private HTMLBuilder() {
+        throw new IllegalStateException("Class utilitaire");
+    }
 
     /**
      * Construit une vue HTML à partir d'un fichier de ressource
@@ -79,12 +84,11 @@ public class HTMLBuilder {
                 titleElement.after("<script src=\"assets/js/bridge.js\"></script>");
             }
 
-            String html = HTMLBuilder.insertParams(mainDoc.html(), params);
-
-            return html;
+            return HTMLBuilder.insertParams(mainDoc.html(), params);
         } catch (Exception e) {
-            throw new RuntimeException("Erreur lors de la construction de la vue", e);
+            Logger.getLogger(HTMLBuilder.class.getName()).severe(e.getMessage());
         }
+        return null;
     }
 
     private static String insertParams(String html, Map<String, Object> params) {
