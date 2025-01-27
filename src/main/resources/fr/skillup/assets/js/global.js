@@ -43,3 +43,25 @@ function select(target) {
     selected.innerText = text;
     selected.setAttribute("data-value", value);
 }
+
+function blobToImage(blob) {
+    return new Promise(resolve => {
+        const url = URL.createObjectURL(blob)
+        let img = new Image()
+        img.onload = () => {
+        URL.revokeObjectURL(url)
+        resolve(img)
+        }
+        img.src = url
+    });
+
+};
+
+function base64ToBlob(base64, mimeType) {
+  const byteString = atob(base64.split(",")[1]);
+  const arrayBuffer = new Uint8Array(byteString.length);
+  for (let i = 0; i < byteString.length; i++) {
+    arrayBuffer[i] = byteString.charCodeAt(i);
+  }
+  return new Blob([arrayBuffer], { type: mimeType });
+}
