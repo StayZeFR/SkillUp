@@ -54,14 +54,19 @@ function blobToImage(blob) {
         }
         img.src = url
     });
-
-};
+}
 
 function base64ToBlob(base64, mimeType) {
-  const byteString = atob(base64.split(",")[1]);
-  const arrayBuffer = new Uint8Array(byteString.length);
-  for (let i = 0; i < byteString.length; i++) {
-    arrayBuffer[i] = byteString.charCodeAt(i);
-  }
-  return new Blob([arrayBuffer], { type: mimeType });
+    if (base64.startsWith("data:image/png;base64,")) {
+        base64 = base64.split(",")[1];
+    }
+
+    const byteString = atob(base64);
+    const arrayBuffer = new Uint8Array(byteString.length);
+
+    for (let i = 0; i < byteString.length; i++) {
+        arrayBuffer[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([arrayBuffer], { type: mimeType });
 }

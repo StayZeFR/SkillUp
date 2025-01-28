@@ -50,11 +50,17 @@ App.onLoad(() => {
 });
 
 function getMax() {
-    let max = 10;
-    if (window.innerHeight > 800) {
+    let max = 5;
+    if (window.innerHeight < 800) {
+        max = 7;
+    } else if (window.innerHeight < 950) {
+        max = 10;
+    } else if (window.innerHeight < 1100) {
+        max = 12;
+    } else if (window.innerHeight < 1250) {
         max = 15;
-    } else if (window.innerHeight > 950) {
-        max = 20;
+    } else if (window.innerHeight < 1400) {
+        max = 18;
     }
     return max;
 }
@@ -63,7 +69,7 @@ function filter(skills) {
     const category = document.getElementById("filter-category").getAttribute("data-value");
     const label = document.getElementById("filter-label").value;
     let skillsFiltered = skills;
-    if (category !== "all") {
+    if (category && category !== "all") {
         skillsFiltered = skills.filter(skill => skill["category_id"] === parseInt(category));
     }
     if (label !== "") {

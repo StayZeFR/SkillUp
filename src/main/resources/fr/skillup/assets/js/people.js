@@ -1,12 +1,21 @@
 App.onLoad(() => {
     const people = JSON.parse(Bridge.get("PeopleController", "getPeople"));
 
-    if(people !== null ){
-        people.forEach(person => {
-            const html = `
-                  <div class='people-card'>
+    showPeople(people);
+});
+
+function showPeople(people) {
+    const max = 6;
+    let start = 0;
+    const container = document.getElementById("container-personnel");
+    if (container.innerHTML !== "") {
+        start = container.children.length;
+    }
+    for (let i = start; i < start + max; i++) {
+        const person = people[i];
+        const html = `
                     <div class='info-card'>
-                      <img src='data:image/png;base_64${person["picture"]}' alt='People Picture' class='profile-picture'/>
+                      <img src='data:image/png;base64,${person["picture"]}' alt='People Picture' class='profile-picture'/>
                       <div class='info'>
                         <p class='name'>${person["firstname"]} ${person["lastname"]}</p>
                         <p class='job'>${person["job"]}</p>
@@ -26,13 +35,14 @@ App.onLoad(() => {
                         <img src='assets/images/support.svg' alt='support-skill' class='skill-icon'/>
                         <p>Service Delivery</p>
                       </div>
-                    </div>
-                  </div>`;
-            App.log(html);
-            document.getElementById("container-personnel").innerHTML += html;
-        });
+                    </div>`;
+        const element = document.createElement("div");
+        element.classList.add("people-card");
+        element.innerHTML = html;
+        document.getElementById("container-personnel").insertBefore(element, document.getElementById("load-more"));
     }
 
-
-
-});
+    if (start + max >= people.length) {
+        document.getElementById("load-more").style.display = "none";
+    }
+}

@@ -46,7 +46,6 @@ public abstract class Controller {
                 webView.getEngine().executeScript("App.start()");
                 if (!Window.getInstance().isShowing()) {
                     Window.getInstance().show();
-                    System.out.println("Window shown");
                 }
             }
         };

@@ -80,8 +80,8 @@ public class HTMLBuilder {
 
             Element titleElement = mainDoc.head().selectFirst("title");
             if (titleElement != null) {
-                titleElement.after("<script src=\"assets/js/app.js\"></script>");
-                titleElement.after("<script src=\"assets/js/bridge.js\"></script>");
+                titleElement.after("<script src=\"assets/js/core/app.js\"></script>");
+                titleElement.after("<script src=\"assets/js/core/bridge.js\"></script>");
             }
 
             return HTMLBuilder.insertParams(mainDoc.html(), params);
