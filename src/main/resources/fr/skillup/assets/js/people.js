@@ -22,7 +22,7 @@ function showPeople(people) {
                       </div>
                       <div>
                         <button class='pen'>
-                          <img src='assets/images/pen.svg' alt='Modify'/>
+                          <img src='assets/images/pen.svg' alt='Modify' onclick='showModal(${person["id"]})'/>
                         </button>
                       </div>
                     </div>
@@ -45,4 +45,12 @@ function showPeople(people) {
     if (start + max >= people.length) {
         document.getElementById("load-more").style.display = "none";
     }
+}
+
+function showModal(id) {
+    document.getElementById("modal-container").classList.add("show");
+}
+
+function closeModal() {
+    document.getElementById("modal-container").classList.remove("show");
 }

@@ -1,14 +1,21 @@
 #missions {
     width: 100%;
     height: calc(100% - 60px);
-    /*height: 100%;*/
-    background-color: white;
     box-sizing: border-box;
-    border-radius: 20px;
+    border-radius: 35px;
     padding: 30px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    background: rgba(255, 255, 255, 0.23);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.6px);
+    -webkit-backdrop-filter: blur(4.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+h1{
+    font-size: 30px;
 }
 
 #missions > header {
@@ -41,6 +48,10 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4.6px);
+    -webkit-backdrop-filter: blur(4.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 #missions > .kanban .column > header > svg {
@@ -112,6 +123,8 @@
     flex-direction: column;
     gap: 10px;
     font-size: 0.75em;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    height: 80px;
 }
 
 #missions > .kanban .column > .container > .scrollable > .mission > header {
@@ -124,7 +137,8 @@
 #missions > .kanban .column > .container > .scrollable > .mission > header > .date {
     background-color: #F4F4F6;
     border-radius: 5px;
-    padding: 3px;
+    padding: 5px;
+    margin-left : 3px;
     display: flex;
     flex-direction: row;
     gap: 3px;
@@ -167,4 +181,5 @@
 
 #missions > .kanban .column > .container > .scrollable > .mission > .description {
     text-align: left;
+    margin-left : 3px;
 }

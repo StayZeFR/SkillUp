@@ -19,7 +19,6 @@ public class DefaultLayoutController extends LayoutController {
             case "home" -> HomeController.class;
             case "missions" -> MissionsController.class;
             case "people" -> PeopleController.class;
-            case "settings" -> SettingsController.class;
             case "skills" -> SkillsController.class;
             default -> throw new IllegalStateException("Unexpected value: " + view);
         };

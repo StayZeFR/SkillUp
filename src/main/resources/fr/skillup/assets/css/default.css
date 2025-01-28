@@ -122,7 +122,8 @@ body > main > #sidebar > nav > ul > li > button:hover > svg {
     width: 20px;
     height: auto;
     fill: #070EC2;
-}* {
+}
+* {
     font-family: "Roboto", sans-serif !important;
 }
 
