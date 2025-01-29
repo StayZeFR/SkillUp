@@ -7,10 +7,12 @@ import java.util.function.Consumer;
 
 public class Result {
 
+    private Random random;
     private final List<Class<?>> types;
     private final List<Tuple> tuples;
 
     public Result(ResultSet resultSet, Class<?>... clazz) throws SQLException {
+        this.random = new Random();
         this.tuples = new ArrayList<>();
         this.types = Arrays.asList(clazz);
         this.scan(resultSet);
@@ -57,7 +59,7 @@ public class Result {
     }
 
     public Tuple random() {
-        return this.get(new Random().nextInt(this.size()));
+        return this.get(this.random.nextInt(this.size()));
     }
 
     public Tuple find(String key, Object value) {
