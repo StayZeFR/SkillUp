@@ -52,7 +52,7 @@ App.onLoad(() => {
 function getMax() {
     let max = 5;
     if (window.innerHeight < 800) {
-        max = 9;
+        max = 7;
     } else if (window.innerHeight < 950) {
         max = 10;
     } else if (window.innerHeight < 1100) {

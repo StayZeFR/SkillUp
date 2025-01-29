@@ -44,15 +44,22 @@
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    flex-direction: column;
     flex: 1;
     overflow: scroll;
     position: relative;
 }
 
-#people > .container-personnel > .people-card {
+#people > .container-personnel > div:first-child {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+#people > .container-personnel > div:first-child > .people-card {
     width: 265px;
     height: 175px;
     border-radius: 12px;
@@ -68,18 +75,17 @@
     position: relative;
 }
 
-#people > .container-personnel > #load-more {
+#people > .container-personnel > div:first-child > #load-more {
     display: none;
 }
 
-.info-card {
+#people > .container-personnel > div:first-child > .people-card > .info-card {
     display: flex;
     align-items: center;
-    gap : 20px;
+    gap: 20px;
 }
 
-
-#people > .container-personnel > .people-card > .info-card > .profile-picture {
+#people > .container-personnel > div:first-child > .people-card > .info-card > .profile-picture {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -89,53 +95,37 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-#people > .container-personnel > .people-card > .info-card > .info {
+#people > .container-personnel > div:first-child > .people-card > .info-card > .info {
     flex-grow: 1;
     margin-left: 5px;
-    margin-bottom : 15px;
+    margin-bottom: 15px;
 }
 
-.info-general{
-     display : flex;
-     flex-direction : column;
-     flex: 1;
-     margin: 0;
-     padding: 0;
-     gap: 0;
- }
+#people > .container-personnel > div:last-child {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 
-#people > .container-personnel > .people-card > .info-card > .info > .name {
+#people > .container-personnel > div:first-child > .people-card > .info-card > .info > .name {
     font-size: 18px;
     font-weight: bold;
     color: #313132;
     padding: 0;
     overflow: hidden;
-    margin-top : 30px;
-    margin-bottom : 0px;
+    margin-top: 30px;
+    margin-bottom: 0;
 }
 
-#people > .container-personnel > .people-card > .info-card > .info > .job {
+#people > .container-personnel > div:first-child > .people-card > .info-card > .info > .job {
     font-size: 14px;
     color: #929294;
-    margin:0;
-    margin-bottom : 15px;
-    margin-top : 0px;
-    padding:0;
+    margin: 0 0 15px;
+    padding: 0;
     overflow: hidden;
 }
 
-.disponibility{
-    font-size: 14px;
-    color: #58A68A;
-    background-color : #E7FDF6;
-    font-weight : 700;
-    border-radius : 5px;
-    padding : 5px;
-    margin : 0;
-    width : fit-content;
-}
-
-#people > .container-personnel > .people-card > .info-card > div > .pen {
+#people > .container-personnel > div:first-child > .people-card > .info-card > div > .pen {
     fill: #313132;
     width: 30px;
     height: auto;
@@ -147,7 +137,7 @@
     background-color: transparent;
 }
 
-#people > .container-personnel > .people-card > .info-card > div > .pen:hover {
+#people > .container-personnel > div:first-child > .people-card > .info-card > div > .pen:hover {
     background-color: #F2F0FD;
     border-radius: 5px;
 }
@@ -168,10 +158,11 @@
     background-size: 10px;
 }
 
-.skill-people {
+#people > .container-personnel > div:first-child > .people-card > .skill-people {
     margin-left: 20px;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
     gap: 5px;
     font-family: Kumbh Sans, serif;
 }
@@ -182,126 +173,56 @@
     margin-right: 10px;
 }
 
-.skill-text-dev {
+.disponibility {
+    font-size: 14px;
+    color: #58A68A;
+    background-color: #E7FDF6;
+    font-weight: 700;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 0;
+    width: fit-content;
+}
+
+.info-general {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+}
+
+#people > .container-personnel > div:first-child > .people-card > .skill-people > .skill-text {
     font-size: 9px;
     color: black;
-    padding: 0px;
     background-color: #F3E8FD;
     border-radius: 20px;
-    margin: 0px;
+    margin: 0;
     width: auto;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 0 10px;
     display: flex;
     white-space: nowrap;
-    overflow: hidden;
     align-items: center;
+    gap: 5px;
 }
 
-.skill-text-dev:hover {
+#people > .container-personnel > div:first-child > .people-card > .skill-people > .skill-text:hover {
     font-weight: 700;
 }
 
-.skill-text-support {
-    font-size: 9px;
-    color: black;
-    padding: 0px;
-    background-color: #FFEFE2;
-    border-radius: 20px;
-    margin: 0px;
-    width: auto;
-    padding-left: 10px;
-    padding-right: 10px;
-    display: flex;
-    white-space: nowrap;
-    overflow: hidden;
-    align-items: center;
+#people > .container-personnel > div:first-child > .people-card > .skill-people > .skill-text > svg {
+    width: 15px;
+    height: auto;
 }
 
-.skill-text-support:hover {
-    font-weight: 700;
-}
-
-.skill-text-strategy {
-    font-size: 9px;
-    color: black;
-    padding: 0px;
-    background-color: #E7FDF6;
-    border-radius: 20px;
-    margin: 0px;
-    width: auto;
-    padding-left: 10px;
-    padding-right: 10px;
-    display: flex;
-    white-space: nowrap;
-    overflow: hidden;
-    align-items: center;
-}
-
-.skill-text-strategy:hover {
-    font-weight: 700;
-}
-
-.skill-text-governance {
-    font-size: 9px;
-    color: black;
-    padding: 0px;
-    background-color: #E0F8FB;
-    border-radius: 20px;
-    margin: 0px;
-    width: auto;
-    padding-left: 10px;
-    padding-right: 10px;
-    display: flex;
-    white-space: nowrap;
-    overflow: hidden;
-    align-items: center;
-}
-
-.skill-text-governance:hover {
-    font-weight: 700;
-}
-
-.skill-text-management {
-    font-size: 9px;
-    color: black;
-    padding: 0px;
-    background-color: #FAF3DE;
-    border-radius: 20px;
-    margin: 0px;
-    width: auto;
-    padding-left: 10px;
-    padding-right: 10px;
-    display: flex;
-    white-space: nowrap;
-    overflow: hidden;
-    align-items: center;
-}
-
-.skill-text-management:hover {
-    font-weight: 700;
-}
-
-.skill-text-other {
-    font-size: 9px;
-    color: black;
-    padding: 0px;
+#people > .container-personnel > div:first-child > .people-card > .skill-people > .skill-text.other {
     background-color: #F3F3F3;
-    border-radius: 20px;
-    margin: 0px;
-    width: auto;
-    padding-left: 10px;
-    padding-right: 10px;
-    display: flex;
-    white-space: nowrap;
-    overflow: hidden;
-    align-items: center;
 }
 
-.skill-text-other:hover {
-    font-weight: 700;
+#people > .container-personnel > div:first-child > .people-card > .skill-people > .skill-text.other > svg {
+    fill: #7B7575;
 }
-
 
 .modal {
     padding: 20px;
@@ -309,7 +230,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 560px;
+    height: auto;
     width: 550px;
     background: rgba(255, 255, 255, 1);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -322,7 +243,7 @@
 .titleclose {
     display: flex;
     width: 100%;
-    gap : 10px;
+    gap: 10px;
 }
 
 .close {
@@ -332,8 +253,8 @@
     border-radius: 5px;
     cursor: pointer;
     position: absolute;
-    top:20px;
-    right:20px;
+    top: 20px;
+    right: 20px;
     background-color: #F2F0FD;
 }
 
@@ -350,8 +271,8 @@
     border-radius: 5px;
     cursor: pointer;
     position: absolute;
-    top:20px;
-    right:60px;
+    top: 20px;
+    right: 60px;
     background-color: #F2F0FD;
 }
 
@@ -361,18 +282,18 @@
     border-radius: 5px;
     cursor: pointer;
     position: absolute;
-    top:20px;
-    right:100px;
+    top: 20px;
+    right: 100px;
     background-color: #F2F0FD;
 }
 
-.profile-picture-modale{
+.profile-picture-modale {
     width: 110px;
     height: 110px;
     border-radius: 25%;
     object-fit: cover;
-    margin:20px;
-    margin-right:0px;
+    margin: 20px;
+    margin-right: 0px;
 }
 
 .icon {
@@ -386,9 +307,9 @@
 }
 
 .name-modal {
-    color : #313132;
+    color: #313132;
     font-weight: 700;
-    font-size : 30px;
+    font-size: 30px;
     white-space: nowrap;
     overflow: hidden;
     margin-bottom: 10px;
@@ -396,12 +317,12 @@
 }
 
 .job-modal {
-    margin:0;
+    margin: 0;
     margin-bottom: 10px;
-    padding:0;
+    padding: 0;
     font-weight: 700;
-    color : #C5C5C6;
-    font-size : 20px;
+    color: #C5C5C6;
+    font-size: 20px;
     white-space: nowrap;
     overflow: hidden;
 }
@@ -430,55 +351,56 @@
 
 
 .titre-info-modal {
-    justify-content : right;
+    justify-content: right;
     font-size: 20px;
-    margin : 0;
-    padding : 0;
-    margin-left : 25px;
+    margin: 0;
+    padding: 0;
+    margin-left: 25px;
     width: 100%;
-    color : #7B69ED;
+    color: #7B69ED;
 }
-.personnal-info-modal{
+
+.personnal-info-modal {
     width: 100%;
 }
 
-.skill-info-modal{
+.skill-info-modal {
     width: 100%;
 }
 
-.information-container{
+.information-container {
     display: flex;
-    margin : 0;
-    margin-left : 25px;
-    gap : 0;
-    padding : 0;
+    margin: 0;
+    margin-left: 25px;
+    gap: 0;
+    padding: 0;
 
 }
 
-.titre-information{
+.titre-information {
     flex: 1;
 }
 
-.titre{
-    color : #313132;
+.titre {
+    color: #313132;
     font-weight: 600;
-    padding : 5px;
+    padding: 5px;
 }
 
 .data-information-readonly,
 .data-information {
-    color : #313132;
+    color: #313132;
     font-weight: 300;
-    border : none;
-    margin-top : 14px;
+    border: none;
+    margin-top: 14px;
     outline: none;
-    padding : 5px;
+    padding: 5px;
 }
 
-.data-information:hover{
-    background-color : #F2F0FD;
-    padding : 5px;
+.data-information:hover {
+    background-color: #F2F0FD;
+    padding: 5px;
     font-weight: 300;
-    border : none;
+    border: none;
 }
 

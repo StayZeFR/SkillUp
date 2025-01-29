@@ -14,4 +14,9 @@ public class PeopleController extends Controller {
         PersonModel model = Model.get(PersonModel.class);
         return model.getPersons().toJson();
     }
+
+    public String getPersonSkills(int id) {
+        PersonModel model = Model.get(PersonModel.class);
+        return model.getPersonSkills(id).toJson();
+    }
 }
