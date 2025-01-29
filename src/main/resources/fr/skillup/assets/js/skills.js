@@ -3,7 +3,7 @@ App.onLoad(() => {
     const skills = JSON.parse(Bridge.get("SkillsController", "getSkills"));
     if (categories !== null) {
         categories.forEach(category => {
-            document.getElementById("filter-category-list").innerHTML += "<div class='select-item' data-value='" + category["id"] + "'>" + category["label"] + "</div>";
+            document.getElementById("filter-category-list").innerHTML += "<div class='select-item' data-value='" + category["id"] + "' onclick='select(this)'>" + category["label"] + "</div>";
         });
     }
 
@@ -11,15 +11,17 @@ App.onLoad(() => {
     let max = getMax();
     window.addEventListener("resize", () => {
         max = getMax();
-        initTable(skillsFiltered, 0, max);
+        initTable(filter(skills), 0, max);
     });
 
-    document.getElementById("filter-category").addEventListener("change", () => {
-
+    Array.from(document.querySelectorAll("#filter-category-list > .select-item")).forEach(select => {
+        select.addEventListener("click", (event) => {
+            skillsFiltered = filter(skills);
+            initTable(skillsFiltered, 0, max);
+        });
     });
     document.getElementById("filter-label").addEventListener("input", () => {
-        const label = document.getElementById("filter-label").value;
-        skillsFiltered = skills.filter(skill => skill["skill_label"].toLowerCase().includes(label.toLowerCase()));
+        skillsFiltered = filter(skills);
         initTable(skillsFiltered, 0, max);
     });
 
@@ -48,13 +50,32 @@ App.onLoad(() => {
 });
 
 function getMax() {
-    let max = 10;
-    if (window.innerHeight > 800) {
+    let max = 5;
+    if (window.innerHeight < 800) {
+        max = 7;
+    } else if (window.innerHeight < 950) {
+        max = 10;
+    } else if (window.innerHeight < 1100) {
+        max = 12;
+    } else if (window.innerHeight < 1250) {
         max = 15;
-    } else if (window.innerHeight > 950) {
-        max = 20;
+    } else if (window.innerHeight < 1400) {
+        max = 18;
     }
     return max;
+}
+
+function filter(skills) {
+    const category = document.getElementById("filter-category").getAttribute("data-value");
+    const label = document.getElementById("filter-label").value;
+    let skillsFiltered = skills;
+    if (category && category !== "all") {
+        skillsFiltered = skills.filter(skill => skill["category_id"] === parseInt(category));
+    }
+    if (label !== "") {
+        skillsFiltered = skillsFiltered.filter(skill => skill["skill_label"].toLowerCase().includes(label.toLowerCase()));
+    }
+    return skillsFiltered;
 }
 
 function initTable(skills, start, max) {

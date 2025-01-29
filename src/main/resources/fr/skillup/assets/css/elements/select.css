@@ -2,6 +2,8 @@
     width: clamp(200px, 50%, 300px);
     position: relative;
     box-sizing: border-box;
+
+
 }
 
 .select > .select-selected {
@@ -12,14 +14,16 @@
     color: #8B8B8B;
     outline: none;
     padding: 10px;
+    padding-right : 0;
+    box-shadow: 0px 2px 9px 0px rgba(7, 14, 194, 0.2);
 }
 
 .select > .select-selected:after {
-    content: "▼";
+    content : "˅";
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: -5px;
+    right: -3px;
 }
 
 .select > .select-items {
@@ -28,8 +32,10 @@
     background-color: white;
     border: 1px solid #8B8B8B;
     border-radius: 10px;
-    color: #8B8B8B;
+    color: #000000;
     padding: 10px;
+
+
 }
 
 .select > .select-items > .select-item {
@@ -39,6 +45,14 @@
 
 .select > .select-items > .select-item:hover {
     font-weight: bold;
+    color : #7B69ED;
+    background-color : #D4D5ED;
+}
+
+.select > .select-items > .select-item:active {
+    font-weight: bold;
+    background-color : #7B69ED;
+    color : white;
 }
 
 .select > .select-hide {

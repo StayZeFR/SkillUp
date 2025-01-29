@@ -9,12 +9,19 @@ public class Config {
 
     private static Properties properties;
 
+    /**
+     * Charge le fichier de configuration
+     */
     public static void load() {
         Config.properties = new Properties();
         try {
             Config.properties.load(Objects.requireNonNull(Config.class.getResource("/config.properties")).openStream());
         } catch (IOException e) {
             Logger.getLogger(Config.class.getName()).severe(e.getMessage());
+        } finally {
+            if (Config.properties.isEmpty()) {
+                Logger.getLogger(Config.class.getName()).severe("Le fichier de configuration n'a pas pu être chargé");
+            }
         }
     }
 

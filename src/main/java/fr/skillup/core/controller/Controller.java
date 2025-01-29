@@ -16,6 +16,7 @@ public abstract class Controller {
     private static ChangeListener<Worker.State> currentListener = null;
     protected Window window = Window.getInstance();
     protected Map<String, Object> params;
+    private WebView webView;
 
     /**
      * Initialisation du contrôleur
@@ -28,7 +29,7 @@ public abstract class Controller {
      * @param params : Paramètres à passer à la vue
      */
     protected void render(String view, Map<String, Object> params) {
-        WebView webView = this.window.getWebView();
+        WebView webView = this.webView;
         webView.getEngine().getHistory().go(-webView.getEngine().getHistory().getEntries().size());
         webView.getEngine().loadContent(HTMLBuilder.buildView(view + ".html", params), "text/html");
 
@@ -66,5 +67,9 @@ public abstract class Controller {
      */
     public void setParams(Map<String, Object> params) {
         this.params = params;
+    }
+
+    public void setWebView(WebView webView) {
+        this.webView = webView;
     }
 }
