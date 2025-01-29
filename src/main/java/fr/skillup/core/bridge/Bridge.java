@@ -78,7 +78,7 @@ public class Bridge {
 
 
     public void log(String message) {
-        Logger.getGlobal().info(message);
+        System.out.println("Log : " + message);
     }
 
     public static Bridge getInstance() {
