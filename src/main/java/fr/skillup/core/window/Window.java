@@ -1,7 +1,6 @@
 package fr.skillup.core.window;
 
 import fr.skillup.core.controller.Controller;
-import javafx.event.Event;
 import javafx.scene.Scene;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -69,10 +68,6 @@ public class Window extends Stage {
      */
     public WebView getWebView() {
         return this.webView;
-    }
-
-    public void setBootstrap(Class<? extends Controller> clazz) {
-
     }
 
     /**
