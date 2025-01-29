@@ -25,10 +25,13 @@ public class Window extends Stage {
         Window.instance = this;
         super.setTitle(title);
         this.webView = new WebView();
+        this.webView.setCache(true);
+        this.webView.setZoom(1.0);
+        this.webView.setContextMenuEnabled(false);
+        this.webView.setStyle("-fx-background-color: transparent;");
         this.webView.getEngine().setJavaScriptEnabled(true);
         this.webView.getEngine().setOnError(event -> Logger.getLogger(Window.class.getName()).severe("JS : " + event.getMessage()));
         this.webView.getEngine().setOnAlert(event -> Logger.getLogger(Window.class.getName()).info("JS Alert : " + event.getData()));
-        this.webView.setOnContextMenuRequested(Event::consume);
         this.setScene(new Scene(this.webView));
     }
 

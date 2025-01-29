@@ -23,7 +23,7 @@ public class Tuple {
      */
     public <T> T get(String key) {
         if (!this.tuple.containsKey(key)) {
-            throw new IllegalArgumentException("Key not found : " + key);
+            throw new IllegalArgumentException("Clé non trouvé : " + key);
         }
 
         int index = this.types.indexOf(this.tuple.get(key).getClass());
@@ -31,6 +31,7 @@ public class Tuple {
             throw new IllegalStateException("Type mismatch for key : " + key);
         }
 
+        @SuppressWarnings("unchecked")
         Class<T> clazz = (Class<T>) this.types.get(index);
         return clazz.cast(this.tuple.get(key));
     }
