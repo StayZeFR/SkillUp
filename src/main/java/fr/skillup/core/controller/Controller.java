@@ -29,28 +29,27 @@ public abstract class Controller {
      * @param params : Paramètres à passer à la vue
      */
     protected void render(String view, Map<String, Object> params) {
-        WebView webView = this.webView;
-        webView.getEngine().getHistory().go(-webView.getEngine().getHistory().getEntries().size());
-        webView.getEngine().loadContent(HTMLBuilder.buildView(view + ".html", params), "text/html");
+        this.webView.getEngine().getHistory().go(this.webView.getEngine().getHistory().getEntries().size());
+        this.webView.getEngine().loadContent(HTMLBuilder.buildView(view + ".html", params), "text/html");
 
         if (Controller.currentListener != null) {
-            webView.getEngine().getLoadWorker().stateProperty().removeListener(currentListener);
+            this.webView.getEngine().getLoadWorker().stateProperty().removeListener(currentListener);
         }
 
         Controller.currentListener = (obs, oldState, newState) -> {
             if (newState == Worker.State.SUCCEEDED) {
-                JSObject jsObj = (JSObject) webView.getEngine().executeScript("window");
+                JSObject jsObj = (JSObject) this.webView.getEngine().executeScript("window");
                 jsObj.setMember("params", params);
                 jsObj.setMember("bridge", Bridge.getInstance());
-                webView.getEngine().executeScript("Bridge.init()");
-                webView.getEngine().executeScript("App.start()");
+                this.webView.getEngine().executeScript("Bridge.init()");
+                this.webView.getEngine().executeScript("App.start()");
                 if (!Window.getInstance().isShowing()) {
                     Window.getInstance().show();
                 }
             }
         };
 
-        webView.getEngine().getLoadWorker().stateProperty().addListener(currentListener);
+        this.webView.getEngine().getLoadWorker().stateProperty().addListener(currentListener);
     }
 
     /**
