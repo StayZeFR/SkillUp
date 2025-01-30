@@ -17,20 +17,17 @@ public class SkillUP extends Application {
 
     @Override
     public void start(Stage stage) {
+        this.getMemory();
         System.setProperty("prism.lcdtext", "false");
         System.setProperty("prism.text", "t2k");
-        System.setProperty("prism.order", "es2");
+        System.setProperty("prism.order", "d3d");
+        System.setProperty("prism.targetvram", "2");
         System.setProperty("prism.forceGPU", "true");
         System.setProperty("prism.vsync", "true");
         System.setProperty("sun.java2d.opengl", "true");
         System.setProperty("javafx.webContext.allowLocalStorage", "true");
         System.setProperty("javafx.webContext.useHardwareAcceleration", "true");
-        System.setProperty("javafx.webContext.useMultiThread", "true");
-        System.setProperty("javafx.webContext.useGL", "true");
-        System.setProperty("javafx.webContext.useGPU", "true");
-        System.setProperty("javafx.webContext.useD3D", "true");
-        System.setProperty("javafx.webContext.useSW", "false");
-        System.setProperty("javafx.webContext.useMultiTouch", "true");
+        System.setProperty("javafx.web.enableMultiThread", "true");
 
         Config.load();
 
@@ -39,5 +36,16 @@ public class SkillUP extends Application {
         window.setMinWidth(Double.parseDouble(Config.get("app.min.width")));
         window.setMinHeight(Double.parseDouble(Config.get("app.min.height")));
         Window.getInstance().getIcons().add((new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/fr/skillup/assets/images/favicon.png")))));
+    }
+
+    private void getMemory() {
+        Runtime runtime = Runtime.getRuntime();
+        long maxMemory = runtime.maxMemory();
+        long totalMemory = runtime.totalMemory();
+        long freeMemory = runtime.freeMemory();
+
+        System.out.println("Max Memory: " + maxMemory / (1024 * 1024) + " MB");
+        System.out.println("Total Memory: " + totalMemory / (1024 * 1024) + " MB");
+        System.out.println("Free Memory: " + freeMemory / (1024 * 1024) + " MB");
     }
 }

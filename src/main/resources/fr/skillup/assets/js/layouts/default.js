@@ -1,7 +1,6 @@
 App.onLoad(() => {
     if (window.params.get("view")) {
-        $(".nav").removeClass("active");
-        $(".nav[data-target='" + window.params.get("view") + "']").addClass("active");
+        document.querySelector(".nav[data-target='" + window.params.get("view") + "']").classList.add("active");
     }
 
     Array.from(document.getElementsByClassName("nav")).forEach(nav => {

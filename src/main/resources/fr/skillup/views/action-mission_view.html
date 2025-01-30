@@ -1,0 +1,80 @@
+<extend parent="layouts/default_layout.html"></extend>
+
+<render-section name="css">
+    <link rel="stylesheet" href="assets/css/add.css">
+</render-section>
+
+<render-section name="js">
+    <script src="assets/js/missions.js"></script>
+</render-section>
+
+<render-section name="content">
+
+    <— html add mission —>
+    <extend parent="layouts/default_layout.html"></extend>
+
+    <link rel="stylesheet" href="assets/css/home.css">
+
+    <render-section name="content">
+        <div class="title-container">
+            <h1>Add a mission </h1>
+        </div>
+
+        <div>
+            <div class="add-container">
+                <div>
+                    <input type="text" id="title" name="title" placeholder="Write the title of the mission" class="title">
+                </div>
+
+                <div class="information-mission">
+                    <div>
+                        <h2>Informations</h2>
+                    </div>
+                    <div class="information-legend-container">
+                        <div class="information-legend>
+                                        <legend id="date"> Starting date </legend>
+                        <input type="date" id="date" placeholder="dd/mm/yyyy">
+                    </div>
+                    <div class="information-legend>
+                                        <legend id="number"> Duration </legend>
+                    <input type="duration" id="duration" placeholder="Write in days">
+                </div>
+                <div class="information-legend>
+                                        <legend id="peoplerequired"> Number of people required </legend>
+                <input type="number" id="peoplerequired" placeholder="Write a number">
+            </div>
+        </div>
+
+        </div>
+        <div class="skill-mission">
+            <div>
+                <div>
+                    <h2>Skills</h2>
+                </div>
+                <button>
+                    Add a skill
+                </button>
+            </div>
+            <div>
+
+            </div>
+            <div>
+                <button>
+                    Add this new mission
+                </button>
+                <button>
+                    Ask for validation
+                </button>
+            </div>
+
+
+        </div>
+
+        </div>
+        </div>
+
+
+
+    </render-section>
+
+</render-section>

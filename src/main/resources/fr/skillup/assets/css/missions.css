@@ -9,31 +9,26 @@
     gap: 20px;
     background: rgba(255, 255, 255, 0.23);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4.6px);
-    -webkit-backdrop-filter: blur(4.6px);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-h1{
-    font-size: 30px;
-}
-
-#missions > header {
+#missions > header > h1 {
     color: #313132;
-    font-size: 2em;
+    font-size: 30px;
 }
 
 #missions > .kanban {
     width: 100%;
     flex: 1;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
     overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
 }
 
 #missions > .kanban > div {
-    width: clamp(150px, 20%, 200px);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -41,16 +36,19 @@ h1{
     overflow: hidden;
 }
 
+#missions > .kanban .column:first-child {
+    min-width: 100%;
+}
+
 #missions > .kanban .column {
     flex: 1;
-    background-color: rgba(227, 227, 226, 0.37);
     border-radius: 16px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(4.6px);
-    -webkit-backdrop-filter: blur(4.6px);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -107,7 +105,6 @@ h1{
 
 #missions > .kanban .column > .container > .scrollable {
     display: flex;
-    /*height: 100%;*/
     flex: 1;
     flex-direction: column;
     gap: 10px;
@@ -124,7 +121,7 @@ h1{
     gap: 10px;
     font-size: 0.75em;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    height: 80px;
+    height: auto;
 }
 
 #missions > .kanban .column > .container > .scrollable > .mission > header {
@@ -146,7 +143,7 @@ h1{
 }
 
 #missions > .kanban .column > .container > .scrollable > .mission > header > .date > svg {
-    width: 1em;
+    width: 15px;
     height: auto;
     fill: #959191;
 }
@@ -174,7 +171,7 @@ h1{
 }
 
 #missions > .kanban .column > .container > .scrollable > .mission > header > .action > button > svg {
-    width: 1em;
+    width: 15px;
     height: auto;
     fill: #7B69ED;
 }
@@ -183,3 +180,32 @@ h1{
     text-align: left;
     margin-left : 3px;
 }
+
+#missions > .kanban .column > .container > .scrollable > .mission > .people {
+    display: flex;
+    flex-direction: row;
+}
+
+#missions > .kanban .column > .container > .scrollable > .mission > .people > .rounded:first-child {
+    margin-left: 5px;
+}
+
+#missions > .kanban .column > .container > .scrollable > .mission > .people > .rounded {
+    border: 1px solid #ADADAD;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    margin-left: -5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: #ADADAD;
+}
+
+#missions > .kanban .column > .container > .scrollable > .mission > .people > .rounded > img {
+    width: 100%;
+    height: 100%;
+}
+
