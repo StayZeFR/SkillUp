@@ -70,6 +70,7 @@ function showModal(person) {
     document.getElementById("modal-general-job").innerText = person["job"];
 
     document.getElementById("modal-container").classList.add("show");
+
 }
 
 function closeModal() {
