@@ -10,13 +10,13 @@ import java.util.List;
 public class PersonModel extends Model {
 
     public Result getPersons() {
-        return this.select("SELECT id, firstname, lastname, entry_date, job, picture FROM person ORDER BY id", Integer.class, String.class, String.class, Date.class, String.class, String.class);
+        return this.select("SELECT id, firstname, lastname, DATE_FORMAT(entry_date, '%d/%m/%Y') AS entry_date, job, picture FROM person ORDER BY id", Integer.class, String.class, String.class, Date.class, String.class, String.class);
     }
 
     public Result getPerson(int id) {
         List<Object> params = new ArrayList<>();
         params.add(id);
-        return this.select("SELECT id, firstname, lastname, entry_date, job, picture FROM person WHERE id = ?", params, Integer.class, String.class, String.class, Date.class, String.class, String.class);
+        return this.select("SELECT id, firstname, lastname, DATE_FORMAT(entry_date, '%d/%m/%Y') AS entry_date, job, picture FROM person WHERE id = ?", params, Integer.class, String.class, String.class, Date.class, String.class, String.class);
     }
 
     public Result getPersonSkills(int id) {
