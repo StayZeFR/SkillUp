@@ -1,9 +1,6 @@
 package fr.skillup.controllers.layouts;
 
-import fr.skillup.controllers.HomeController;
-import fr.skillup.controllers.MissionsController;
-import fr.skillup.controllers.PeopleController;
-import fr.skillup.controllers.SkillsController;
+import fr.skillup.controllers.*;
 import fr.skillup.core.controller.Controller;
 import fr.skillup.core.controller.LayoutController;
 
@@ -23,7 +20,6 @@ public class DefaultLayoutController extends LayoutController {
             case "missions" -> MissionsController.class;
             case "people" -> PeopleController.class;
             case "skills" -> SkillsController.class;
-            case "add-mission" -> AddMissionController.class;
             default -> throw new IllegalStateException("Unexpected value: " + view);
         };
         this.window.show(controller, params);
