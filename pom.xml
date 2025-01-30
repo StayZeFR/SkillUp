@@ -68,16 +68,6 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>3.4.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <version>3.5.0</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -114,24 +104,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <jvmArguments>-Xms2G -Xmx2G</jvmArguments>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>fr.skillup.Launcher</mainClass>
-                    <arguments>
-                        <argument>-Xms2G</argument>
-                        <argument>-Xmx2G</argument>
-                    </arguments>
-                </configuration>
             </plugin>
         </plugins>
     </build>
