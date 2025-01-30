@@ -11,6 +11,6 @@ public class AddMissionController extends Controller {
     public void init() {
         Map<String, Object> params = new HashMap<>();
         params.put("view", "missions");
-        this.render("addMission");
+        this.render("add-mission_view", params);
     }
 }
