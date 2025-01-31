@@ -3,63 +3,99 @@
 <link rel="stylesheet" href="assets/css/home.css">
 
 <render-section name="js">
-        <script src="assets/js/home.js"></script>
+    <script src="assets/js/home.js"></script>
 </render-section>
 
 
 <render-section name="content">
+    <div id="parent">
+
         <div class="title-container">
-                <h1>Welcome
-                        <br> <span class="purple">back</span>
-                </h1>
+            <h1>Welcome
+                <br> <span class="purple">back!</span>
+            </h1>
         </div>
         <div class="content-container">
-                <div class="colonne">
+            <div class="colonne">
+                <div class="calendar">
+                    <header>
+                        <h3></h3>
+                        <nav>
+                            <button id="prev">
+                            </button>
+                            <button id="next">
+                            </button>
+                        </nav>
+                    </header>
+                    <section>
+                        <ul class="days">
+                            <li>Sun</li>
+                            <li>Mon</li>
+                            <li>Tue</li>
+                            <li>Wed</li>
+                            <li>Thu</li>
+                            <li>Fri</li>
+                            <li>Sat</li>
+                        </ul>
+                        <ul class="dates"></ul>
+                    </section>
+                    <button class="button">
+                        Modify date
+                    </button>
+                </div>
                 <div id="addmission">
-                        <img src="assets/images/addmission.svg" alt="add mission" class="imagehome">
-                        <button class="button">
-                                Add a mission
-                        </button>
+                    <img src="assets/images/addmission.svg" alt="add mission" class="imagehome">
+                    <button class="button">
+                        Add a mission
+                    </button>
                 </div>
-                        <div id="calendar">
-
-                        </div>
+        </div>
+        <div class="colonne">
+            <div id="planning">
+                <img src="assets/images/viewplanning.svg" alt="add mission" class="imagehome">
+                <button class="button">
+                    View planning
+                </button>
+            </div>
+            <div id="list-skills">
+                <div id="table">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th class="category"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="table-skills">
+                        </tbody>
+                    </table>
                 </div>
-                <div class="colonne">
-                        <div id="planning">
-                                <img src="assets/images/viewplanning.svg" alt="add mission" class="imagehome">
-                                <button class="button">
-                                        View planning
-                                </button>
-                        </div>
-                        <div id="people">
-                                <button class="button">
-                                        View list of people
-                                </button>
-                        </div>
-
-                </div>
-                <div class="colonne">
-                        <div id="list-skills">
-                        <div id="table">
-                                <table>
-                                        <thead>
-                                        <tr>
-                                                <th class="category"></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="table-skills">
-                                        </tbody>
-                                </table>
-                        </div>
-                                <button class="button">
-                                        View list of skills
-                                </button>
-                </div>
-
-
-                </div>
+                <button class="button">
+                    View list of skills
+                </button>
+            </div>
 
         </div>
+        <div class="colonne">
+            <div id="people">
+                <div id="container-personnel">
+                    <table>
+                        <thead>
+                        <tr>
+                        </tr>
+                        </thead>
+                        <tbody id="table-people">
+                        </tbody>
+                    </table>
+                    <button class="button">
+                        View list of people
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    </div>
 
 </render-section>

@@ -68,9 +68,8 @@ function showModal(person) {
     document.getElementById("modal-picture").src = `data:image/png;base64,${person["picture"]}`;
     document.getElementById("modal-general-name").innerText = `${person["firstname"]} ${person["lastname"]}`;
     document.getElementById("modal-general-job").innerText = person["job"];
-
+    document.getElementById("modal-entry-date").value = person["entry_date"];
     document.getElementById("modal-container").classList.add("show");
-
 }
 
 function closeModal() {
