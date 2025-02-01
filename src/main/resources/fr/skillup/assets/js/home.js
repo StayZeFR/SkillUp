@@ -12,7 +12,7 @@ App.onLoad(() => {
 
 function initTable(skills) {
     document.getElementById("table-skills").innerHTML = "";
-    skills.slice(0, 8).forEach(skill => {
+    skills.slice(0, 6).forEach(skill => {
         document.getElementById("table-skills").innerHTML += `
             <tr>
                 <td><div style='background-color: #${skill["category_color"]};'>
@@ -24,7 +24,7 @@ function initTable(skills) {
 
 function showPeople(people) {
     document.getElementById("table-people").innerHTML = "";
-    people.slice(0, 10).forEach(person => {
+    people.slice(0, 9).forEach(person => {
         let html = `
             <tr>
                 <td>
@@ -107,3 +107,19 @@ navs.forEach((nav) => {
 renderCalendar();
 
 }
+
+function moveToAddMission() {
+    Bridge.call("MissionsController", "addMission");
+}
+
+function moveToListOfSkills() {
+    Bridge.call("SkillsController", "init");
+}
+function moveToListOfPeople() {
+    Bridge.call("PeopleController", "init");
+}
+function moveToMissionsManagement() {
+    Bridge.call("MissionsController", "init");
+}
+
+
