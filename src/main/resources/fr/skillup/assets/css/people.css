@@ -79,8 +79,9 @@
     display: none;
 }
 
-#people > .container-personnel > div:first-child > .people-card > .info-card {
+.info-card {
     display: flex;
+    flex-direction : row;
     align-items: center;
     gap: 20px;
 }
@@ -242,6 +243,7 @@
 
 .titleclose {
     display: flex;
+    flex-direction: column;
     width: 100%;
     gap: 10px;
 }
@@ -358,6 +360,7 @@
     margin-left: 25px;
     width: 100%;
     color: #7B69ED;
+
 }
 
 .personnal-info-modal {
