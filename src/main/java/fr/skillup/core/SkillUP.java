@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.util.Objects;
+import java.util.logging.Logger;
 
 public class SkillUP extends Application {
 
@@ -44,8 +45,8 @@ public class SkillUP extends Application {
         long totalMemory = runtime.totalMemory();
         long freeMemory = runtime.freeMemory();
 
-        System.out.println("Max Memory: " + maxMemory / (1024 * 1024) + " MB");
-        System.out.println("Total Memory: " + totalMemory / (1024 * 1024) + " MB");
-        System.out.println("Free Memory: " + freeMemory / (1024 * 1024) + " MB");
+        Logger.getGlobal().info("Max Memory: " + maxMemory / (1024 * 1024) + " MB");
+        Logger.getGlobal().info("Total Memory: " + totalMemory / (1024 * 1024) + " MB");
+        Logger.getGlobal().info("Free Memory: " + freeMemory / (1024 * 1024) + " MB");
     }
 }
