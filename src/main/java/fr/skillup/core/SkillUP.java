@@ -45,8 +45,12 @@ public class SkillUP extends Application {
         long totalMemory = runtime.totalMemory();
         long freeMemory = runtime.freeMemory();
 
-        Logger.getGlobal().info("Max Memory: " + maxMemory / (1024 * 1024) + " MB");
-        Logger.getGlobal().info("Total Memory: " + totalMemory / (1024 * 1024) + " MB");
-        Logger.getGlobal().info("Free Memory: " + freeMemory / (1024 * 1024) + " MB");
+        String msgMaxMemory = "Max Memory: " + maxMemory / (1024 * 1024) + " MB";
+        String msgTotalMemory = "Total Memory: " + totalMemory / (1024 * 1024) + " MB";
+        String msgFreeMemory = "Free Memory: " + freeMemory / (1024 * 1024) + " MB";
+
+        Logger.getGlobal().info(msgMaxMemory);
+        Logger.getGlobal().info(msgTotalMemory);
+        Logger.getGlobal().info(msgFreeMemory);
     }
 }
