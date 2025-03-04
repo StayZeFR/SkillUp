@@ -17,7 +17,7 @@ public class Config {
     /**
      * Charge le fichier de configuration
      */
-    public static void load() {
+    private static void load() {
         Config.properties = new Properties();
         InputStream stream = null;
         try {
@@ -40,6 +40,9 @@ public class Config {
     }
 
     public static String get(String key) {
+        if (Config.properties == null) {
+            Config.load();
+        }
         return Config.properties.getProperty(key);
     }
 }

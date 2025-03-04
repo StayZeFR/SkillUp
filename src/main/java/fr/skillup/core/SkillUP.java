@@ -30,8 +30,6 @@ public class SkillUP extends Application {
         System.setProperty("javafx.webContext.useHardwareAcceleration", "true");
         System.setProperty("javafx.web.enableMultiThread", "true");
 
-        Config.load();
-
         Window window = new Window(Config.get("app.title"));
         window.show(HomeController.class);
         window.setMinWidth(Double.parseDouble(Config.get("app.min.width")));
