@@ -1,10 +1,17 @@
 package fr.skillup.core.window;
 
 import fr.skillup.core.controller.Controller;
+import javafx.embed.swing.JFXPanel;
+import javafx.embed.swing.SwingNode;
 import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import org.cef.CefApp;
+import org.cef.CefClient;
+import org.cef.browser.CefBrowser;
 
+import javax.swing.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +21,7 @@ public class Window extends Stage {
 
     private static Window instance;
 
-    private WebView webView;
+    private JFXPanel panel;
 
     public Window() {
         this.setTitle("?");
@@ -23,15 +30,21 @@ public class Window extends Stage {
     public Window(String title) {
         Window.instance = this;
         super.setTitle(title);
-        this.webView = new WebView();
-        this.webView.setCache(true);
-        this.webView.setZoom(1.0);
-        this.webView.setContextMenuEnabled(false);
-        this.webView.setStyle("-fx-background-color: transparent;");
-        this.webView.getEngine().setJavaScriptEnabled(true);
-        this.webView.getEngine().setOnError(event -> Logger.getLogger(Window.class.getName()).severe("JS : " + event.getMessage()));
-        this.webView.getEngine().setOnAlert(event -> Logger.getLogger(Window.class.getName()).info("JS Alert : " + event.getData()));
-        this.setScene(new Scene(this.webView));
+        this.panel = new JFXPanel();
+
+        SwingNode node = new SwingNode();
+
+        SwingUtilities.invokeLater(() -> {
+            CefApp app = CefApp.getInstance();
+            CefClient client = app.createClient();
+            CefBrowser browser = client.createBrowser("https://www.google.com", false, false);
+            this.panel.add(browser.getUIComponent());
+        });
+
+        node.setContent(this.panel);
+        StackPane root = new StackPane(node);
+        Scene scene = new Scene(root);
+        super.setScene(scene);
     }
 
     /**
@@ -40,7 +53,7 @@ public class Window extends Stage {
      * @param params : Paramètres à passer au controller
      */
     public void show(Class<? extends Controller> clazz, Map<String, Object> params) {
-        this.show(clazz, params, this.webView);
+        //this.show(clazz, params, this.webView);
     }
 
     /**
@@ -67,7 +80,8 @@ public class Window extends Stage {
      * @return WebView : WebView de la fenêtre
      */
     public WebView getWebView() {
-        return this.webView;
+        // return this.webView;
+        return new WebView();
     }
 
     /**

@@ -7,7 +7,7 @@ module fr.skillup {
     requires jdk.xml.dom;
     requires org.jsoup;
     requires jcef;
-    requires java.desktop;
+    requires javafx.swing;
 
 
     opens fr.skillup to javafx.fxml;
