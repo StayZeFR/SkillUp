@@ -76,6 +76,10 @@ public class Result {
         this.tuples.forEach(consumer);
     }
 
+    /**
+     * Convertir le résultat en JSON
+     * @return String : JSON
+     */
     public String toJson() {
         StringBuilder json = new StringBuilder("[");
         for (int i = 0; i < this.size(); i++) {
