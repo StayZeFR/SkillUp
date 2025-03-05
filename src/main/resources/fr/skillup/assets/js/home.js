@@ -1,4 +1,4 @@
-App.onLoad(() => {
+App.onLoad(async () => {
     const skills = JSON.parse(Bridge.get("SkillsController", "getSkills"));
     if (skills !== null) {
         initTable(skills);

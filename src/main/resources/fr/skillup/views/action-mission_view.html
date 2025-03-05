@@ -6,7 +6,8 @@
 </render-section>
 
 <render-section name="js">
-    <script src="assets/js/missions.js"></script>
+    <script src="assets/js/core/elements/select.js"></script>
+    <script src="assets/js/action-missions.js"></script>
 </render-section>
 
 <render-section name="content">
@@ -47,13 +48,21 @@
                 </div>
                 <div class="container">
                     <div>
-                        <div class="select">
-                            <input type="text" class="select-selected" placeholder="Filter by category">
-                            <div class="select-items select-hide" id="filter-category-list">
-                                <input type="text" placeholder="Search by label" class="select-filter">
-                                <div class="select-item" data-value="all" onclick="select(this)">All</div>
+                        <!--<div class="select">
+                            <div class="select-selected" >Select skills"</div>
+                            <div class="select-items select-hide" id="select-skills">
+                                <div class="filters">
+                                    <input type="text" placeholder="Search by label" class="select-filter">
+                                </div>
+                                <div class="options">
+                                    <div class="option">
+                                        <input type="checkbox" id="people-1" value="people-1">
+                                        <label for="people-1">People 1</label>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </div>-->
+                        <sup-select id="select-skills"></sup-select>
                         <button>Add</button>
                     </div>
                     <div class="skills">
