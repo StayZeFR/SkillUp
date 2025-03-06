@@ -1,6 +1,7 @@
 package fr.skillup.core.window;
 
 import fr.skillup.core.controller.Controller;
+import fr.skillup.core.utils.Extractor;
 import javafx.embed.swing.JFXPanel;
 import javafx.embed.swing.SwingNode;
 import javafx.scene.Scene;
@@ -9,9 +10,11 @@ import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import org.cef.CefApp;
 import org.cef.CefClient;
+import org.cef.OS;
 import org.cef.browser.CefBrowser;
 
 import javax.swing.*;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,11 +33,16 @@ public class Window extends Stage {
     public Window(String title) {
         Window.instance = this;
         super.setTitle(title);
+
+        //String path = Extractor.extractLibrary("jcef/", "chrome_elf.dll");
+        //assert path != null;
         this.panel = new JFXPanel();
 
         SwingNode node = new SwingNode();
+        System.setProperty("java.library.path", "C:\\Users\\bland\\Documents\\win64\\bin\\lib\\win64\\");
 
         SwingUtilities.invokeLater(() -> {
+            System.out.println(System.getProperty("java.library.path"));
             CefApp app = CefApp.getInstance();
             CefClient client = app.createClient();
             CefBrowser browser = client.createBrowser("https://www.google.com", false, false);
