@@ -10,6 +10,7 @@ import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import org.cef.CefApp;
 import org.cef.CefClient;
+import org.cef.CefSettings;
 import org.cef.OS;
 import org.cef.browser.CefBrowser;
 
@@ -41,9 +42,20 @@ public class Window extends Stage {
         SwingNode node = new SwingNode();
         System.setProperty("java.library.path", "C:\\Users\\bland\\Documents\\win64\\bin\\lib\\win64\\");
 
+        String libraryPath = "C:\\Users\\bland\\Documents\\win64\\bin\\lib\\win64\\chrome_elf.dll";
+
+        try {
+            System.load(libraryPath);
+            System.out.println("Bibliothèque native chargée avec succès !");
+        } catch (UnsatisfiedLinkError e) {
+            System.err.println("Erreur lors du chargement de la bibliothèque native : " + e.getMessage());
+        }
+
         SwingUtilities.invokeLater(() -> {
             System.out.println(System.getProperty("java.library.path"));
-            CefApp app = CefApp.getInstance();
+            CefSettings settings = new CefSettings();
+            settings.windowless_rendering_enabled = false;
+            CefApp app = CefApp.getInstance(settings);
             CefClient client = app.createClient();
             CefBrowser browser = client.createBrowser("https://www.google.com", false, false);
             this.panel.add(browser.getUIComponent());
