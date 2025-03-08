@@ -30,7 +30,7 @@
     font-family: Kumbh Sans, serif;
 }
 
-#people > .container-personnel {
+.container-personnel {
     width: 90%;
     padding: 20px;
     margin: 20px auto;
@@ -48,6 +48,18 @@
     flex: 1;
     overflow: scroll;
     position: relative;
+}
+.container-personnel::-webkit-scrollbar {
+    width: 12px;
+}
+
+.container-personnel::-webkit-scrollbar-thumb {
+    background: #FAFBFE;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius : 15px;
+}
+.container-personnel::-webkit-scrollbar-thumb:hover {
+    background: #B6B8F1;
 }
 
 #people > .container-personnel > div:first-child {
@@ -456,3 +468,5 @@
     width: 15px;
     height: auto;
 }
+
+
