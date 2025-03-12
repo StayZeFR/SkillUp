@@ -5,7 +5,9 @@ class Select extends HTMLElement {
         this._enableSearch = false;
         this._isMultiple = false;
         this._title = 'Select options';
+        this._disabled = false; // Ajout de la propriété privée pour l'état désactivé
         this.selectedValues = [];
+        this.selectedLabels = [];
         this.shadowRoot.innerHTML = `
             <style>
                 .select {
@@ -21,6 +23,10 @@ class Select extends HTMLElement {
                     overflow: hidden;
                     text-overflow: ellipsis;
                 }
+                .select-selected.disabled {
+                    background: #f1f1f1;
+                    cursor: not-allowed;
+                }
                 .select-items {
                     display: none;
                     position: absolute;
@@ -30,6 +36,7 @@ class Select extends HTMLElement {
                     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
                     max-height: 200px;
                     overflow-y: auto;
+                    z-index: 9999;
                 }
                 .filters {
                     position: sticky;
@@ -98,7 +105,17 @@ class Select extends HTMLElement {
         this.selected.textContent = value;
     }
 
+    setDisabled(value) {
+        this._disabled = value;
+        this.selected.classList.toggle('disabled', value);
+        this.selected.removeEventListener('click', this.toggleDropdown);
+        if (!value) {
+            this.selected.addEventListener('click', () => this.toggleDropdown());
+        }
+    }
+
     toggleDropdown() {
+        if (this._disabled) return;
         this.itemsContainer.classList.toggle('open');
     }
 
@@ -144,17 +161,21 @@ class Select extends HTMLElement {
     }
 
     handleSelection(event) {
+        if (this._disabled) return;
         const { value, checked } = event.target;
         const label = event.target.nextElementSibling.textContent;
         if (this._isMultiple) {
             if (checked) {
-                this.selectedValues.push(label);
+                this.selectedValues.push(value);
+                this.selectedLabels.push(label);
             } else {
-                this.selectedValues = this.selectedValues.filter(val => val !== label);
+                this.selectedValues = this.selectedValues.filter(val => val !== value);
+                this.selectedLabels = this.selectedLabels.filter(lbl => lbl !== label);
             }
-            this.selected.textContent = this.selectedValues.length ? this.selectedValues.join(', ') : this._title;
+            this.selected.textContent = this.selectedLabels.length ? this.selectedLabels.join(', ') : this._title;
         } else {
-            this.selectedValues = [label];
+            this.selectedValues = [value];
+            this.selectedLabels = [label];
             this.selected.textContent = label;
             this.itemsContainer.classList.remove('open');
         }
@@ -165,6 +186,25 @@ class Select extends HTMLElement {
 
     getSelected() {
         return this._isMultiple ? [...this.selectedValues] : this.selectedValues[0];
+    }
+
+    getSelectedLabels() {
+        return this._isMultiple ? [...this.selectedLabels] : this.selectedLabels[0];
+    }
+
+    clear() {
+        this.selectedValues = [];
+        this.selectedLabels = [];
+        this.selected.textContent = this._title;
+        this.optionsContainer.querySelectorAll('input').forEach(input => input.checked = false);
+    }
+
+    unselect(value) {
+        const option = this.optionsContainer.querySelector(`input[value="${value}"]`);
+        if (option) {
+            option.checked = false;
+            this.handleSelection({ target: option });
+        }
     }
 }
 

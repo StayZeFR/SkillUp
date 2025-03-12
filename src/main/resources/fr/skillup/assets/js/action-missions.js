@@ -1,3 +1,5 @@
+let skillsSelected = {};
+
 App.onLoad(async () => {
     Bridge.getAsync("ActionMissionController", "getSkills", []).then((result) => {
         const skills = result.reduce((group, element) => {
@@ -30,16 +32,16 @@ App.onLoad(async () => {
                             </div>
                             <div class="action">
                                 <div class="people">
-                                    <button>-</button>
+                                    <button onclick="managePeople('-', '${id}')">-</button>
                                     <div>
-                                        <span class="nb-people">0</span>
+                                        <span class="nb-people">1</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                                         </svg>
                                     </div>
-                                    <button>+</button>
+                                    <button onclick="managePeople('+', '${id}')">+</button>
                                 </div>
-                                <button>
+                                <button onclick="deleteSkill('${id}')">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
                                     </svg>
@@ -52,25 +54,57 @@ App.onLoad(async () => {
                                 </div>
                             </div>
                         </div>
-        `};
+        `
+        };
 
         select.addEventListener("change", (event) => {
-            const { value, label, checked } = event.detail;
+            const {value, label, checked} = event.detail;
             if (checked) {
+                skillsSelected[value] = {nbPeople: 1};
                 document.getElementById("list-skills").innerHTML += skillElement(value, label);
             } else {
+                delete skillsSelected[value];
                 document.querySelector(`.skill[data-id="${value}"]`).remove();
             }
+            let selected = select.getSelected();
+            if (!(selected instanceof Array)) {
+                selected = [selected];
+            }
+
+            const people = document.getElementById("select-people");
+            people.setMultiple(true);
+            Bridge.getAsync("ActionMissionController", "getPeopleSkillsMatch", [selected]).then((result) => {
+                people.clear();
+                for (const person of result) {
+                    const html = `
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <span>${person.person_firstname} ${person.person_lastname}</span>
+                            <div style="background-color: #F2F0FD; border-radius: 5px; padding: 5px;">
+                                ${person.nb_matchs} matching skills
+                            </div>
+                        </div>
+                    `;
+                    people.addOption(person.person_id, html);
+                }
+            });
         });
 
-        /*skills.forEach((skill) => {
-            App.log(JSON.stringify(skill));
-            const { category_label, skills } = skill;
-            App.log(category_label);
-            document.getElementById("select-people").innerHTML = "<span>" + category_label + "</span>";
-            skills.forEach((skill) => {
-                document.getElementById("select-people").innerHTML += "<option value=" + skill.skill_id + ">" + skill.skill_label + "</option>";
-            });
-        })*/
     });
 });
+
+function managePeople(operator, id) {
+    if (operator === "+") {
+        skillsSelected[id].nbPeople++;
+    } else if (operator === "-") {
+        if (skillsSelected[id].nbPeople > 1) {
+            skillsSelected[id].nbPeople--;
+        }
+    }
+    document.querySelector(`.skill[data-id="${id}"] .nb-people`).innerText = skillsSelected[id].nbPeople;
+}
+
+function deleteSkill(id) {
+    delete skillsSelected[id];
+    document.querySelector(`.skill[data-id="${id}"]`).remove();
+    document.getElementById("select-skills").unselect(id);
+}

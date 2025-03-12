@@ -77,7 +77,7 @@ function getMax() {
 }
 
 function filter(skills) {
-    const category = document.getElementById("filter-category").getSelected().toLowerCase();
+    const category = document.getElementById("filter-category").getSelectedLabels().toLowerCase();
     const label = document.getElementById("filter-label").value;
     let skillsFiltered = skills;
     if (category && category !== "all") {
