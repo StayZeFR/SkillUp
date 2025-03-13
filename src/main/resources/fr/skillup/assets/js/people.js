@@ -1,24 +1,76 @@
 App.onLoad(() => {
     const people = JSON.parse(Bridge.get("PeopleController", "getPeople"));
 
-    document.getElementById("load-more").addEventListener("click", () => {
-        showPeople(people);
+    let peopleFiltered = people;
+    let max = getMax();
+
+    window.addEventListener("resize", () => {
+        max = getMax();
+        initTable(filter(peopleFiltered), 0, max);
     });
 
-    showPeople(people);
+    document.getElementById("filter-label").addEventListener("input", () => {
+        peopleFiltered = filter(people);
+        initTable(peopleFiltered, 0, max);
+    });
+
+    document.getElementById("first-page-button").addEventListener("click", () => {
+        initTable(peopleFiltered, 0, max);
+    });
+    document.getElementById("previous-page-button").addEventListener("click", () => {
+        let start = parseInt(document.getElementById("current-page").innerText) - 2;
+        if (start < 0) {
+            start = 0;
+        }
+        initTable(peopleFiltered, start * max, max);
+    });
+    document.getElementById("next-page-button").addEventListener("click", () => {
+        let start = parseInt(document.getElementById("current-page").innerText);
+        if (start < Math.ceil(peopleFiltered.length / max)) {
+            initTable(peopleFiltered, start * max, max);
+        }
+    });
+    document.getElementById("last-page-button").addEventListener("click", () => {
+        let start = Math.ceil(peopleFiltered.length / max) - 1;
+        initTable(peopleFiltered, start * max, max);
+    });
+
+    initTable(peopleFiltered, 0, max);
 });
 
-function showPeople(people) {
-    const max = 6;
-    let start = 0;
+function getMax() {
+    let max = 6;
+    if (window.innerHeight < 950) {
+        max = 9;
+    } else if (window.innerHeight < 1100) {
+        max = 12;
+    } else if (window.innerHeight < 1250) {
+        max = 15;
+    } else if (window.innerHeight < 1400) {
+        max = 18;
+    }
+    return max;
+}
+
+function filter(people){
+    const label = document.getElementById("filter-label").value;
+    let peopleFiltered = people;
+    if(label!== ""){
+    peopleFiltered = peopleFiltered.filter(person =>
+        person["firstname"].toLowerCase().includes(label.toLowerCase()) ||
+        person["lastname"].toLowerCase().includes(label.toLowerCase())
+    );
+    }
+    return peopleFiltered;
+}
+
+
+function initTable(people, start, max){
     const container = document.getElementById("container-personnel");
-    if (container.innerHTML !== "") {
-        start = container.children.length;
-    }
-    if (start + max >= people.length) {
-        document.getElementById("load-more").style.display = "none";
-    }
+    container.innerHTML ="";
+
     for (let i = start; i < start + max; i++) {
+    if(people[i] !== undefined){
         const person = people[i];
         person["skills"] = JSON.parse(Bridge.get("PeopleController", "getPersonSkills", [parseInt(person["id"])]));
         let html = `
@@ -36,15 +88,16 @@ function showPeople(people) {
                       </div>
                     </div>
                     <div class='skill-people'>`;
-        for (let i = 0; i < (person["skills"].length > 2 ? 2 : person["skills"].length); i++) {
-            const skill = person["skills"][i];
+
+        for (let j = 0; j < (person["skills"].length > 2 ? 2 : person["skills"].length); j++) {
+            const skill = person["skills"][j];
             html += `
                       <div class='skill-text' style="background-color: #${skill["category_color"]}">
                         ${skill["category_icon"]}
                         <p>${skill["skill_label"]}</p>
                       </div>`;
         }
-        if (person["skills"].length > 2) {
+        if (person["skills"].length > 2){
             html += `
                       <div class='skill-text other'>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
@@ -53,14 +106,13 @@ function showPeople(people) {
                         <p>+ ${person["skills"].length - 2} other${(person["skills"].length - 2) === 1 ? "" : "s"}</p>
                       </div>`;
         }
-        html += `
-                    </div>
-                  </div>`;
-        document.getElementById("container-personnel").innerHTML += html;
+        html += `</div></div>`;
+        container.innerHTML += html;
     }
-}
+   }
 
 function showModal(person) {
+    console.log("showModal() appelé avec :", person);
     document.getElementById("modal-id").value = person["id"];
     document.getElementById("modal-firstname").value = person["firstname"];
     document.getElementById("modal-lastname").value = person["lastname"];
@@ -87,3 +139,23 @@ function showModal(person) {
 function closeModal() {
     document.getElementById("modal-container").classList.remove("show");
 }
+
+document.getElementById("current-page").innerText = Math.ceil(start / max + 1).toString();
+document.getElementById("max-page").innerText = Math.ceil(people.length / max).toString();
+        if (start === 0) {
+            document.getElementById("first-page-button").style.visibility = "hidden";
+            document.getElementById("previous-page-button").style.visibility = "hidden";
+        } else {
+            document.getElementById("first-page-button").style.visibility = "visible";
+            document.getElementById("previous-page-button").style.visibility = "visible";
+        }
+        if (start + max >= people.length) {
+            document.getElementById("next-page-button").style.visibility = "hidden";
+            document.getElementById("last-page-button").style.visibility = "hidden";
+        } else {
+            document.getElementById("next-page-button").style.visibility = "visible";
+            document.getElementById("last-page-button").style.visibility = "visible";
+        }
+}
+
+

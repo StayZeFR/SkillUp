@@ -472,3 +472,56 @@
 }
 
 
+/*Menu déroulant */
+
+#filters {
+    display: flex;
+    flex-direction: row !important;
+    width : 100%;
+    gap : 40px;
+    align-items : center;
+}
+
+.filter {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px;
+    border-radius : 10px;
+    margin-left : 20px;
+    box-shadow: 0px 2px 9px 0px rgba(7, 14, 194, 0.2);
+    outline: none;
+}
+
+
+#skills > #filters > .filter-control {
+    outline: none;
+    background-color: white;
+    color: #8B8B8B;
+    overflow: hidden;
+    width: clamp(200px, 50%, 300px);
+}
+
+#skills > #filters > .filter-control > .filter {
+    width: 100%;
+    border: none;
+    background-color: white;
+    outline: none;
+    color: #8B8B8B;
+    padding: 10px;
+}
+
+#skills > #filters > .filter-control > select.filter {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+}
+
+#skills > #filters > .filter-control > select.filter:after {
+    content: "▼";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 999;
+    font-size: 15px;
+}
