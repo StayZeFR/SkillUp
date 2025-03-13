@@ -15,6 +15,12 @@ public class MissionsController extends Controller {
         super.render("missions_view", params);
     }
 
+    public void viewMissions() {
+        Map<String, Object> params = new HashMap<>();
+        params.put("view", MissionsController.VIEW);
+        super.window.show(MissionsController.class, params);
+    }
+
     public void addMission() {
         Map<String, Object> params = new HashMap<>();
         params.put("view", MissionsController.VIEW);

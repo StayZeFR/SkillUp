@@ -17,6 +17,12 @@ public class PeopleController extends Controller {
         super.render("people_view", params);
     }
 
+    public void viewPeople() {
+        Map<String, Object> params = new HashMap<>();
+        params.put("view", PeopleController.VIEW);
+        super.window.show(PeopleController.class, params);
+    }
+
     public String getPeople() {
         PersonModel model = Model.get(PersonModel.class);
         return model.getPersons().toJson();
