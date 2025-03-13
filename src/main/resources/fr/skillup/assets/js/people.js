@@ -70,7 +70,19 @@ function showModal(person) {
     document.getElementById("modal-general-job").innerText = person["job"];
     document.getElementById("modal-entry-date").value = person["entry_date"];
     document.getElementById("modal-container").classList.add("show");
+    const skillsContainer = document.getElementById("skills-modal");
+
+    skillsContainer.innerHTML = "";
+    person["skills"].forEach(skill => {
+        let skillHTML = `
+            <div class='skill-text-modal' style="background-color: #${skill["category_color"]}">
+                ${skill["category_icon"]}
+                <p>${skill["skill_label"]}</p>
+            </div>`;
+        skillsContainer.innerHTML += skillHTML;
+    });
 }
+
 
 function closeModal() {
     document.getElementById("modal-container").classList.remove("show");

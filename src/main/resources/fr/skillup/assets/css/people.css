@@ -30,7 +30,7 @@
     font-family: Kumbh Sans, serif;
 }
 
-#people > .container-personnel {
+.container-personnel {
     width: 90%;
     padding: 20px;
     margin: 20px auto;
@@ -48,6 +48,18 @@
     flex: 1;
     overflow: scroll;
     position: relative;
+}
+.container-personnel::-webkit-scrollbar {
+    width: 12px;
+}
+
+.container-personnel::-webkit-scrollbar-thumb {
+    background: #FAFBFE;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius : 15px;
+}
+.container-personnel::-webkit-scrollbar-thumb:hover {
+    background: #B6B8F1;
 }
 
 #people > .container-personnel > div:first-child {
@@ -73,6 +85,7 @@
     margin-right: 0;
     padding-right: 0;
     position: relative;
+    overflow: hidden;
 }
 
 #people > .container-personnel > div:first-child > #load-more {
@@ -116,6 +129,7 @@
     overflow: hidden;
     margin-top: 30px;
     margin-bottom: 0;
+    white-space : nowrap;
 }
 
 #people > .container-personnel > div:first-child > .people-card > .info-card > .info > .job {
@@ -316,6 +330,7 @@
     overflow: hidden;
     margin-bottom: 10px;
     padding: 0;
+    margin: 0;
 }
 
 .job-modal {
@@ -425,4 +440,35 @@
     background-color : #7B69ED;
     color : white;
 }
+
+.skill-people-modal {
+    margin-left: 20px;
+    margin-top : 15px;
+    margin-bottom : 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 10px;
+    font-family: Kumbh Sans, serif;
+}
+
+.skill-text-modal {
+    font-size: 13px;
+    color: black;
+    background-color: #F3E8FD;
+    border-radius: 20px;
+    margin: 0;
+    width: auto;
+    padding: 0 10px;
+    display: flex;
+    white-space: nowrap;
+    align-items: center;
+    gap: 5px;
+}
+
+.skill-text-modal svg {
+    width: 15px;
+    height: auto;
+}
+
 
