@@ -113,13 +113,13 @@ function moveToAddMission() {
 }
 
 function moveToListOfSkills() {
-    Bridge.call("SkillsController", "init");
+    Bridge.call("SkillsController", "viewSkills");
 }
 function moveToListOfPeople() {
-    Bridge.call("PeopleController", "init");
+    Bridge.call("PeopleController", "viewPeople");
 }
 function moveToMissionsManagement() {
-    Bridge.call("MissionsController", "init");
+    Bridge.call("MissionsController", "viewMissions");
 }
 
 
