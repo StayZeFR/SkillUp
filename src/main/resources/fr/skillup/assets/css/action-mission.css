@@ -223,4 +223,81 @@ h2 {
     font-size: 0.8em;
 }
 
+#action-mission > .container > section.people-mission > .container > div:first-child {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+#action-mission > .container > section.people-mission > .container > div:first-child > button {
+    border: none;
+    outline: none;
+    background: #7B69ED;
+    color: white;
+    border-radius: 8px;
+    padding: 5px 20px;
+    cursor: pointer;
+}
+
+#action-mission > .container > section.people-mission > .container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#action-mission > .container > section.people-mission > .container > .people {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#action-mission > .container > section.people-mission > .container > .people > .person {
+    width: auto;
+    height: auto;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#action-mission > .container > section.people-mission > .container > .people > .person > div:first-child {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+#action-mission > .container > section.people-mission > .container > .people > .person > div:first-child > span {
+    font-size: 0.8em;
+}
+
+#action-mission > .container > section.people-mission > .container > .people > .person > div:first-child > button {
+    border: none;
+    background-color: #F2F0FD;
+    border-radius: 5px;
+    padding: 5px;
+    outline: none;
+    color: #7B69ED;
+    cursor: pointer;
+}
+
+#action-mission > .container > section.people-mission > .container > .people > .person > div:first-child > button > svg {
+    width: 15px;
+    height: auto;
+    fill: #7B69ED;
+}
+
+#action-mission > .container > section.people-mission > .container > .people > .person > .matching {
+    padding: 5px;
+    background-color: #F2F0FD;
+    border-radius: 5px;
+    color: #7B69ED;
+    width: fit-content;
+    font-size: 0.75em;
+}
 

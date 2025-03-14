@@ -108,10 +108,6 @@ class Select extends HTMLElement {
     setDisabled(value) {
         this._disabled = value;
         this.selected.classList.toggle('disabled', value);
-        this.selected.removeEventListener('click', this.toggleDropdown);
-        if (!value) {
-            this.selected.addEventListener('click', () => this.toggleDropdown());
-        }
     }
 
     toggleDropdown() {
@@ -192,11 +188,15 @@ class Select extends HTMLElement {
         return this._isMultiple ? [...this.selectedLabels] : this.selectedLabels[0];
     }
 
+    getDisabled() {
+        return this._disabled;
+    }
+
     clear() {
         this.selectedValues = [];
         this.selectedLabels = [];
         this.selected.textContent = this._title;
-        this.optionsContainer.querySelectorAll('input').forEach(input => input.checked = false);
+        this.optionsContainer.querySelectorAll('.option').forEach(option => option.remove());
     }
 
     unselect(value) {

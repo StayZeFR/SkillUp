@@ -28,7 +28,6 @@ public class MissionModel extends Model {
                 "and exists (select * from person_skill ps where ps.person_id = p.id and ps.skill_id in (" + String.join(",", skills) + "))" +
                 "order by nb_matchs desc;";
 
-        System.out.println(query);
         return super.select(query, Integer.class, String.class, String.class, String.class, Integer.class);
     }
 

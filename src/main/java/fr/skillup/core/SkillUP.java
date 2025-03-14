@@ -19,9 +19,10 @@ public class SkillUP extends Application {
     @Override
     public void start(Stage stage) {
         this.getMemory();
+        String os = System.getProperty("os.name");
+
         System.setProperty("prism.lcdtext", "false");
         System.setProperty("prism.text", "t2k");
-        System.setProperty("prism.order", "d3d");
         System.setProperty("prism.targetvram", "2");
         System.setProperty("prism.forceGPU", "true");
         System.setProperty("prism.vsync", "true");
@@ -29,6 +30,15 @@ public class SkillUP extends Application {
         System.setProperty("javafx.webContext.allowLocalStorage", "true");
         System.setProperty("javafx.webContext.useHardwareAcceleration", "true");
         System.setProperty("javafx.web.enableMultiThread", "true");
+
+        if (os.contains("win")) {
+            System.setProperty("prism.order", "d3d");
+        } else if (os.contains("mac")) {
+            System.setProperty("prism.order", "sw");
+            System.setProperty("prism.allowhidpi", "true");
+        } else if (os.contains("nix") || os.contains("nux")) {
+            System.setProperty("prism.order", "es2");
+        }
 
         Window window = new Window(Config.get("app.title"));
         window.show(HomeController.class);
