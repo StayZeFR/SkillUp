@@ -7,7 +7,7 @@ import java.util.List;
 
 public class MissionModel extends Model {
 
-    public Result getPeopleSkillsMatch(List<String> skills) {
+    public Result getPeopleSkillsMatch(List<String> skills, List<String> notIn) {
         String query = "select\n" +
                 "    p.id as person_id,\n" +
                 "    p.firstname as person_firstname,\n" +
@@ -26,6 +26,7 @@ public class MissionModel extends Model {
                 "from person p\n" +
                 "where p.id not in (select pm.person_id from person_mission pm, mission m, life_cycle lc where m.life_cycle_id = lc.id and lc.label = 'DONE')" +
                 "and exists (select * from person_skill ps where ps.person_id = p.id and ps.skill_id in (" + String.join(",", skills) + "))" +
+                (!notIn.isEmpty() ? "and p.id not in (" + String.join(",", notIn) + ")\n" : "") +
                 "order by nb_matchs desc;";
 
         return super.select(query, Integer.class, String.class, String.class, String.class, Integer.class);

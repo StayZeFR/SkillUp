@@ -1,5 +1,5 @@
 let skillsSelected = {};
-
+let peopleSelected = {};
 let peopleFind = [];
 
 App.onLoad(async () => {
@@ -73,30 +73,11 @@ App.onLoad(async () => {
                 delete skillsSelected[value];
             }
 
-            let selected = select.getSelected();
-            if (!(selected instanceof Array)) {
-                selected = [selected];
-            }
-
             if (Object.entries(skillsSelected).length <= 0) {
                 people.setDisabled(true);
             } else {
                 people.setDisabled(false);
-                Bridge.getAsync("ActionMissionController", "getPeopleSkillsMatch", [selected]).then((result) => {
-                    people.clear();
-                    peopleFind = result;
-                    for (const person of result) {
-                        const html = `
-                        <div style="display: flex; flex-direction: column; gap: 5px;">
-                            <span>${person.person_firstname} ${person.person_lastname}</span>
-                            <div style="background-color: #F2F0FD; border-radius: 5px; padding: 5px;">
-                                ${person.nb_matchs} matching skill${person.nb_matchs > 1 ? "s" : ""}
-                            </div>
-                        </div>
-                    `;
-                        people.addOption(person.person_id, html);
-                    }
-                });
+                findMatchingPeople();
             }
         });
 
@@ -124,13 +105,36 @@ function deleteSkill(id) {
 }
 
 function findMatchingPeople() {
+    const select = document.getElementById("select-skills");
+    const people = document.getElementById("select-people");
 
+    let selected = select.getSelected();
+    if (!(selected instanceof Array)) {
+        selected = [selected];
+    }
+
+    Bridge.getAsync("ActionMissionController", "getPeopleSkillsMatch", [selected]).then((result) => {
+        people.clear();
+        peopleFind = result;
+        for (const person of result) {
+            const html = `
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <span>${person.person_firstname} ${person.person_lastname}</span>
+                            <div style="background-color: #F2F0FD; border-radius: 5px; padding: 5px;">
+                                ${person.nb_matchs} matching skill${person.nb_matchs > 1 ? "s" : ""}
+                            </div>
+                        </div>
+                    `;
+            people.addOption(person.person_id, html);
+        }
+    });
 }
 
 function addPerson() {
     const selected = document.getElementById("select-people").getSelected();
     if (selected) {
         const person = peopleFind.find(item => item.person_id === parseInt(selected));
+        peopleSelected[selected] = person; 
         const html = `
                         <div class="person">
                             <div>

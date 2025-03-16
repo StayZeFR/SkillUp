@@ -19,8 +19,8 @@ public class ActionMissionController extends Controller {
         return model.getSkills().toJson();
     }
 
-    public String getPeopleSkillsMatch(List<String> skills) {
+    public String getPeopleSkillsMatch(List<String> skills, List<String> notIn) {
         MissionModel model = Model.get(MissionModel.class);
-        return model.getPeopleSkillsMatch(skills).toJson();
+        return model.getPeopleSkillsMatch(skills, notIn).toJson();
     }
 }
