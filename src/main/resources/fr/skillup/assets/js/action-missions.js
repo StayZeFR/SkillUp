@@ -96,6 +96,7 @@ function managePeople(operator, id) {
     }
     document.querySelector(`.skill[data-id="${id}"] .nb-people`).innerText = skillsSelected[id].nbPeople;
     document.querySelector(`.skill[data-id="${id}"] .alert span span`).innerText = skillsSelected[id].missing;
+    document.getElementById("select-people").setDisabled(false);
 }
 
 function deleteSkill(id) {
@@ -113,11 +114,21 @@ function findMatchingPeople() {
         selected = [selected];
     }
 
-    Bridge.getAsync("ActionMissionController", "getPeopleSkillsMatch", [selected]).then((result) => {
-        people.clear();
-        peopleFind = result;
-        for (const person of result) {
-            const html = `
+    let skillsMatching = [];
+    for (const skill of selected) {
+        if (skillsSelected[skill].missing === 0) {
+            skillsMatching.push(skill);
+        }
+    }
+    const skills = selected.filter(item => !skillsMatching.includes(item));
+
+    if (skills.length > 0) {
+        people.setDisabled(false);
+        Bridge.getAsync("ActionMissionController", "getPeopleSkillsMatch", [skills, Object.keys(peopleSelected)]).then((result) => {
+            people.clear();
+            peopleFind = result;
+            for (const person of result) {
+                const html = `
                         <div style="display: flex; flex-direction: column; gap: 5px;">
                             <span>${person.person_firstname} ${person.person_lastname}</span>
                             <div style="background-color: #F2F0FD; border-radius: 5px; padding: 5px;">
@@ -125,9 +136,13 @@ function findMatchingPeople() {
                             </div>
                         </div>
                     `;
-            people.addOption(person.person_id, html);
-        }
-    });
+                people.addOption(person.person_id, html);
+            }
+        });
+    } else {
+        people.clear();
+        people.setDisabled(true);
+    }
 }
 
 function addPerson() {
@@ -151,5 +166,14 @@ function addPerson() {
                         </div>
         `;
         document.getElementById("list-people").innerHTML += html;
+        const skills = person.matchs.split(",");
+        // App.log(JSON.stringify(skills));
+        for (const skill of skills) {
+            if (skillsSelected[skill].missing > 0) {
+                skillsSelected[skill].missing--;
+                document.querySelector(`.skill[data-id="${skill}"] .alert span span`).innerText = skillsSelected[skill].missing;
+            }
+        }
+        findMatchingPeople();
     }
 }
