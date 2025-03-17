@@ -1,11 +1,12 @@
 <extend parent="layouts/default_layout.html"></extend>
 
-<link rel="stylesheet" href="assets/css/home.css">
+<render-section name="css">
+    <link rel="stylesheet" href="assets/css/home.css">
+</render-section>
 
 <render-section name="js">
     <script src="assets/js/home.js"></script>
 </render-section>
-
 
 <render-section name="content">
     <div id="parent">
@@ -49,53 +50,53 @@
                         Add a mission
                     </button>
                 </div>
-        </div>
-        <div class="colonne">
-            <div id="planning">
-                <img src="assets/images/viewplanning.svg" alt="add mission" class="imagehome">
-                <button class="button" onclick="moveToMissionsManagement()">
-                    View planning
-                </button>
             </div>
-            <div id="list-skills">
-                <div id="table">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th class="category"></th>
-                        </tr>
-                        </thead>
-                        <tbody id="table-skills">
-                        </tbody>
-                    </table>
-                </div>
-                <button class="button" onclick="moveToListOfSkills()">
-                    View list of skills
-                </button>
-            </div>
-
-        </div>
-        <div class="colonne">
-            <div id="people">
-                <div id="container-personnel">
-                    <table>
-                        <thead>
-                        <tr>
-                        </tr>
-                        </thead>
-                        <tbody id="table-people">
-                        </tbody>
-                    </table>
-                    <button class="button" onclick="moveToListOfPeople()">
-                        View list of people
+            <div class="colonne">
+                <div id="planning">
+                    <img src="assets/images/viewplanning.svg" alt="add mission" class="imagehome">
+                    <button class="button" onclick="moveToMissionsManagement()">
+                        View planning
                     </button>
                 </div>
+                <div id="list-skills">
+                    <div id="table">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th class="category"></th>
+                            </tr>
+                            </thead>
+                            <tbody id="table-skills">
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="button" onclick="moveToListOfSkills()">
+                        View list of skills
+                    </button>
+                </div>
+
+            </div>
+            <div class="colonne">
+                <div id="people">
+                    <div id="container-personnel">
+                        <table>
+                            <thead>
+                            <tr>
+                            </tr>
+                            </thead>
+                            <tbody id="table-people">
+                            </tbody>
+                        </table>
+                        <button class="button" onclick="moveToListOfPeople()">
+                            View list of people
+                        </button>
+                    </div>
+                </div>
+
+
             </div>
 
-
         </div>
-
-    </div>
     </div>
 
 </render-section>

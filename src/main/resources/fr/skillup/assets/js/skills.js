@@ -1,52 +1,63 @@
-App.onLoad(() => {
-    const categories = JSON.parse(Bridge.get("SkillsController", "getCategories"));
-    const skills = JSON.parse(Bridge.get("SkillsController", "getSkills"));
-    if (categories !== null) {
-        categories.forEach(category => {
-            document.getElementById("filter-category-list").innerHTML += "<div class='select-item' data-value='" + category["id"] + "' onclick='select(this)'>" + category["label"] + "</div>";
-        });
-    }
-
-    let skillsFiltered = skills;
-    let max = getMax();
-    window.addEventListener("resize", () => {
-        max = getMax();
-        initTable(filter(skills), 0, max);
+App.onLoad(async () => {
+    await Bridge.getAsync("SkillsController", "getCategories").then((categories) => {
+        if (categories !== null) {
+            /*categories.forEach(category => {
+                document.getElementById("filter-category-list").innerHTML += "<div class='select-item' data-value='" + category["id"] + "' onclick='select(this)'>" + category["label"] + "</div>";
+            });*/
+            const select = document.getElementById("filter-category");
+            select.setEnableSearch(false);
+            select.setTitle("Filter by category");
+            select.addOption("all", "All");
+            categories.forEach(category => {
+                select.addOption(category["id"], category["label"]);
+            });
+        }
+    }).catch((err) => {
+        App.log("Error : " + err);
     });
 
-    Array.from(document.querySelectorAll("#filter-category-list > .select-item")).forEach(select => {
-        select.addEventListener("click", (event) => {
+    await Bridge.getAsync("SkillsController", "getSkills").then((skills) => {
+
+        let skillsFiltered = skills;
+        let max = getMax();
+        window.addEventListener("resize", () => {
+            max = getMax();
+            initTable(filter(skills), 0, max);
+        });
+
+        document.getElementById("filter-category").addEventListener("change", (event) => {
             skillsFiltered = filter(skills);
             initTable(skillsFiltered, 0, max);
         });
-    });
-    document.getElementById("filter-label").addEventListener("input", () => {
-        skillsFiltered = filter(skills);
-        initTable(skillsFiltered, 0, max);
-    });
 
-    document.getElementById("first-page-button").addEventListener("click", () => {
-        initTable(skillsFiltered, 0, max);
-    });
-    document.getElementById("previous-page-button").addEventListener("click", () => {
-        let start = parseInt(document.getElementById("current-page").innerText) - 2;
-        if (start < 0) {
-            start = 0;
-        }
-        initTable(skillsFiltered, start * max, max);
-    });
-    document.getElementById("next-page-button").addEventListener("click", () => {
-        let start = parseInt(document.getElementById("current-page").innerText);
-        if (start < Math.ceil(skills.length / max)) {
+        document.getElementById("filter-label").addEventListener("input", () => {
+            skillsFiltered = filter(skills);
+            initTable(skillsFiltered, 0, max);
+        });
+
+        document.getElementById("first-page-button").addEventListener("click", () => {
+            initTable(skillsFiltered, 0, max);
+        });
+        document.getElementById("previous-page-button").addEventListener("click", () => {
+            let start = parseInt(document.getElementById("current-page").innerText) - 2;
+            if (start < 0) {
+                start = 0;
+            }
             initTable(skillsFiltered, start * max, max);
-        }
-    });
-    document.getElementById("last-page-button").addEventListener("click", () => {
-        let start = Math.ceil(skills.length / max) - 1;
-        initTable(skillsFiltered, start * max, max);
-    });
+        });
+        document.getElementById("next-page-button").addEventListener("click", () => {
+            let start = parseInt(document.getElementById("current-page").innerText);
+            if (start < Math.ceil(skills.length / max)) {
+                initTable(skillsFiltered, start * max, max);
+            }
+        });
+        document.getElementById("last-page-button").addEventListener("click", () => {
+            let start = Math.ceil(skills.length / max) - 1;
+            initTable(skillsFiltered, start * max, max);
+        });
 
-    initTable(skillsFiltered, 0, max);
+        initTable(skillsFiltered, 0, max);
+    });
 });
 
 function getMax() {
@@ -66,11 +77,13 @@ function getMax() {
 }
 
 function filter(skills) {
-    const category = document.getElementById("filter-category").getAttribute("data-value");
+    const category = document.getElementById("filter-category").getSelectedLabels().toLowerCase();
     const label = document.getElementById("filter-label").value;
     let skillsFiltered = skills;
     if (category && category !== "all") {
-        skillsFiltered = skills.filter(skill => skill["category_id"] === parseInt(category));
+        skillsFiltered = skills.filter(skill => {
+            return skill["category_label"].toLowerCase().includes(category);
+        });
     }
     if (label !== "") {
         skillsFiltered = skillsFiltered.filter(skill => skill["skill_label"].toLowerCase().includes(label.toLowerCase()));

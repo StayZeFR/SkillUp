@@ -1,5 +1,6 @@
 package fr.skillup.core.database;
 
+import java.security.SecureRandom;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
@@ -7,12 +8,12 @@ import java.util.function.Consumer;
 
 public class Result {
 
-    private Random random;
+    private SecureRandom random;
     private final List<Class<?>> types;
     private final List<Tuple> tuples;
 
     public Result(ResultSet resultSet, Class<?>... clazz) throws SQLException {
-        this.random = new Random();
+        this.random = new SecureRandom();
         this.tuples = new ArrayList<>();
         this.types = Arrays.asList(clazz);
         this.scan(resultSet);
@@ -75,6 +76,10 @@ public class Result {
         this.tuples.forEach(consumer);
     }
 
+    /**
+     * Convertir le résultat en JSON
+     * @return String : JSON
+     */
     public String toJson() {
         StringBuilder json = new StringBuilder("[");
         for (int i = 0; i < this.size(); i++) {

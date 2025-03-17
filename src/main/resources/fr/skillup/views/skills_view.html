@@ -1,11 +1,11 @@
 <extend parent="layouts/default_layout.html"></extend>
 
 <render-section name="css">
-    <link rel="stylesheet" href="assets/css/elements/select.css">
     <link rel="stylesheet" href="assets/css/skills.css">
 </render-section>
 
 <render-section name="js">
+    <script src="assets/js/core/elements/select.js"></script>
     <script src="assets/js/skills.js"></script>
 </render-section>
 
@@ -13,20 +13,15 @@
 
     <div id="skills">
         <div id="filter-contener">
-        <header>
-            <h1>Skills management</h1>
-        </header>
-        <div id="filters">
-            <div class="select">
-                <div class="select-selected" id="filter-category">Filter by category</div>
-                <div class="select-items select-hide" id="filter-category-list">
-                    <div class="select-item" data-value="all" onclick="select(this)">All</div>
+            <header>
+                <h1>Skills management</h1>
+            </header>
+            <div id="filters">
+                <sup-select id="filter-category"></sup-select>
+                <div class="filter-control">
+                    <input type="text" placeholder="Search by label" id="filter-label" class="filter">
                 </div>
             </div>
-            <div class="filter-control">
-                <input type="text" placeholder="Search by label" id="filter-label" class="filter">
-            </div>
-        </div>
         </div>
         <div id="table">
             <table>

@@ -1,22 +1,15 @@
-#title {
-    border : none;
-    outline : none;
-    color : #313132;
-    font-size : 33px;
-    background : transparent;
-    width : 100%;
-    font-weight : 600;
+#action-mission {
+    box-sizing: border-box;
+    width: calc(100% - 40px);
+    height: calc(100% - 60px);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-h2 {
-    color : #7B69ED;
-    font-size : 20px;
-}
-
-.title-container{
-    width: 90%;
+#action-mission > .title-container {
+    width: 100%;
     padding: 20px;
-    margin: 20px auto;
     display: flex;
     text-align: justify;
     align-items: flex-start;
@@ -29,40 +22,311 @@ h2 {
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.add-container{
-    width: 90%;
-    padding: 20px;
-    margin: 20px auto;
-    text-align: left;
-    border-radius: 18px;
-    height: auto;
+#title {
+    border: none;
+    outline: none;
+    color: #313132;
+    font-size: 33px;
+    background: transparent;
+    width: 100%;
+    font-weight: 600;
+}
+
+h2 {
+    color: #7B69ED;
+    font-size: 20px;
+}
+
+#action-mission > .container {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     background: rgba(255, 255, 255, 0.26);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-}
-.information-legend{
-    display : flex;
-    flex-direction : column;
-}
-
-.information-legend-container{
-    display : flex;
-    flex-direction : row;
+    border-radius: 18px;
+    padding: 20px;
+    gap: 20px;
+    overflow: scroll;
 }
 
-#date,
-#duration,
-#peoplerequired{
-    border : none;
-    outline : none;
-    background : transparent;
-    border: 1px solid #A9A9A9;
-    border-radius : 10px;
-    color : #313132;
-    padding : 10px;
-    margin : 5px;
+#action-mission > .container > section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
+#action-mission > .container > section > .title > h2 {
+    color: #7B69ED;
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+#action-mission > .container > section.information-mission > .container {
+    padding: 0 10px;
+}
+
+#action-mission > .container > section.information-mission > .information-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+#action-mission > .container > section.information-mission > .information-container > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#action-mission > .container > section.information-mission > .information-container > div > input {
+    border: 1px solid #E3E3E2;
+    border-radius: 8px;
+    outline: none;
+    padding: 5px 10px;
+}
+
+#action-mission > .container > section.skill-mission > .container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#action-mission > .container > section.skill-mission > .container > div:first-child {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+#action-mission > .container > section.skill-mission > .container > div:first-child > button {
+    border: none;
+    outline: none;
+    background: #7B69ED;
+    color: white;
+    border-radius: 8px;
+    padding: 5px 20px;
+    cursor: pointer;
+}
+
+#action-mission > .container > section.skill-mission > .container > .skills {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#action-mission > .container > section.skill-mission > .container > .skills > .skill {
+    width: auto;
+    height: auto;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#action-mission > .container > section.skill-mission > .container > .skills > .skill > div:first-child {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 5px 15px;
+    border-radius: 10px;
+}
+
+#action-mission > .container > section.skill-mission > .container > .skills > .skill > div:first-child > span {
+    font-size: 0.8em;
+}
+
+#action-mission > .container > section.skill-mission > .container > .skills > .skill > div:first-child > svg {
+    width: 15px;
+    height: auto;
+}
+
+#action-mission > .container > section.skill-mission > .container > .skills > .skill > .action {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+#action-mission > .container > section.skill-mission > .container > .skills > .skill > .action > .people {
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+    padding: 5px;
+    background-color: #F2F0FD;
+    border-radius: 5px;
+    color: #7B69ED;
+    align-items: center;
+    justify-content: center;
+}
+
+#action-mission > .container > section.skill-mission > .container > .skills > .skill > .action > .people > div {
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+}
+
+#action-mission > .container > section.skill-mission > .container > .skills > .skill > .action > .people > div > svg {
+    width: 15px;
+    height: auto;
+    fill: #7B69ED;
+}
+
+#action-mission > .container > section.skill-mission > .container > .skills > .skill > .action > .people > button {
+    border: none;
+    background: transparent;
+    outline: none;
+    color: #7B69ED;
+    cursor: pointer;
+}
+
+#action-mission > .container > section.skill-mission > .container > .skills > .skill > .action > button {
+    border: none;
+    background-color: #F2F0FD;
+    border-radius: 5px;
+    padding: 5px;
+    outline: none;
+    color: #7B69ED;
+}
+
+#action-mission > .container > section.skill-mission > .container > .skills > .skill > .action > button > svg {
+    width: 15px;
+    height: auto;
+    fill: #7B69ED;
+}
+
+#action-mission > .container > section.skill-mission > .container > .skills > .skill > .action > .alert {
+    padding: 5px;
+    background-color: #9747FF;
+    color: white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+}
+
+#action-mission > .container > section.skill-mission > .container > .skills > .skill > .action > .alert > svg {
+    width: 15px;
+    height: auto;
+    fill: white;
+}
+
+#action-mission > .container > section.skill-mission > .container > .skills > .skill > .action > .alert > span {
+    font-size: 0.8em;
+}
+
+#action-mission > .container > section.people-mission > .container > div:first-child {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+#action-mission > .container > section.people-mission > .container > div:first-child > button {
+    border: none;
+    outline: none;
+    background: #7B69ED;
+    color: white;
+    border-radius: 8px;
+    padding: 5px 20px;
+    cursor: pointer;
+}
+
+#action-mission > .container > section.people-mission > .container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#action-mission > .container > section.people-mission > .container > .people {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#action-mission > .container > section.people-mission > .container > .people > .person {
+    width: auto;
+    height: auto;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#action-mission > .container > section.people-mission > .container > .people > .person > div:first-child {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+#action-mission > .container > section.people-mission > .container > .people > .person > div:first-child > span {
+    font-size: 0.8em;
+}
+
+#action-mission > .container > section.people-mission > .container > .people > .person > div:first-child > button {
+    border: none;
+    background-color: #F2F0FD;
+    border-radius: 5px;
+    padding: 5px;
+    outline: none;
+    color: #7B69ED;
+    cursor: pointer;
+}
+
+#action-mission > .container > section.people-mission > .container > .people > .person > div:first-child > button > svg {
+    width: 15px;
+    height: auto;
+    fill: #7B69ED;
+}
+
+#action-mission > .container > section.people-mission > .container > .people > .person > .matching {
+    padding: 5px;
+    background-color: #F2F0FD;
+    border-radius: 5px;
+    color: #7B69ED;
+    width: fit-content;
+    font-size: 0.75em;
+}
+
+#action-mission > .container > section.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+#action-mission > .container > section.buttons > button {
+    border: none;
+    outline: none;
+    background: #7B69ED;
+    color: white;
+    border-radius: 8px;
+    padding: 5px 20px;
+    cursor: pointer;
+}
+
+#action-mission > .container > section.buttons > button#valid[disabled] {
+    background: #7B69ED80;
+    color: white;
+    cursor: not-allowed;
+}
+
+#action-mission > .container > section.buttons > button#cancel {
+    border: 1px solid #FF4D4D;
+    background: transparent;
+    color: #FF4D4D;
+}
 

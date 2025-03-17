@@ -1,70 +1,74 @@
 <extend parent="layouts/default_layout.html"></extend>
 
 <render-section name="css">
+    <link rel="stylesheet" href="assets/css/elements/select.css">
     <link rel="stylesheet" href="assets/css/action-mission.css">
 </render-section>
 
 <render-section name="js">
-    <script src="assets/js/missions.js"></script>
+    <script src="assets/js/core/elements/select.js"></script>
+    <script src="assets/js/action-missions.js"></script>
 </render-section>
 
 <render-section name="content">
-    <div class="title-container">
-        <h1>Add a mission</h1>
-    </div>
+    <div id="action-mission">
+        <div class="title-container">
+            <h1>Add a mission</h1>
+        </div>
 
-    <div>
-        <div class="add-container">
+        <div class="container">
             <div>
-                <input type="text" id="title" name="title" placeholder="Write the title of the mission"
+                <input type="text" id="title-mission" name="title" placeholder="Write the title of the mission"
                        class="title">
             </div>
 
-            <div class="information-mission">
-                <div>
+            <section class="information-mission">
+                <div class="title">
                     <h2>Informations</h2>
                 </div>
-                <div class="information-legend-container">
+                <div class="container information-container">
                     <div class="information-legend">
-                        <legend id=" date"> Starting date</legend>
-                        <input type="date" id="date" placeholder="dd/mm/yyyy">
+                        <label for="date-mission">Starting date</label>
+                        <input type="text" id="date-mission" placeholder="dd/mm/yyyy">
                     </div>
                     <div class="information-legend">
-                        <legend id="number"> Duration</legend>
-                        <input type="duration" id="duration" placeholder="Write in days">
+                        <label for="duration-mission">Duration</label>
+                        <input type="text" id="duration-mission" placeholder="Write in days">
                     </div>
                     <div class="information-legend">
-                        <legend id="peoplerequired"> Number of people required</legend>
-                        <input type="number" id="peoplerequired" placeholder="Write a number">
+                        <label for="nb_people-mission">Number of people required</label>
+                        <input type="number" id="nb_people-mission" placeholder="Write a number">
                     </div>
                 </div>
 
-            </div>
-            <div class="skill-mission">
-                <div>
+            </section>
+            <section class="skill-mission">
+                <div class="title">
+                    <h2>Skills</h2>
+                </div>
+                <div class="container">
+                    <sup-select id="select-skills"></sup-select>
+                    <div class="skills" id="list-skills"></div>
+                </div>
+            </section>
+            <section class="people-mission">
+                <div class="title">
+                    <h2>Based on selected skills and availability</h2>
+                </div>
+                <div class="container">
                     <div>
-                        <h2>Skills</h2>
+                        <sup-select id="select-people"></sup-select>
+                        <button id="add-people" onclick="addPerson()">
+                            Add
+                        </button>
                     </div>
-                    <button>
-                        Add a skill
-                    </button>
+                    <div class="people" id="list-people"></div>
                 </div>
-                <div>
-
-                </div>
-                <div>
-                    <button>
-                        Add this new mission
-                    </button>
-                    <button>
-                        Ask for validation
-                    </button>
-                </div>
-
-
-            </div>
-
+            </section>
+            <section class="buttons">
+                <button id="cancel" onclick="cancel()">Cancel</button>
+                <button id="valid" onclick="valid()">Save</button>
+            </section>
         </div>
     </div>
-
 </render-section>
