@@ -301,3 +301,32 @@ h2 {
     font-size: 0.75em;
 }
 
+#action-mission > .container > section.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+#action-mission > .container > section.buttons > button {
+    border: none;
+    outline: none;
+    background: #7B69ED;
+    color: white;
+    border-radius: 8px;
+    padding: 5px 20px;
+    cursor: pointer;
+}
+
+#action-mission > .container > section.buttons > button#valid[disabled] {
+    background: #7B69ED80;
+    color: white;
+    cursor: not-allowed;
+}
+
+#action-mission > .container > section.buttons > button#cancel {
+    border: 1px solid #FF4D4D;
+    background: transparent;
+    color: #FF4D4D;
+}
+

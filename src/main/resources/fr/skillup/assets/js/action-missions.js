@@ -5,8 +5,46 @@ let peopleFind = [];
 App.onLoad(async () => {
     const select = document.getElementById("select-skills");
     const people = document.getElementById("select-people");
+
+    select.setEnableSearch(true);
+    select.setTitle("Select Skills");
+    select.setMultiple(true);
+
     people.setDisabled(true);
-    people.setTitle("Select person")
+    people.setTitle("Select person");
+
+    document.getElementById("valid").innerText = window.params.get("action") === "add" ? "Add mission" : "Save";
+
+    document.getElementById("date-mission").addEventListener("input", (event) => {
+        let value = event.target.value.replace(/\D/g, "");
+        let formattedValue = '';
+
+        if (value.length > 2) {
+            formattedValue = value.substring(0, 2) + "/";
+        } else {
+            formattedValue = value;
+        }
+
+        if (value.length > 4) {
+            formattedValue += value.substring(2, 4) + "/";
+            formattedValue += value.substring(4, 8);
+        } else if (value.length > 2) {
+            formattedValue += value.substring(2, 4);
+        }
+
+        event.target.value = formattedValue;
+    });
+
+    document.getElementById("nb_people-mission").addEventListener("input", (event) => {
+        const value = parseInt(event.target.value);
+        if (value > 0) {
+            people.setDisabled(false);
+            resetPeopleSelected();
+        } else {
+            people.setDisabled(true);
+            people.clear();
+        }
+    });
 
     Bridge.getAsync("ActionMissionController", "getSkills", []).then((result) => {
         const skills = result.reduce((group, element) => {
@@ -16,9 +54,6 @@ App.onLoad(async () => {
             return group;
         }, {});
 
-        select.setEnableSearch(true);
-        select.setTitle("Select Skills");
-        select.setMultiple(true);
         for (const category_label in skills) {
             for (const skill of skills[category_label]) {
                 select.addOption(skill.skill_id, skill.skill_label, category_label);
@@ -77,12 +112,31 @@ App.onLoad(async () => {
                 people.setDisabled(true);
             } else {
                 people.setDisabled(false);
-                findMatchingPeople();
+                resetPeopleSelected();
             }
         });
 
     });
 });
+
+function cancel() {
+    Bridge.call("layouts.DefaultLayoutController", "moveTo", ["missions"]);
+}
+
+function valid() {
+    const title = document.getElementById("title-mission").value;
+    const date = document.getElementById("date-mission").value;
+    const duration = document.getElementById("duration-mission").value;
+    const nbPeople = document.getElementById("nb_people-mission").value;
+
+    /*if (title === "" || date === "" || duration === "" || nbPeople === "") {
+        return;
+    }*/
+    
+
+    App.log(JSON.stringify(skillsSelected));
+    App.log(JSON.stringify(peopleSelected));
+}
 
 function managePeople(operator, id) {
     if (operator === "+") {
@@ -145,6 +199,17 @@ function findMatchingPeople() {
     }
 }
 
+function resetPeopleSelected() {
+    for (const skill in skillsSelected) {
+        skillsSelected[skill].missing = skillsSelected[skill].nbPeople;
+        document.querySelector(`.skill[data-id="${skill}"] .alert span span`).innerText = skillsSelected[skill].missing;
+    }
+    peopleSelected = {};
+    peopleFind = [];
+    document.getElementById("list-people").innerHTML = "";
+    findMatchingPeople();
+}
+
 function addPerson() {
     const selected = document.getElementById("select-people").getSelected();
     if (selected) {
@@ -167,12 +232,15 @@ function addPerson() {
         `;
         document.getElementById("list-people").innerHTML += html;
         const skills = person.matchs.split(",");
-        // App.log(JSON.stringify(skills));
         for (const skill of skills) {
             if (skillsSelected[skill].missing > 0) {
                 skillsSelected[skill].missing--;
                 document.querySelector(`.skill[data-id="${skill}"] .alert span span`).innerText = skillsSelected[skill].missing;
             }
+        }
+        const max = parseInt(document.getElementById("nb_people-mission").value);
+        if (Object.entries(peopleSelected).length >= max) {
+            document.getElementById("select-people").setDisabled(true);
         }
         findMatchingPeople();
     }
