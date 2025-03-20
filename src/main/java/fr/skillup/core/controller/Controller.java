@@ -7,7 +7,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.concurrent.Worker;
 import javafx.scene.web.WebView;
 import netscape.javascript.JSObject;
-
 import java.util.HashMap;
 import java.util.Map;
 

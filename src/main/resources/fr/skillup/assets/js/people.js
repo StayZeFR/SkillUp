@@ -287,8 +287,6 @@ function initTable(people, start, max) {
             skillsContainer.innerHTML += skillHTML;
         });
     }
-
-
     document.getElementById("current-page").innerText = Math.ceil(start / max + 1).toString();
     document.getElementById("max-page").innerText = Math.ceil(people.length / max).toString();
     if (start === 0) {
@@ -309,4 +307,8 @@ function initTable(people, start, max) {
 
 function closeModal() {
     document.getElementById("modal-container").classList.remove("show");
+}
+
+function updatePerson() {
+    Bridge.call("PeopleController", "updatePerson");
 }
