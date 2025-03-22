@@ -26,7 +26,7 @@ function initTable(skills) {
 
 function showPeople(people) {
     document.getElementById("table-people").innerHTML = "";
-    people.slice(0, 9).forEach(person => {
+    people.slice(0, 10).forEach(person => {
         let html = `
             <tr>
                 <td>
