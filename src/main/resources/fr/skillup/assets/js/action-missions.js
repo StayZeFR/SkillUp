@@ -131,8 +131,7 @@ function valid() {
 
     /*if (title === "" || date === "" || duration === "" || nbPeople === "") {
         return;
-    }*/
-    
+    }*
 
     App.log(JSON.stringify(skillsSelected));
     App.log(JSON.stringify(peopleSelected));

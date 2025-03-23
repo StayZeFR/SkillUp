@@ -234,7 +234,6 @@ function initTable(people, start, max) {
                 ${displaySkills(person["skills"])}
             </div>
         `;
-
         peopleCard.querySelector(".pen").addEventListener("click", () => showModal(person));
         container.appendChild(peopleCard);
     }
@@ -310,5 +309,12 @@ function closeModal() {
 }
 
 function updatePerson() {
-    Bridge.call("PeopleController", "updatePerson");
+    const firstname = document.getElementById("modal-firstname").value;
+    const lastname = document.getElementById("modal-lastname").value;
+    const job = document.getElementById("modal-job").value;
+
+    const params = JSON.stringify([firstname, lastname, job]);
+    console.log("Paramètres : " + params);
+
+    //Bridge.call("PeopleController", "updatePerson", params);
 }

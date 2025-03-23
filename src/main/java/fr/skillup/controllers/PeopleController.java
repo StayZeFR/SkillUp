@@ -3,9 +3,11 @@ package fr.skillup.controllers;
 import fr.skillup.core.controller.Controller;
 import fr.skillup.core.model.Model;
 import fr.skillup.models.PersonModel;
+import java.util.logging.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class PeopleController extends Controller {
     private static final String VIEW = "people";
@@ -31,5 +33,14 @@ public class PeopleController extends Controller {
     public String getPersonSkills(int id) {
         PersonModel model = Model.get(PersonModel.class);
         return model.getPersonSkills(id).toJson();
+    }
+
+    public void updatePerson(String firstname, String lastname, String job) {
+        Logger logger = Logger.getLogger(PeopleController.class.getName());
+        logger.info("Méthode updatePerson appelée.");
+
+        logger.info("Prénom : " + firstname);
+        logger.info("Nom : " + lastname);
+        logger.info("Emploi : " + job);
     }
 }
