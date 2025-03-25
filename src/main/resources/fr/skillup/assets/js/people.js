@@ -308,6 +308,7 @@ function closeModal() {
     document.getElementById("modal-container").classList.remove("show");
 }
 
+
 function updatePerson() {
     const firstname = document.getElementById("modal-firstname").value;
     const lastname = document.getElementById("modal-lastname").value;

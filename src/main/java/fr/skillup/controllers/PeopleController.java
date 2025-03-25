@@ -34,6 +34,7 @@ public class PeopleController extends Controller {
         return model.getPersonSkills(id).toJson();
     }
 
+
     public void updatePerson(String firstname, String lastname, String job) {
         Logger logger = Logger.getLogger(PeopleController.class.getName());
         logger.info("Méthode updatePerson appelée.");
