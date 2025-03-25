@@ -8,6 +8,9 @@ import java.util.logging.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class PeopleController extends Controller {
     private static final String VIEW = "people";
     @Override
