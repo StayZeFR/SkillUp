@@ -80,4 +80,92 @@ public abstract class Model {
         return this.select(query, List.of(), clazz);
     }
 
+    /**
+     * Exécute une requête de type INSERT
+     * @param query : la requête SQL
+     * @param params : les paramètres de la requête
+     * @return l'identifiant de l'objet inséré
+     */
+    protected int insert(String query, List<Object> params) {
+        int id = -1;
+        PreparedStatement statement = null;
+        try {
+            statement = this.connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
+            for (int i = 0; i < params.size(); i++) {
+                statement.setObject(i + 1, params.get(i));
+            }
+            statement.executeUpdate();
+            ResultSet resultSet = statement.getGeneratedKeys();
+            if (resultSet.next()) {
+                id = resultSet.getInt(1);
+            }
+            statement.close();
+        } catch (SQLException e) {
+            Logger.getLogger(Model.class.getName()).severe(e.getMessage());
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    Logger.getLogger(Model.class.getName()).severe(e.getMessage());
+                }
+            }
+        }
+        return id;
+    }
+
+    /**
+     * Exécute une requête de type UPDATE
+     * @param query : la requête SQL
+     * @param params : les paramètres de la requête
+     */
+    protected void update(String query, List<Object> params) {
+        PreparedStatement statement = null;
+        try {
+            statement = this.connection.prepareStatement(query);
+            for (int i = 0; i < params.size(); i++) {
+                statement.setObject(i + 1, params.get(i));
+            }
+            statement.executeUpdate();
+            statement.close();
+        } catch (SQLException e) {
+            Logger.getLogger(Model.class.getName()).severe(e.getMessage());
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    Logger.getLogger(Model.class.getName()).severe(e.getMessage());
+                }
+            }
+        }
+    }
+
+    /**
+     * Exécute une requête de type DELETE
+     * @param query : la requête SQL
+     * @param params : les paramètres de la requête
+     */
+    protected void delete(String query, List<Object> params) {
+        PreparedStatement statement = null;
+        try {
+            statement = this.connection.prepareStatement(query);
+            for (int i = 0; i < params.size(); i++) {
+                statement.setObject(i + 1, params.get(i));
+            }
+            statement.executeUpdate();
+            statement.close();
+        } catch (SQLException e) {
+            Logger.getLogger(Model.class.getName()).severe(e.getMessage());
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    Logger.getLogger(Model.class.getName()).severe(e.getMessage());
+                }
+            }
+        }
+    }
+
 }

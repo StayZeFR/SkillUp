@@ -13,7 +13,7 @@
 <render-section name="content">
     <div id="action-mission">
         <div class="title-container">
-            <h1>Add a mission</h1>
+            <h1 id="action-mission-title">Add a mission</h1>
         </div>
 
         <div class="container">
@@ -28,15 +28,15 @@
                 </div>
                 <div class="container information-container">
                     <div class="information-legend">
-                        <label for="date-mission">Starting date</label>
+                        <label for="date-mission">Starting date<sup>*</sup></label>
                         <input type="text" id="date-mission" placeholder="dd/mm/yyyy">
                     </div>
                     <div class="information-legend">
-                        <label for="duration-mission">Duration</label>
+                        <label for="duration-mission">Duration<sup>*</sup></label>
                         <input type="text" id="duration-mission" placeholder="Write in days">
                     </div>
                     <div class="information-legend">
-                        <label for="nb_people-mission">Number of people required</label>
+                        <label for="nb_people-mission">Number of people required<sup>*</sup></label>
                         <input type="number" id="nb_people-mission" placeholder="Write a number">
                     </div>
                 </div>
@@ -56,7 +56,8 @@
                     <h2>Based on selected skills and availability</h2>
                 </div>
                 <div class="container">
-                    <div>
+                    <p id="message-people" style="color: red; display: none; padding: 0 5px; margin: 0; font-style: italic; font-size: 0.75em;"></p>
+                    <div class="select">
                         <sup-select id="select-people"></sup-select>
                         <button id="add-people" onclick="addPerson()">
                             Add
