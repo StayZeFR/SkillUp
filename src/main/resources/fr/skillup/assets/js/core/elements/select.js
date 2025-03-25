@@ -115,6 +115,14 @@ class Select extends HTMLElement {
         this.itemsContainer.classList.toggle('open');
     }
 
+    select(value) {
+        const option = this.optionsContainer.querySelector(`input[value="${value}"]`);
+        if (option) {
+            option.checked = true;
+            this.handleSelection({target: option});
+        }
+    }
+
     closeDropdown(event) {
         if (!this.contains(event.target) && !this.shadowRoot.contains(event.target)) {
             this.itemsContainer.classList.remove('open');

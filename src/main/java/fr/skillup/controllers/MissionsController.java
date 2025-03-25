@@ -1,6 +1,8 @@
 package fr.skillup.controllers;
 
 import fr.skillup.core.controller.Controller;
+import fr.skillup.core.model.Model;
+import fr.skillup.models.MissionModel;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,5 +36,10 @@ public class MissionsController extends Controller {
         params.put("action", "edit");
         params.put("id", id);
         super.window.show(ActionMissionController.class, params);
+    }
+
+    public String getMissions() {
+        MissionModel model = Model.get(MissionModel.class);
+        return model.getMissions().toJson();
     }
 }
