@@ -25,14 +25,14 @@ public class ActionMissionController extends Controller {
         return model.getPeopleSkillsMatch(skills, notIn, id).toJson();
     }
 
-    public void addMission(String title, String date, int duration, int nbPeople, Map<String, String> skills, List<String> people) {
+    public void addMission(String title, String date, int duration, int nbPeople, Map<String, String> skills, List<String> people, int lifeCycle) {
         MissionModel model = Model.get(MissionModel.class);
-        model.addMission(title, date, duration, nbPeople, skills, people);
+        model.addMission(title, date, duration, nbPeople, skills, people, lifeCycle);
     }
 
-    public void editMission(int id, String title, String date, int duration, int nbPeople, Map<String, String> skills, List<String> people) {
+    public void editMission(int id, String title, String date, int duration, int nbPeople, Map<String, String> skills, List<String> people, int lifeCycle) {
         MissionModel model = Model.get(MissionModel.class);
-        model.editMission(id, title, date, duration, nbPeople, skills, people);
+        model.editMission(id, title, date, duration, nbPeople, skills, people, lifeCycle);
     }
 
     public String getMission(int id) {

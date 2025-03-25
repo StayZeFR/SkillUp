@@ -25,4 +25,9 @@ public class PersonModel extends Model {
         return this.select(query, params, Integer.class, String.class, String.class, String.class, Integer.class, String.class);
     }
 
+    public void savePerson(int id, String firstName, String lastName, String job) {
+        List<Object> params = List.of(firstName, lastName, job, id);
+        this.execute("UPDATE person SET firstname = ?, lastname = ?, job = ? WHERE id = ?", params);
+    }
+
 }
