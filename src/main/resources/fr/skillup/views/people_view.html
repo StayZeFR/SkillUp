@@ -12,13 +12,52 @@
     <div id="people">
         <div class="container-personnel-management">
             <h1>People management</h1>
+            <div id="filters">
+                <div class="filter-control">
+                    <input type="text" placeholder="Search by name" id="filter-label" class="filter">
+                </div>
+            </div>
         </div>
 
         <div class="container-personnel">
             <div id="container-personnel">
             </div>
-            <div>
-                <button id="load-more">Load more</button>
+            <div id="pages">
+                <div class="button-page" id="first-page-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="svgbtn">
+                        <path fill-rule="evenodd"
+                              d="M10.72 11.47a.75.75 0 0 0 0 1.06l7.5 7.5a.75.75 0 1 0 1.06-1.06L12.31 12l6.97-6.97a.75.75 0 0 0-1.06-1.06l-7.5 7.5Z"
+                              clip-rule="evenodd"/>
+                        <path fill-rule="evenodd"
+                              d="M4.72 11.47a.75.75 0 0 0 0 1.06l7.5 7.5a.75.75 0 1 0 1.06-1.06L6.31 12l6.97-6.97a.75.75 0 0 0-1.06-1.06l-7.5 7.5Z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                </div>
+                <div class="button-page" id="previous-page-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="svgbtn">
+                        <path fill-rule="evenodd"
+                              d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                </div>
+                <div><span id="current-page">1</span> / <span id="max-page">n</span></div>
+                <div class="button-page" id="next-page-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="svgbtn">
+                        <path fill-rule="evenodd"
+                              d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                </div>
+                <div class="button-page" id="last-page-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="svgbtn">
+                        <path fill-rule="evenodd"
+                              d="M13.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L11.69 12 4.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                              clip-rule="evenodd"/>
+                        <path fill-rule="evenodd"
+                              d="M19.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06L17.69 12l-6.97-6.97a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                </div>
             </div>
         </div>
 
@@ -82,7 +121,8 @@
                             <input type="text" id="modal-lastname" class="data-information">
                             <input type="text" id="modal-firstname" class="data-information">
                             <input type="text" id="modal-job" class="data-information">
-                            <input type="text" id="modal-entry-date" value="08/12/2000" class="data-information-readonly" readonly>
+                            <input type="text" id="modal-entry-date" value="08/12/2000"
+                                   class="data-information-readonly" readonly>
                         </div>
 
                     </div>
@@ -90,7 +130,10 @@
                 </div>
                 <div class="skill-info-modal">
                     <h1 class="titre-info-modal">Skills</h1>
-                    <div id="skills-modal" class="skill-people-modal"> </div>
+                    <div id="skills-modal" class="skill-people-modal">
+                        <div class='skill-text-modal' id="skill-text">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
