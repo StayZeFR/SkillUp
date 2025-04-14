@@ -1,0 +1,15 @@
+package fr.skillup.core.utils;
+
+import java.sql.Date;
+
+public class DateUtils {
+
+    public static Date toDate(String date) {
+        if (date.contains("/")) {
+            String[] parts = date.split("/");
+            date = parts[2] + "-" + parts[1] + "-" + parts[0];
+        }
+        return Date.valueOf(date);
+    }
+
+}

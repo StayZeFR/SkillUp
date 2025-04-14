@@ -148,4 +148,12 @@ public class MissionModel extends Model {
         List<Object> params = List.of(id);
         return super.select(query, params, Integer.class, String.class, String.class, String.class, Integer.class);
     }
+
+    public void updateMissionStatus(int missionId, String status) {
+        String query = "update mission\n" +
+                "set life_cycle_id = (select id from life_cycle where label = ?)\n" +
+                "where id = ?;";
+        List<Object> params = List.of(status, missionId);
+        super.execute(query, params);
+    }
 }
