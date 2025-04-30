@@ -4,10 +4,7 @@ import fr.skillup.core.database.Database;
 import fr.skillup.core.database.Result;
 
 import java.lang.reflect.InvocationTargetException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,7 +87,7 @@ public abstract class Model {
         int id = -1;
         PreparedStatement statement = null;
         try {
-            statement = this.connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
+            statement = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             for (int i = 0; i < params.size(); i++) {
                 statement.setObject(i + 1, params.get(i));
             }
@@ -115,38 +112,11 @@ public abstract class Model {
     }
 
     /**
-     * Exécute une requête de type UPDATE
+     * Exécute une requête de type INSERT, UPDATE ou DELETE
      * @param query : la requête SQL
      * @param params : les paramètres de la requête
      */
-    protected void update(String query, List<Object> params) {
-        PreparedStatement statement = null;
-        try {
-            statement = this.connection.prepareStatement(query);
-            for (int i = 0; i < params.size(); i++) {
-                statement.setObject(i + 1, params.get(i));
-            }
-            statement.executeUpdate();
-            statement.close();
-        } catch (SQLException e) {
-            Logger.getLogger(Model.class.getName()).severe(e.getMessage());
-        } finally {
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    Logger.getLogger(Model.class.getName()).severe(e.getMessage());
-                }
-            }
-        }
-    }
-
-    /**
-     * Exécute une requête de type DELETE
-     * @param query : la requête SQL
-     * @param params : les paramètres de la requête
-     */
-    protected void delete(String query, List<Object> params) {
+    public void execute(String query, List<Object> params) {
         PreparedStatement statement = null;
         try {
             statement = this.connection.prepareStatement(query);

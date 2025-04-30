@@ -35,10 +35,10 @@ public class MissionModel extends Model {
         return super.select(query, params, Integer.class, String.class, String.class, String.class, Integer.class);
     }
 
-    public void addMission(String title, String date, int duration, int nbPeople, Map<String, String> skills, List<String> people) {
+    public void addMission(String title, String date, int duration, int nbPeople, Map<String, String> skills, List<String> people, int lifeCycle) {
         String query = "insert into mission (title, start_date, duration, nb_people, life_cycle_id)\n" +
-                "values (?, ?, ?, ?, (select id from life_cycle where label = 'In preparation'));";
-        List<Object> params = List.of(title, date, duration, nbPeople);
+                "values (?, ?, ?, ?, ?);";
+        List<Object> params = List.of(title, date, duration, nbPeople, lifeCycle);
         int id = super.insert(query, params);
         for (Map.Entry<String, String> entry : skills.entrySet()) {
             query = "insert into mission_skill (mission_id, skill_id, nb_people)\n" +
@@ -54,16 +54,16 @@ public class MissionModel extends Model {
         }
     }
 
-    public void editMission(int id, String title, String date, int duration, int nbPeople, Map<String, String> skills, List<String> people) {
+    public void editMission(int id, String title, String date, int duration, int nbPeople, Map<String, String> skills, List<String> people, int lifeCycle) {
         String query = "update mission\n" +
-                "set title = ?, start_date = ?, duration = ?, nb_people = ?\n" +
+                "set title = ?, start_date = ?, duration = ?, nb_people = ?, life_cycle_id = ?\n" +
                 "where id = ?;";
-        List<Object> params = List.of(title, date, duration, nbPeople, id);
-        super.update(query, params);
+        List<Object> params = List.of(title, date, duration, nbPeople, lifeCycle, id);
+        super.execute(query, params);
         query = "delete from mission_skill\n" +
                 "where mission_id = ?;";
         params = List.of(id);
-        super.delete(query, params);
+        super.execute(query, params);
         for (Map.Entry<String, String> entry : skills.entrySet()) {
             query = "insert into mission_skill (mission_id, skill_id, nb_people)\n" +
                     "values (?, ?, ?);";
@@ -73,7 +73,7 @@ public class MissionModel extends Model {
         query = "delete from person_mission\n" +
                 "where mission_id = ?;";
         params = List.of(id);
-        super.delete(query, params);
+        super.execute(query, params);
         for (String person : people) {
             query = "insert into person_mission (person_id, mission_id)\n" +
                     "values (?, ?);";
@@ -147,5 +147,13 @@ public class MissionModel extends Model {
                 "   pm.person_id;";
         List<Object> params = List.of(id);
         return super.select(query, params, Integer.class, String.class, String.class, String.class, Integer.class);
+    }
+
+    public void updateMissionStatus(int missionId, String status) {
+        String query = "update mission\n" +
+                "set life_cycle_id = (select id from life_cycle where label = ?)\n" +
+                "where id = ?;";
+        List<Object> params = List.of(status, missionId);
+        super.execute(query, params);
     }
 }

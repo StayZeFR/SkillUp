@@ -68,9 +68,9 @@
                     <div class="info-card">
                         <img src="" alt="People Picture" class="profile-picture-modale" id="modal-picture">
                         <div class="info-general">
-                            <p class="name-modal" id="modal-general-name">Hollis Syres</p>
-                            <p class="job-modal" id="modal-general-job">FullStack Developer</p>
-                            <p class="disponibility" id="modal-general-disponibility">Available</p>
+                            <p class="name-modal" id="modal-general-name"></p>
+                            <p class="job-modal" id="modal-general-job"></p>
+                            <p class="disponibility-modal" id="modal-general-disponibility"></p>
                         </div>
                         <div>
                             <button class="close" id="close" onclick="closeModal()">
@@ -83,7 +83,7 @@
                             </button>
                         </div>
                         <div>
-                            <button class="save">
+                            <button class="save" onclick="save()">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                      class="icon">
                                     <path fill-rule="evenodd"
@@ -110,10 +110,10 @@
                     <h1 class="titre-info-modal">Informations</h1>
                     <div class="information-container">
                         <div class="titre-information">
-                            <p class="titre">ID</p>
-                            <p class="titre">Firstname</p>
-                            <p class="titre">Lastname</p>
-                            <p class="titre">Job</p>
+                            <p class="titre" id="person-id">ID</p>
+                            <p class="titre" id="person-firstname">Firstname</p>
+                            <p class="titre" id="person-lastname">Lastname</p>
+                            <p class="titre" id="person-job">Job</p>
                             <p class="titre">Entry date</p>
                         </div>
                         <div class="titre-information">

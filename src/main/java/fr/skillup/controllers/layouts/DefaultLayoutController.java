@@ -1,6 +1,9 @@
 package fr.skillup.controllers.layouts;
 
-import fr.skillup.controllers.*;
+import fr.skillup.controllers.HomeController;
+import fr.skillup.controllers.MissionsController;
+import fr.skillup.controllers.PeopleController;
+import fr.skillup.controllers.SkillsController;
 import fr.skillup.core.controller.Controller;
 import fr.skillup.core.controller.LayoutController;
 
