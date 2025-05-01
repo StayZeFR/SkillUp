@@ -9,11 +9,3 @@ App.onLoad(async () => {
         showPeople(people);
     }
 });
-
-App.onLoad(() => {
-});
-
-function viewStatisticsSkills() {
-    Bridge.call("StatisticsController", "viewStatisticsSkills");
-}
-
