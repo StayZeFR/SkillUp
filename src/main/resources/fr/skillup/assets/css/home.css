@@ -13,7 +13,6 @@
 
 .title-container{
     width: 85%;
-    padding: 20px;
     margin: 10px auto;
     text-align: justify;
     height: auto;
@@ -28,11 +27,10 @@
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    padding-left : 30px;
+    padding: 20px 20px 20px 30px;
 }
 .background-container{
     width: 90%;
-    margin: 0px auto 20px;
     text-align: justify;
     align-items: flex-start;
     border-radius: 18px;
@@ -41,7 +39,7 @@
     flex-direction: column;
     flex: 1;
     position: relative;
-    margin-bottom : 20px;
+    margin: 0 auto 20px;
 }
 
 .content-container{
