@@ -24,5 +24,3 @@ function viewStatisticsSkills() {
 function viewStatisticsTime() {
     Bridge.call("StatisticsController", "viewStatisticsTime");
 }
-
-

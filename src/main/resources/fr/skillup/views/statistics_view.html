@@ -6,6 +6,7 @@
 </render-section>
 
 <render-section name="js">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="assets/js/statistics.js"></script>
     <script src="assets/js/core/elements/select.js"></script>
 </render-section>
@@ -47,5 +48,149 @@
         </div>
     </div>
 
+    <div class="container">
+        <div>
+            <h2> Statistics overall </h2>
+            <p>An overview of general statistics about your collaborators.</p>
+        </div>
+        <div class="graph-container">
+            <div class="mission-completed-container">
+                <div>
+                    <h3>Missions completed</h3>
+                </div>
+                <div>
+                    <canvas id="myPieChart"></canvas>
+                    <script>
+                        const pieCtx = document.getElementById('myPieChart');
+                        new Chart(pieCtx, {
+                            type: 'pie',
+                            data: {
+                                labels: ['Completed missions', 'Missions in progress'],
+                                datasets: [{
+                                    data: [40, 10],
+                                    backgroundColor: ['#C79CFF', '#FAF3DE'],
+                                    borderColor: ['#9747FF', '#FFD24C'],
+                                    borderWidth: 2,
+                                    hoverOffset: 10
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+                                            padding: 10,
+                                            font: {
+                                                family: 'Arial'
+                                            },
+                                            color: '#959191'
+                                        }
+                                    }
+                                }
+                            }
 
+                        });
+
+                    </script>
+
+                </div>
+            </div>
+            <div class="mission-by-status-container">
+                <div>
+                    <h3>Missions by status</h3>
+                </div>
+                <div>
+                    <div>
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <script>
+                        const ctx = document.getElementById('myChart');
+
+                        new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: ['In prep', 'Planned', 'In progress', 'Done'],
+                                datasets: [{
+                                    data: [7, 5, 3, 3],
+                                    borderWidth: 2,
+                                    backgroundColor: '#C79CFF',
+                                    borderColor: '#9747FF',
+                                    borderRadius: 8
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        ticks: {
+                                            font: {
+                                                family: 'Arial'
+                                            },
+                                            color: '#959191'
+                                        }
+                                    },
+                                    x: {
+                                        ticks: {
+                                            font: {
+                                                family: 'Arial'
+                                            },
+                                            color: '#959191'
+                                        }
+                                    }
+                                },
+                                plugins: {
+                                    legend: {
+                                        display: false
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+            <div class="collaborator-assignment-container">
+                <div></div>
+                <h3>Collaborator assignment</h3>
+                <div>
+                    <canvas id="myDoughnutChart"></canvas>
+                    <script>
+                        const doughnutCtx = document.getElementById('myDoughnutChart');
+                        new Chart(doughnutCtx, {
+                            type: 'doughnut',
+                            data: {
+                                labels: ['Assigned collaborators', 'Unassigned Collaborators'],
+                                datasets: [{
+                                    data: [40, 10],
+                                    backgroundColor: ['#C79CFF', '#E7FDF6'],
+                                    borderColor: ['#9747FF', '#58A68A'],
+                                    borderWidth: 2,
+                                    hoverOffset: 10
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        position: 'bottom',
+                                        align: 'start',
+                                        labels: {
+                                            padding: 10,
+                                            font: {
+                                                family: 'Arial'
+                                            },
+                                            color: '#959191'
+                                        }
+                                    }
+                                }
+                            }
+
+                        });
+
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
 </render-section>
