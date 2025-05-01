@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StatisticsTimeController extends Controller {
+    public static final String VIEW = "statistics-time";
+
     @Override
     public void init() {
-        Map<String, Object> params = new HashMap<>();
-        params.put("view", "statistics-time");
-        this.render("statistics-time_view", params);
+        this.render("statistics-time_view", super.params);
     }
 }

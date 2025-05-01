@@ -14,10 +14,22 @@ public class StatisticsController extends Controller {
         this.render("statistics_view", params);
     }
 
+    public void viewStatisticsOverall() {
+        Map<String, Object> params = new HashMap<>();
+        params.put("view", StatisticsController.VIEW);
+        super.window.show(StatisticsController.class, params);
+    }
+
     public void viewStatisticsSkills() {
         Map<String, Object> params = new HashMap<>();
         params.put("view", StatisticsController.VIEW);
         super.window.show(StatisticsSkillsController.class, params);
+    }
+
+    public void viewStatisticsTime() {
+        Map<String, Object> params = new HashMap<>();
+        params.put("view", StatisticsController.VIEW);
+        super.window.show(StatisticsTimeController.class, params);
     }
 
 

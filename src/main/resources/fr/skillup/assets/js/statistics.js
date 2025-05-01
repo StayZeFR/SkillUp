@@ -13,7 +13,16 @@ App.onLoad(async () => {
 App.onLoad(() => {
 });
 
+function viewStatisticsOverall() {
+    Bridge.call("StatisticsController", "viewStatisticsOverall");
+}
+
 function viewStatisticsSkills() {
     Bridge.call("StatisticsController", "viewStatisticsSkills");
 }
+
+function viewStatisticsTime() {
+    Bridge.call("StatisticsController", "viewStatisticsTime");
+}
+
 
