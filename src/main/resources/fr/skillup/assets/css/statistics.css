@@ -76,7 +76,7 @@
     overflow: scroll;
 }
 
-h2{
+h2 {
     font-weight: 700;
     font-size: 25px;
     color: #7B69ED;
@@ -92,17 +92,18 @@ P {
     padding: 0;
 }
 
-.graph-container{
+.graph-container {
     display: flex;
     flex-direction: row;
     width: 100%;
     gap: 20px;
     margin-top: 30px;
+    flex-wrap: wrap;
 }
 
 .mission-completed-container,
 .mission-by-status-container,
-.collaborator-assignment-container{
+.collaborator-assignment-container {
     padding: 0 15px 30px;
     display: flex;
     flex-direction: column;
@@ -122,19 +123,16 @@ h3 {
     margin-bottom: 15px;
 }
 
-#myPieChart{
-    height: 200px;
-    width: auto;
-    margin-top: 10px;
-}
-
-#myChart {
-    width: 400px;
+.statistics {
     height: 200px;
     margin-top: 10px;
 }
 
-#myDoughnutChart{
+#stat_missions-by-status {
+    height: 200px;
+}
+
+#stat_person-assignment{
     height: 200px;
     margin-top: 10px;
 }

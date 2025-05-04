@@ -17,7 +17,7 @@ public class MissionsController extends Controller {
 
     @Override
     public void init() {
-        updateMissions(LocalDate.parse("2025-12-10"));
+        updateMissions("2025-12-10");
         Map<String, Object> params = new HashMap<>();
         params.put("view", MissionsController.VIEW);
         super.render("missions_view", params);
@@ -49,14 +49,30 @@ public class MissionsController extends Controller {
         return model.getMissions().toJson();
     }
 
-    public void updateMissions(LocalDate date) {
+    public void updateMissions(String dateStr) {
+        LocalDate date = LocalDate.parse(dateStr);
         CompletableFuture.runAsync(() -> {
             MissionModel model = Model.get(MissionModel.class);
             Result missions = model.getMissions();
             missions.forEach(mission -> {
                 Date start = DateUtils.toDate(mission.get("mission_start_date"));
-                if (date.isEqual(start.toLocalDate()) || date.isAfter(start.toLocalDate())) {
-                    model.updateMissionStatus(mission.get("mission_id"), "In progress");
+                switch (mission.get("life_cycle_label").toString()) {
+                    case "In preparation" -> {
+                        // TODO
+                    }
+                    case "Planned" -> {
+                        if (date.isEqual(start.toLocalDate()) || date.isAfter(start.toLocalDate())) {
+                            model.updateMissionStatus(mission.get("mission_id"), "In progress");
+                        }
+                    }
+                    case "In progress" -> {
+                        if (date.isAfter(start.toLocalDate().plusDays(mission.get("mission_duration")))) {
+                            model.updateMissionStatus(mission.get("mission_id"), "Done");
+                        }
+                    }
+                    case "Done" -> {
+                        // TODO
+                    }
                 }
             });
         });
