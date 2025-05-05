@@ -1,0 +1,84 @@
+<extend parent="layouts/default_layout.html"></extend>
+
+<render-section name="css">
+    <link rel="stylesheet" href="assets/css/elements/select.css">
+    <link rel="stylesheet" href="assets/css/statistics.css">
+</render-section>
+
+<render-section name="js">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/statistics.js"></script>
+    <script src="assets/js/core/elements/select.js"></script>
+</render-section>
+
+<render-section name="content">
+    <div class="statistics">
+        <div class="title-container">
+            <div>
+                <h1>Statistics</h1>
+            </div>
+            <div class="btn-container">
+                <button class="btn-active" onclick="viewStatisticsOverall()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                        <path fill-rule="evenodd"
+                              d="M2.25 13.5a8.25 8.25 0 0 1 8.25-8.25.75.75 0 0 1 .75.75v6.75H18a.75.75 0 0 1 .75.75 8.25 8.25 0 0 1-16.5 0Z"
+                              clip-rule="evenodd"/>
+                        <path fill-rule="evenodd"
+                              d="M12.75 3a.75.75 0 0 1 .75-.75 8.25 8.25 0 0 1 8.25 8.25.75.75 0 0 1-.75.75h-7.5a.75.75 0 0 1-.75-.75V3Z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                    <span>Overall</span>
+                </button>
+                <button class="btn-passif" onclick="viewStatisticsSkills()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                        <path d="M2.273 5.625A4.483 4.483 0 0 1 5.25 4.5h13.5c1.141 0 2.183.425 2.977 1.125A3 3 0 0 0 18.75 3H5.25a3 3 0 0 0-2.977 2.625ZM2.273 8.625A4.483 4.483 0 0 1 5.25 7.5h13.5c1.141 0 2.183.425 2.977 1.125A3 3 0 0 0 18.75 6H5.25a3 3 0 0 0-2.977 2.625ZM5.25 9a3 3 0 0 0-3 3v6a3 3 0 0 0 3 3h13.5a3 3 0 0 0 3-3v-6a3 3 0 0 0-3-3H15a.75.75 0 0 0-.75.75 2.25 2.25 0 0 1-4.5 0A.75.75 0 0 0 9 9H5.25Z"/>
+                    </svg>
+                    <span>Skills</span>
+                </button>
+                <button class="btn-passif" onclick="viewStatisticsTime()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                        <path d="M12.75 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM8.25 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM9.75 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM10.5 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM12.75 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM14.25 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"/>
+                        <path fill-rule="evenodd"
+                              d="M6.75 2.25A.75.75 0 0 1 7.5 3v1.5h9V3A.75.75 0 0 1 18 3v1.5h.75a3 3 0 0 1 3 3v11.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3H6V3a.75.75 0 0 1 .75-.75Zm13.5 9a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5Z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                    <span>Time</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div>
+            <h2> Statistics overall </h2>
+            <p>An overview of general statistics about your collaborators.</p>
+        </div>
+        <div class="graph-container">
+            <div class="mission-completed-container">
+                <div>
+                    <h3>Missions completed</h3>
+                </div>
+                <div>
+                    <canvas id="stat_missions-completed" class="statistics"></canvas>
+                </div>
+            </div>
+            <div class="mission-by-status-container">
+                <div>
+                    <h3>Missions by status</h3>
+                </div>
+                <div>
+                    <div>
+                        <canvas id="stat_missions-by-status"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="collaborator-assignment-container">
+                <div></div>
+                <h3>Collaborator assignment</h3>
+                <div>
+                    <canvas id="stat_person-assignment"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</render-section>
