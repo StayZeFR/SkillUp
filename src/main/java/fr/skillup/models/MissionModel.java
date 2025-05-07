@@ -93,7 +93,7 @@ public class MissionModel extends Model {
                 "    lc.label as life_cycle_label\n" +
                 "from mission m, life_cycle lc\n" +
                 "where m.life_cycle_id = lc.id;";
-        return super.select(query, Integer.class, String.class, String.class, Integer.class, Integer.class, String.class);
+        return super.select(query, Integer.class, String.class, String.class, Integer.class, Integer.class, Integer.class, String.class);
     }
 
     public Result getMission(int id) {
