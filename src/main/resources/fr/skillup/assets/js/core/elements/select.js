@@ -1,7 +1,7 @@
 class Select extends HTMLElement {
     constructor() {
         super();
-        this.attachShadow({ mode: 'open' });
+        this.attachShadow({mode: 'open'});
         this._enableSearch = false;
         this._isMultiple = false;
         this._title = 'Select options';
@@ -15,13 +15,16 @@ class Select extends HTMLElement {
                     width: 200px;
                 }
                 .select-selected {
-                    background: #fff;
-                    border: 1px solid #ccc;
-                    padding: 10px;
+                    background-color: #F2F0FD;
+                    color: #7B69ED;
+                    border: 1px solid #7B69ED;
+                    border-radius: 10px;
+                    padding: 10px 16px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
                     cursor: pointer;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
+                    box-sizing: border-box;
                 }
                 .select-selected.disabled {
                     background: #f1f1f1;
@@ -30,27 +33,28 @@ class Select extends HTMLElement {
                 .select-items {
                     display: none;
                     position: absolute;
+                    border-radius: 16px;
                     width: 100%;
-                    background: #fff;
-                    border: 1px solid #ccc;
-                    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                    background: white;
                     max-height: 200px;
                     overflow-y: auto;
                     z-index: 9999;
+                    border: 1px solid rgba(255, 255, 255, 0.3);
+                    box-shadow: 0 2px 9px 0 rgba(7, 14, 194, 0.2);          
+           
                 }
                 .filters {
                     position: sticky;
                     top: 0;
-                    background: #fff;
                     padding: 5px;
                     border-bottom: 1px solid #ccc;
                     display: none;
                 }
                 .filters input {
                     width: 100%;
-                    padding: 5px;
                     border: none;
                     border-bottom: 1px solid #ccc;
+                    
                 }
                 .options .category {
                     font-weight: bold;
@@ -58,17 +62,44 @@ class Select extends HTMLElement {
                     background: #f1f1f1;
                 }
                 .options .option {
-                    padding: 5px;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    font-size: 14px;
+                    transition: background 0.2s ease, color 0.2s ease;
                     display: flex;
                     align-items: center;
+                    background-color: white;
+                    color: black;
+                    padding: 10px;
+                    
                 }
+                .options .option:hover {
+                    background-color: #7B69ED;
+                    color: white;
+                    font-weight: bold;
+                }
+
                 .options .option label {
                     margin-left: 5px;
                 }
                 .select-items.open {
                     display: block;
                 }
+                .options .option input[type="radio"]{
+                    display: none;
+                }
+                .select-items::-webkit-scrollbar {
+                    display: none;
+                }
+                .options .option.selected {
+                    background-color: #7B69ED;
+                    color: white;
+                    font-weight: bold;
+                }
+                
+                
             </style>
+            
             <div class="select">
                 <div class="select-selected">${this._title}</div>
                 <div class="select-items">
@@ -166,7 +197,7 @@ class Select extends HTMLElement {
 
     handleSelection(event) {
         if (this._disabled) return;
-        const { value, checked } = event.target;
+        const {value, checked} = event.target;
         const label = event.target.nextElementSibling.textContent;
         if (this._isMultiple) {
             if (checked) {
@@ -178,13 +209,19 @@ class Select extends HTMLElement {
             }
             this.selected.textContent = this.selectedLabels.length ? this.selectedLabels.join(', ') : this._title;
         } else {
+            this.optionsContainer.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
             this.selectedValues = [value];
             this.selectedLabels = [label];
             this.selected.textContent = label;
             this.itemsContainer.classList.remove('open');
         }
+        if (!this._isMultiple) {
+            event.target.closest('.option').classList.add('selected');
+        }
         this.dispatchEvent(new CustomEvent('change', {
-            detail: { value, label, checked }
+            detail: {value, label, checked}
         }));
     }
 
@@ -211,7 +248,7 @@ class Select extends HTMLElement {
         const option = this.optionsContainer.querySelector(`input[value="${value}"]`);
         if (option) {
             option.checked = false;
-            this.handleSelection({ target: option });
+            this.handleSelection({target: option});
         }
     }
 }
