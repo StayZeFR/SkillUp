@@ -95,12 +95,13 @@ P {
     display: flex;
     flex-direction: row;
     width: 100%;
-    gap: 20px;
+    gap: 10px;
     flex-wrap: wrap;
 }
 
-.top-10-container,
-.people-selected-skills-container {
+.top-5-container,
+.people-selected-skills-container,
+.sens-container {
     margin-top: 30px;
     padding: 0 15px 30px;
     display: flex;
@@ -113,6 +114,7 @@ P {
     border: 1px solid rgba(255, 255, 255, 0.3);
     height: 270px;
     align-items: center;
+    flex: 1;
 }
 
 h3 {
@@ -132,7 +134,12 @@ h3 {
 }
 
 #myChartSkills{
-    width: 650px;
+    width: 200px;
+    height: 200px;
+}
+
+#myChartSkills2{
+    width: 200px;
     height: 200px;
 }
 
