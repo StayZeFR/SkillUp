@@ -54,6 +54,20 @@ h2 {
     overflow: scroll;
 }
 
+#action-mission > .container::-webkit-scrollbar {
+    width: 12px;
+}
+
+#action-mission > .container::-webkit-scrollbar-thumb {
+    background: #FAFBFE;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius : 15px;
+}
+
+#action-mission > .container::-webkit-scrollbar-thumb:hover {
+    background: #B6B8F1;
+}
+
 #action-mission > .container > section {
     width: 100%;
     display: flex;

@@ -2,10 +2,12 @@
 
 <render-section name="css">
     <link rel="stylesheet" href="assets/css/elements/select.css">
-    <link rel="stylesheet" href="assets/css/statistics.css">
+    <link rel="stylesheet" href="assets/css/statistics-time.css">
 </render-section>
 
 <render-section name="js">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/statistics-time.js"></script>
     <script src="assets/js/statistics.js"></script>
     <script src="assets/js/core/elements/select.js"></script>
 </render-section>
@@ -14,7 +16,7 @@
     <div class="statistics">
         <div class="title-container">
             <div>
-                <h1>Skills over time statistics</h1>
+                <h1>Statistics</h1>
             </div>
             <div class="btn-container">
                 <button class="btn-passif" onclick="viewStatisticsOverall()">
@@ -45,6 +47,131 @@
                 </button>
             </div>
         </div>
+    </div>
+
+
+    <div class="container">
+        <div>
+            <h2> Skills over time statistics </h2>
+            <p>An overview of statistics on skills over time.</p>
         </div>
+        <div class="graph-container">
+            <div class="number-per-month-container">
+                <div>
+                    <h3>Number of missions per month with selected skills</h3>
+                    <div>
+                        <canvas id="myLineChartTime"></canvas>
+                        <script>
+                            const lineCtx = document.getElementById('myLineChartTime');
+                            new Chart(lineCtx, {
+                                type: 'line',
+                                data: {
+                                    labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
+                                    datasets: [{
+                                        data: [90, 15, 30, 35, 95, 20, 35, 10, 80, 25, 95, 55],
+                                        borderColor: 'rgba(123, 105, 237, 1)',
+                                        backgroundColor: 'rgba(123, 105, 237, 0.2)',
+                                        pointBackgroundColor: 'rgba(123, 105, 237, 0.2)',
+                                        pointBorderColor: '#7B69ED',
+                                        pointRadius: 6,
+                                        pointHoverRadius: 8,
+                                        fill: false,
+                                        borderWidth: 2
+                                    }]
+                                },
+                                options: {
+                                    responsive: true,
+                                    maintainAspectRatio: false,
+                                plugins: {
+                                    legend: {
+                                        display: false
+                                            }
+
+                                            }
+                                }
+
+                            });
+
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="availability-over-time-container">
+                <div>
+                    <h3>Skill availability over time</h3>
+                </div>
+                <div>
+                    <div>
+                        <canvas id="myChartTime"></canvas>
+                    </div>
+                    <script>
+                        const ctx = document.getElementById('myChartTime');
+
+                        new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
+                                datasets: [
+                                    {
+                                    label: 'Busy',
+                                    data: [8, 10, 5, 8, 5, 4, 10, 7, 9, 2, 5, 4],
+                                    borderWidth: 1,
+                                    backgroundColor: '#C79CFF',
+                                    borderColor: '#9747FF',
+                                    borderRadius: 4
+                                    },
+                                    {
+                                        label: 'Available',
+                                        data: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
+                                        borderWidth: 1,
+                                        backgroundColor: '#E0F8FB',
+                                        borderColor: '#6EDBE8',
+                                        borderRadius: 4
+
+                                    }
+
+                                ]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                scales: {
+                                    x: {
+                                        stacked: true,
+                                        ticks: {
+                                            font: {
+                                                family: 'Arial'
+                                            }
+                                        },
+                                        grid: {
+                                            drawOnChartArea: false
+                                        }
+                                    },
+                                    y: {
+                                        stacked: true,
+                                        beginAtZero: true,
+                                        max: 10,
+                                        ticks: {
+                                            stepSize: 1,
+                                            font: {
+                                                family: 'Arial'
+                                            }
+                                        }
+                                    }
+                                },
+                                plugins: {
+                                    legend: {
+                                        position: 'bottom',
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+
 
 </render-section>
