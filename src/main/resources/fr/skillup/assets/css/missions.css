@@ -179,6 +179,8 @@
 #missions > .kanban .column > .container > .scrollable > .mission > .description {
     text-align: left;
     margin-left : 3px;
+    word-break: break-word;
+    white-space: normal;
 }
 
 #missions > .kanban .column > .container > .scrollable > .mission > .people {
