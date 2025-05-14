@@ -2,6 +2,7 @@ package fr.skillup.controllers;
 
 import fr.skillup.core.controller.Controller;
 import fr.skillup.core.database.Result;
+import fr.skillup.core.database.Tuple;
 import fr.skillup.core.model.Model;
 import fr.skillup.core.utils.DateUtils;
 import fr.skillup.models.MissionModel;
@@ -10,6 +11,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class MissionsController extends Controller {
@@ -17,7 +19,8 @@ public class MissionsController extends Controller {
 
     @Override
     public void init() {
-        updateMissions("2025-12-10");
+        LocalDate today = LocalDate.now();
+        updateMissions(today.toString());
         Map<String, Object> params = new HashMap<>();
         params.put("view", MissionsController.VIEW);
         super.render("missions_view", params);
@@ -57,21 +60,18 @@ public class MissionsController extends Controller {
             missions.forEach(mission -> {
                 Date start = DateUtils.toDate(mission.get("mission_start_date"));
                 switch (mission.get("life_cycle_label").toString()) {
-                    case "In preparation" -> {
-                        // TODO
-                    }
                     case "Planned" -> {
                         if (date.isEqual(start.toLocalDate()) || date.isAfter(start.toLocalDate())) {
                             model.updateMissionStatus(mission.get("mission_id"), "In progress");
                         }
                     }
                     case "In progress" -> {
-                        if (date.isAfter(start.toLocalDate().plusDays(mission.get("mission_duration")))) {
+                        if (date.isAfter(start.toLocalDate().plusDays(Integer.parseInt(mission.get("mission_duration").toString())))) {
                             model.updateMissionStatus(mission.get("mission_id"), "Done");
                         }
                     }
-                    case "Done" -> {
-                        // TODO
+                    default -> {
+                        throw new RuntimeException("Unsupported mission life_cycle label: " + mission.get("mission_label"));
                     }
                 }
             });

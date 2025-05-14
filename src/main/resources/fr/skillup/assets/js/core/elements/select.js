@@ -5,7 +5,7 @@ class Select extends HTMLElement {
         this._enableSearch = false;
         this._isMultiple = false;
         this._title = 'Select options';
-        this._disabled = false; // Ajout de la propriété privée pour l'état désactivé
+        this._disabled = false;
         this.selectedValues = [];
         this.selectedLabels = [];
         this.shadowRoot.innerHTML = `
