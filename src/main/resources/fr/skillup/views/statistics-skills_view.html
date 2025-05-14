@@ -2,10 +2,12 @@
 
 <render-section name="css">
     <link rel="stylesheet" href="assets/css/elements/select.css">
-    <link rel="stylesheet" href="assets/css/statistics.css">
+    <link rel="stylesheet" href="assets/css/statistics-skills.css">
 </render-section>
 
 <render-section name="js">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/statistics-skills.js"></script>
     <script src="assets/js/statistics.js"></script>
     <script src="assets/js/core/elements/select.js"></script>
 </render-section>
@@ -14,7 +16,7 @@
     <div class="statistics">
         <div class="title-container">
             <div>
-                <h1>Skills-based statistic</h1>
+                <h1>Statistics</h1>
             </div>
             <div class="btn-container">
                 <button class="btn-passif" onclick="viewStatisticsOverall()">
@@ -43,6 +45,114 @@
                     </svg>
                     <span>Time</span>
                 </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div>
+            <h2> Skill-based statistics </h2>
+            <p>An overview of statistics based on skills.</p>
+        </div>
+        <div class="graph-container">
+            <div class="people-selected-skills-container">
+                <div>
+                    <h3>People with selected skills</h3>
+                    <div>
+                        <canvas id="myDoughnutChartSkills"></canvas>
+                        <script>
+                            const doughnutCtx = document.getElementById('myDoughnutChartSkills');
+                            new Chart(doughnutCtx, {
+                                type: 'doughnut',
+                                data: {
+                                    labels: ['People with the skill', 'People without the skill'],
+                                    datasets: [{
+                                        data: [10, 40],
+                                        backgroundColor: ['#FFEFE2', '#C79CFF'],
+                                        borderColor: ['#EF825E', '#9747FF'],
+                                        borderWidth: 2,
+                                        hoverOffset: 10
+                                    }]
+                                },
+                                options: {
+                                    responsive: true,
+                                    plugins: {
+                                        legend: {
+                                            position: 'bottom',
+                                            align: 'start',
+                                            labels: {
+                                                padding: 10,
+                                                font: {
+                                                    family: 'Arial'
+                                                },
+                                                color: '#959191'
+                                            }
+                                        }
+                                    }
+                                }
+
+                            });
+
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+
+        <div class="top-5-container">
+            <div>
+                <h3>Top 5 of most used skills</h3>
+            </div>
+            <div>
+                <div>
+                    <canvas id="myChartSkills"></canvas>
+                </div>
+                <script>
+                    const ctx = document.getElementById('myChartSkills');
+
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Skills1', 'Skills2', 'Skills3', 'Skills4', 'Skills5'],
+                            datasets: [{
+                                data: [14, 11, 10, 9, 8],
+                                borderWidth: 2,
+                                backgroundColor: ['#F3E8FD', '#E7FDF6','#E0F8FB','#FAF3DE','#FFEFE2'],
+                                borderColor: ['#7B69ED', '#58A68A','#6EDBE8','#FFD24C','#EF825E'],
+                                borderRadius: 4
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        font: {
+                                            family: 'Arial'
+                                        },
+                                        color: '#959191'
+                                    }
+                                },
+                                x: {
+                                    ticks: {
+                                        font: {
+                                            family: 'Arial'
+                                        },
+                                        color: '#959191'
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            }
+                        }
+                    });
+                </script>
             </div>
         </div>
         </div>
