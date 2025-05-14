@@ -1,51 +1,15 @@
 let selectedDay = null;
 
 App.onLoad(async () => {
-    const skills = JSON.parse(Bridge.get("SkillsController", "getSkills"));
+    /*const skills = JSON.parse(Bridge.get("SkillsController", "getSkills"));
     if (skills !== null) {
         initTable(skills);
-    }
+    }*/
 
     const people = JSON.parse(Bridge.get("PeopleController", "getPeople"));
     if (people !== null) {
         showPeople(people);
     }
-});
-
-function initTable(skills) {
-    document.getElementById("table-skills").innerHTML = "";
-    skills.slice(0, 6).forEach(skill => {
-        document.getElementById("table-skills").innerHTML += `
-            <tr>
-                <td>
-                    <div style='background-color: #${skill["category_color"]};'>
-                        ${skill["category_icon"]} ${skill["skill_label"]}
-                    </div>
-                </td>
-            </tr>`;
-    });
-}
-
-function showPeople(people) {
-    document.getElementById("table-people").innerHTML = "";
-    people.slice(0, 8).forEach(person => {
-        let html = `
-            <tr>
-                <td>
-                    <div class='people-card'>
-                        <div class='info-card'>
-                            <img src='data:image/png;base64,${person["picture"]}' alt='People Picture' class='profile-picture'/>
-                            <div class='info'>
-                                <p class='name'>${person["firstname"]} ${person["lastname"]}</p>
-                                <p class='job'>${person["job"]}</p>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>`;
-        document.getElementById("table-people").innerHTML += html;
-    });
-
 
     const header = document.querySelector(".calendar h3");
     const dates = document.querySelector(".dates");
@@ -142,6 +106,41 @@ function showPeople(people) {
     });
 
     renderCalendar();
+});
+
+function initTable(skills) {
+    document.getElementById("table-skills").innerHTML = "";
+    skills.slice(0, 6).forEach(skill => {
+        document.getElementById("table-skills").innerHTML += `
+            <tr>
+                <td>
+                    <div style='background-color: #${skill["category_color"]};'>
+                        ${skill["category_icon"]} ${skill["skill_label"]}
+                    </div>
+                </td>
+            </tr>`;
+    });
+}
+
+function showPeople(people) {
+    document.getElementById("table-people").innerHTML = "";
+    people.slice(0, 8).forEach(person => {
+        let html = `
+            <tr>
+                <td>
+                    <div class='people-card'>
+                        <div class='info-card'>
+                            <img src='data:image/png;base64,${person["picture"]}' alt='People Picture' class='profile-picture'/>
+                            <div class='info'>
+                                <p class='name'>${person["firstname"]} ${person["lastname"]}</p>
+                                <p class='job'>${person["job"]}</p>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>`;
+        document.getElementById("table-people").innerHTML += html;
+    });
 
 }
 
