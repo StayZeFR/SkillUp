@@ -57,12 +57,24 @@
         </div>
         <div class="graph-container">
             <div class="people-selected-skills-container">
-                <div>
-                    <h3>People with selected skills</h3>
+                <div class="graph-row">
+                    <div class="info-graph">
+                    <h3>People with selected skill</h3>
                     <div id="filters">
-                        <sup-select id="filter-category"></sup-select>
+                        <sup-select id="filter-skills"></sup-select>
                     </div>
-                    <div>
+                        <div class="legend">
+                            <div class="legend_details">
+                                <span class="legend-color with"></span>
+                                <span class="label">People with the skill</span>
+                            </div>
+                            <div class="legend_details">
+                                <span class="legend-color without"></span>
+                                <span class="label">People without the skill</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test2">
                         <canvas id="myDoughnutChartSkills"></canvas>
                         <script>
                             const doughnutCtx = document.getElementById('myDoughnutChartSkills');
@@ -83,6 +95,7 @@
                                     maintainAspectRatio: false,
                                     plugins: {
                                         legend: {
+                                            display: false,
                                             position: 'left',
                                             align: 'start',
                                             labels: {
