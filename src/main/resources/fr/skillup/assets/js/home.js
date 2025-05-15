@@ -147,6 +147,10 @@ function showPeople(people) {
 function modifyDate() {
     const date = selectedDay.year + "-" + (selectedDay.month + 1).toString().padStart(2, "0") + "-" + selectedDay.day.toString().padStart(2, "0");
     Bridge.call("MissionsController", "updateMissions", [date]);
+    Toast.fire({
+        icon: "success",
+        title: "The date is correctly modified"
+    });
 }
 
 function moveToAddMission() {
@@ -165,4 +169,15 @@ function moveToMissionsManagement() {
     Bridge.call("MissionsController", "viewMissions");
 }
 
+const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+    }
+});
 
