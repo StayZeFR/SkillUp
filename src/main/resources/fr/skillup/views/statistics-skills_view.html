@@ -59,6 +59,9 @@
             <div class="people-selected-skills-container">
                 <div>
                     <h3>People with selected skills</h3>
+                    <div id="filters">
+                        <sup-select id="filter-category"></sup-select>
+                    </div>
                     <div>
                         <canvas id="myDoughnutChartSkills"></canvas>
                         <script>
@@ -77,9 +80,10 @@
                                 },
                                 options: {
                                     responsive: true,
+                                    maintainAspectRatio: false,
                                     plugins: {
                                         legend: {
-                                            position: 'bottom',
+                                            position: 'left',
                                             align: 'start',
                                             labels: {
                                                 padding: 10,
