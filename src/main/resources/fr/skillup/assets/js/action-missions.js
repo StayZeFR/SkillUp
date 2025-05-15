@@ -97,6 +97,7 @@ App.onLoad(async () => {
             if (checked) {
                 skillsSelected[value] = {nbPeople: 1, missing: 1};
                 document.getElementById("list-skills").innerHTML += skillElement(value, label);
+                updateSkillContainer(value);
             } else {
                 delete skillsSelected[value];
             }
@@ -246,8 +247,16 @@ function deletePerson(id) {
 }
 
 function updateSkillContainer(id) {
+    const alertDiv = document.querySelector(`.skill[data-id="${id}"] .alert`);
+    const missingCount = skillsSelected[id].missing;
+
     document.querySelector(`.skill[data-id="${id}"] .nb-people`).innerText = skillsSelected[id].nbPeople;
     document.querySelector(`.skill[data-id="${id}"] .alert span span`).innerText = skillsSelected[id].missing;
+    if (missingCount === 0) {
+        alertDiv.classList.add("valid");
+    } else {
+        alertDiv.classList.remove("valid");
+    }
 }
 
 function findMatchingPeople() {
@@ -346,6 +355,7 @@ function addPerson() {
                     skillsSelected[skill].missing--;
                     document.querySelector(`.skill[data-id="${skill}"] .alert span span`).innerText = skillsSelected[skill].missing;
                 }
+                updateSkillContainer(skill);
             }
             const max = parseInt(document.getElementById("nb_people-mission").value);
             if (Object.entries(peopleSelected).length >= max) {
