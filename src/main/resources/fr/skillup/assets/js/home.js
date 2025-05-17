@@ -1,11 +1,6 @@
 let selectedDay = null;
 
 App.onLoad(async () => {
-    /*const skills = JSON.parse(Bridge.get("SkillsController", "getSkills"));
-    if (skills !== null) {
-        initTable(skills);
-    }*/
-
     const people = JSON.parse(Bridge.get("PeopleController", "getPeople"));
     if (people !== null) {
         showPeople(people);
@@ -73,7 +68,6 @@ App.onLoad(async () => {
         dates.innerHTML = datesHtml;
         header.textContent = `${months[month]} ${year}`;
 
-        // Activer le clic seulement sur les dates valides
         document.querySelectorAll(".dates li:not(.inactive)").forEach(li => {
             li.addEventListener("click", () => {
                 selectedDay = {
@@ -108,20 +102,6 @@ App.onLoad(async () => {
     renderCalendar();
 });
 
-function initTable(skills) {
-    document.getElementById("table-skills").innerHTML = "";
-    skills.slice(0, 6).forEach(skill => {
-        document.getElementById("table-skills").innerHTML += `
-            <tr>
-                <td>
-                    <div style='background-color: #${skill["category_color"]};'>
-                        ${skill["category_icon"]} ${skill["skill_label"]}
-                    </div>
-                </td>
-            </tr>`;
-    });
-}
-
 function showPeople(people) {
     document.getElementById("table-people").innerHTML = "";
     people.slice(0, 8).forEach(person => {
@@ -142,6 +122,9 @@ function showPeople(people) {
         document.getElementById("table-people").innerHTML += html;
     });
 
+    Bridge.getAsync("HomeController", "getWarningMissions").then(result => {
+        document.getElementById("nb-warning").innerText = result.length;
+    });
 }
 
 function modifyDate() {

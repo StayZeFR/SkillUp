@@ -3,6 +3,8 @@ package fr.skillup.models;
 import fr.skillup.core.database.Result;
 import fr.skillup.core.model.Model;
 
+import java.util.List;
+
 public class StatisticModel extends Model {
 
     public Result getStatMissionsCompleted() {
@@ -41,6 +43,32 @@ public class StatisticModel extends Model {
                 where lc.label <> 'Done' or lc.label is null;
                 """;
         return super.select(request, Integer.class, Integer.class);
+    }
+
+    public Result getStatPersonsHaveSkills(int skillId) {
+        String request = """
+                select
+                	count(distinct person_id) as nb_have_skill,
+                    (select count(*) from person) as nb_total
+                from person_skill
+                where skill_id = ?;
+                """;
+        List<Object> params = List.of(skillId);
+        return super.select(request, params, Integer.class, Integer.class);
+    }
+
+    public Result getStatTop5Skills() {
+        String request = """
+                select
+                	s.label as skill_label,
+                	count(ms.skill_id) as nb
+                from mission_skill ms, skill s
+                where ms.skill_id = s.id
+                group by skill_id
+                order by nb desc
+                limit 5;
+                """;
+        return super.select(request, String.class, Integer.class);
     }
 
 }

@@ -193,4 +193,19 @@ public class MissionModel extends Model {
         List<Object> params = List.of(status, missionId);
         super.execute(query, params);
     }
+
+    public Result getWarningMissions() {
+        String query = """
+                select
+                	m.id as mission_id,
+                    m.title as mission_title,
+                    m.start_date as mission_start_date,
+                    m.duration as mission_duration
+                from mission m, life_cycle lc
+                where m.life_cycle_id = lc.id
+                and lc.label = 'In preparation'
+                and DATE(DATE_ADD(NOW(), INTERVAL 1 DAY)) = m.start_date;
+                """;
+        return super.select(query, Integer.class, String.class, String.class, Integer.class);
+    }
 }
