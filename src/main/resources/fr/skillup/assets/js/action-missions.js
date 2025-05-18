@@ -189,9 +189,9 @@ function valid() {
 
     const lifeCycle = checkMissionInfosComplete() ? 2 : 1;
     if (window.params.get("action") === "edit") {
-        Bridge.callAsync("ActionMissionController", "editMission", [window.params.get("id"), title, convertDate(date), duration, nbPeople, skills, people, lifeCycle]);
+        Bridge.call("ActionMissionController", "editMission", [window.params.get("id"), title, convertDate(date), duration, nbPeople, skills, people, lifeCycle]);
     } else {
-        Bridge.callAsync("ActionMissionController", "addMission", [title, convertDate(date), duration, nbPeople, skills, people, lifeCycle]);
+        Bridge.call("ActionMissionController", "addMission", [title, convertDate(date), duration, nbPeople, skills, people, lifeCycle]);
     }
 
     Bridge.call("layouts.DefaultLayoutController", "moveTo", ["missions"]);

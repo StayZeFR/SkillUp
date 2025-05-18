@@ -75,43 +75,7 @@
                         </div>
                     </div>
                     <div class="test2">
-                        <canvas id="myDoughnutChartSkills"></canvas>
-                        <script>
-                            const doughnutCtx = document.getElementById('myDoughnutChartSkills');
-                            new Chart(doughnutCtx, {
-                                type: 'doughnut',
-                                data: {
-                                    labels: ['People with the skill', 'People without the skill'],
-                                    datasets: [{
-                                        data: [10, 40],
-                                        backgroundColor: ['#FFEFE2', '#C79CFF'],
-                                        borderColor: ['#EF825E', '#9747FF'],
-                                        borderWidth: 2,
-                                        hoverOffset: 10
-                                    }]
-                                },
-                                options: {
-                                    responsive: true,
-                                    maintainAspectRatio: false,
-                                    plugins: {
-                                        legend: {
-                                            display: false,
-                                            position: 'left',
-                                            align: 'start',
-                                            labels: {
-                                                padding: 10,
-                                                font: {
-                                                    family: 'Arial'
-                                                },
-                                                color: '#959191'
-                                            }
-                                        }
-                                    }
-                                }
-
-                            });
-
-                        </script>
+                        <canvas id="chartSkills"></canvas>
                     </div>
                 </div>
             </div>
@@ -123,55 +87,11 @@
             </div>
             <div>
                 <div>
-                    <canvas id="myChartSkills"></canvas>
+                    <canvas id="chartSkillsTop5"></canvas>
                 </div>
-                <script>
-                    const ctx = document.getElementById('myChartSkills');
-
-                    new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: ['Skills1', 'Skills2', 'Skills3', 'Skills4', 'Skills5'],
-                            datasets: [{
-                                data: [14, 11, 10, 9, 8],
-                                borderWidth: 2,
-                                backgroundColor: ['#F3E8FD', '#E7FDF6','#E0F8FB','#FAF3DE','#FFEFE2'],
-                                borderColor: ['#7B69ED', '#58A68A','#6EDBE8','#FFD24C','#EF825E'],
-                                borderRadius: 4
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                    ticks: {
-                                        font: {
-                                            family: 'Arial'
-                                        },
-                                        color: '#959191'
-                                    }
-                                },
-                                x: {
-                                    ticks: {
-                                        font: {
-                                            family: 'Arial'
-                                        },
-                                        color: '#959191'
-                                    }
-                                }
-                            },
-                            plugins: {
-                                legend: {
-                                    display: false
-                                }
-                            }
-                        }
-                    });
-                </script>
             </div>
         </div>
         </div>
+    </div>
 
 </render-section>
