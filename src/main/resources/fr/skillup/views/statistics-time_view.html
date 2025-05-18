@@ -63,43 +63,10 @@
                 <div>
                     <h3>Number of missions per month with selected skills</h3>
                     <div>
-                        <canvas id="myLineChartTime"></canvas>
-                        <script>
-                            const lineCtx = document.getElementById('myLineChartTime');
-                            new Chart(lineCtx, {
-                                type: 'line',
-                                data: {
-                                    labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
-                                    datasets: [{
-                                        data: [90, 15, 30, 35, 95, 20, 35, 10, 80, 25, 95, 55],
-                                        borderColor: 'rgba(123, 105, 237, 1)',
-                                        backgroundColor: 'rgba(123, 105, 237, 0.2)',
-                                        pointBackgroundColor: 'rgba(123, 105, 237, 0.2)',
-                                        pointBorderColor: '#7B69ED',
-                                        pointRadius: 6,
-                                        pointHoverRadius: 8,
-                                        fill: false,
-                                        borderWidth: 2
-                                    }]
-                                },
-                                options: {
-                                    responsive: true,
-                                    maintainAspectRatio: false,
-                                    plugins: {
-                                        legend: {
-                                            display: false
-                                        }
-
-                                    }
-                                }
-
-                            });
-
-                        </script>
+                        <canvas id="lineChartSkills"></canvas>
                     </div>
                 </div>
             </div>
-
 
             <div class="availability-over-time-container">
                 <div>

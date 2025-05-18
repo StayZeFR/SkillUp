@@ -7,6 +7,11 @@ import java.util.List;
 
 public class StatisticModel extends Model {
 
+    /**
+     * Récupère le nombre de missions en cours et terminées
+     *
+     * @return le nombre de missions en cours et terminées
+     */
     public Result getStatMissionsCompleted() {
         String request = """
                 select
@@ -18,6 +23,11 @@ public class StatisticModel extends Model {
         return super.select(request, Integer.class, Integer.class);
     }
 
+    /**
+     * Récupère le nombre de missions par statut
+     *
+     * @return le nombre de missions par statut
+     */
     public Result getStatMissionsByStatus() {
         String request = """
                 select
@@ -31,6 +41,11 @@ public class StatisticModel extends Model {
         return super.select(request, Integer.class, Integer.class, Integer.class, Integer.class);
     }
 
+    /**
+     * Récupère le nombre de personnes assignées et non assignées à une mission
+     *
+     * @return le nombre de personnes assignées et non assignées à une mission
+     */
     public Result getStatAssignment() {
         String request = """
                 select
@@ -45,6 +60,12 @@ public class StatisticModel extends Model {
         return super.select(request, Integer.class, Integer.class);
     }
 
+    /**
+     * Récupère le nombre de personnes ayant une compétence
+     *
+     * @param skillId : l'id de la compétence
+     * @return le nombre de personnes ayant la compétence
+     */
     public Result getStatPersonsHaveSkills(int skillId) {
         String request = """
                 select
@@ -57,6 +78,11 @@ public class StatisticModel extends Model {
         return super.select(request, params, Integer.class, Integer.class);
     }
 
+    /**
+     * Récupère le top 5 des compétences les plus demandées
+     *
+     * @return le top 5 des compétences les plus demandées
+     */
     public Result getStatTop5Skills() {
         String request = """
                 select
@@ -69,6 +95,54 @@ public class StatisticModel extends Model {
                 limit 5;
                 """;
         return super.select(request, String.class, Integer.class);
+    }
+
+    /**
+     * Récupère le nombre de missions par mois pour une compétence donnée
+     *
+     * @param skillId : l'id de la compétence
+     * @return le nombre de missions par mois pour la compétence
+     */
+    public Result getStatYearBySkill(int skillId) {
+        String request = """
+                with months as
+                	(select 1 as m
+                     union all
+                     select 2
+                     union all
+                     select 3
+                     union all
+                     select 4
+                     union all
+                     select 5
+                     union all
+                     select 6
+                     union all
+                     select 7
+                     union all
+                     select 8
+                     union all
+                     select 9
+                     union all
+                     select 10
+                     union all
+                     select 11
+                     union all
+                     select 12)
+                select
+                	months.m,
+                	count(m.id) as total
+                from months
+                left join mission m on year(m.start_date) = year(now()) and month(m.start_date) = months.m and\s
+                	(select 1
+                     from mission_skill ms
+                     where ms.mission_id = m.id
+                     and ms.skill_id = ?)
+                group by months.m
+                order by months.m;
+                """;
+        List<Object> params = List.of(skillId);
+        return super.select(request, params, Integer.class, Integer.class);
     }
 
 }

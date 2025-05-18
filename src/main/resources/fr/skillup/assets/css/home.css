@@ -159,7 +159,7 @@
     margin: 0;
 }
 
-#list-skills {
+#list-missions {
     border-radius: 18px;
     background: rgba(255, 255, 255, 0.8);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -410,4 +410,84 @@
     color: white !important;
 }
 
+#list-missions-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.mission {
+    width: calc(100% - 30px);
+    background-color: white;
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 0.75em;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    height: auto;
+}
+
+.mission > header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mission > header > .date {
+    background-color: #F4F4F6;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left : 3px;
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+    align-items: center;
+}
+
+.mission > header > .date > svg {
+    width: 15px;
+    height: auto;
+    fill: #959191;
+}
+
+.mission > header > .date > span {
+    color: #959191;
+}
+
+.mission > header > .action > button {
+    background-color: #F2F0FD;
+    border: none;
+    border-radius: 5px;
+    padding: 3px;
+    width: fit-content;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.mission > header > .action {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.mission > header > .action > button > svg {
+    width: 15px;
+    height: auto;
+    fill: #7B69ED;
+}
+
+.mission > .description {
+    text-align: left;
+    margin-left : 3px;
+    word-break: break-word;
+    white-space: normal;
+}
 
