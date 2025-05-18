@@ -232,10 +232,19 @@ h2 {
     align-items: center;
 }
 
+#action-mission > .container > section.skill-mission > .container > .skills > .skill > .action > .alert.valid {
+    background-color: #58A68A!important;
+}
+
+
 #action-mission > .container > section.skill-mission > .container > .skills > .skill > .action > .alert > svg {
     width: 15px;
     height: auto;
     fill: white;
+}
+
+#action-mission > .container > section.skill-mission > .container > .skills > .skill > .action > .alert.valid > svg {
+    display: none;
 }
 
 #action-mission > .container > section.skill-mission > .container > .skills > .skill > .action > .alert > span {

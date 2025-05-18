@@ -39,6 +39,12 @@ public class Config {
         }
     }
 
+    /**
+     * Renvoie la valeur de la clé demandée
+     *
+     * @param key : Clé de la propriété
+     * @return Valeur de la propriété
+     */
     public static String get(String key) {
         if (Config.properties == null) {
             Config.load();

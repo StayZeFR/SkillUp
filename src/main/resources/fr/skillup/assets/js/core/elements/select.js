@@ -41,25 +41,27 @@ class Select extends HTMLElement {
                     z-index: 9999;
                     border: 1px solid rgba(255, 255, 255, 0.3);
                     box-shadow: 0 2px 9px 0 rgba(7, 14, 194, 0.2);          
-           
+     
                 }
                 .filters {
                     position: sticky;
                     top: 0;
                     padding: 5px;
-                    border-bottom: 1px solid #ccc;
+                    border-bottom: 1px solid #ccc; 
                     display: none;
                 }
                 .filters input {
                     width: 100%;
                     border: none;
                     border-bottom: 1px solid #ccc;
+                    font-family: inherit;
                     
                 }
                 .options .category {
                     font-weight: bold;
-                    padding: 5px;
-                    background: #f1f1f1;
+                    padding: 10px;
+                    background: #F2F0FD;
+                    color: #7B69ED;
                 }
                 .options .option {
                     border-radius: 8px;
@@ -78,16 +80,26 @@ class Select extends HTMLElement {
                     color: white;
                     font-weight: bold;
                 }
+                
+                .options .option:hover .matching-skills {
+                    color: black;
+                    font-weight: bold;
+                }
 
                 .options .option label {
                     margin-left: 5px;
                 }
+     
                 .select-items.open {
                     display: block;
                 }
                 .options .option input[type="radio"]{
                     display: none;
                 }
+                .options .option input[type="checkbox"]{
+                    display: none;
+                }
+
                 .select-items::-webkit-scrollbar {
                     display: none;
                 }
@@ -207,14 +219,14 @@ class Select extends HTMLElement {
                 this.selectedValues = this.selectedValues.filter(val => val !== value);
                 this.selectedLabels = this.selectedLabels.filter(lbl => lbl !== label);
             }
-            this.selected.textContent = this.selectedLabels.length ? this.selectedLabels.join(', ') : this._title;
+            this.selected.textContent = this.hasAttribute('hide-values') ? this._title : (this.selectedLabels.length ? this.selectedLabels.join(', ') : this._title);
         } else {
             this.optionsContainer.querySelectorAll('.option').forEach(opt => {
                 opt.classList.remove('selected');
             });
             this.selectedValues = [value];
             this.selectedLabels = [label];
-            this.selected.textContent = label;
+            this.selected.textContent = this.hasAttribute('hide-values') ? this._title : label;
             this.itemsContainer.classList.remove('open');
         }
         if (!this._isMultiple) {

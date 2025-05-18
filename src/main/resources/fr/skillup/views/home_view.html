@@ -5,6 +5,7 @@
 </render-section>
 
 <render-section name="js">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="assets/js/home.js"></script>
 </render-section>
 
@@ -59,7 +60,7 @@
                             <h3>Warning</h3>
                         </div>
                         <div class="content">
-                            <span id="nb-warning">2</span>
+                            <span id="nb-warning">?</span>
                         </div>
                         <div class="description">
                             <p>missions with missing information are about to begin!</p>
@@ -68,20 +69,12 @@
                             Resolve problems
                         </button>
                     </div>
-                    <div id="list-skills">
-                        <div id="table">
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th class="category"></th>
-                                </tr>
-                                </thead>
-                                <tbody id="table-skills">
-                                </tbody>
-                            </table>
+                    <div id="list-missions">
+                        <div id="list-missions-container">
+
                         </div>
-                        <button class="button" onclick="moveToListOfSkills()">
-                            View list of skills
+                        <button class="button" onclick="moveToListOfWarnings()">
+                            View list of warnings
                         </button>
                     </div>
 

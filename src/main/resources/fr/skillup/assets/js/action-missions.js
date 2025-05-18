@@ -9,7 +9,7 @@ App.onLoad(async () => {
     select.setEnableSearch(true);
     select.setTitle("Select Skills");
     select.setMultiple(true);
-
+    select.setAttribute("hide-values", "true");
     people.setDisabled(true);
     people.setTitle("Select person");
 
@@ -81,8 +81,8 @@ App.onLoad(async () => {
                                     </svg>
                                 </button>
                                 <div class="alert">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                      <path fill-rule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
                                     </svg>
                                     <span><span>1</span> people missing</span>
                                 </div>
@@ -97,6 +97,7 @@ App.onLoad(async () => {
             if (checked) {
                 skillsSelected[value] = {nbPeople: 1, missing: 1};
                 document.getElementById("list-skills").innerHTML += skillElement(value, label);
+                updateSkillContainer(value);
             } else {
                 delete skillsSelected[value];
             }
@@ -188,9 +189,9 @@ function valid() {
 
     const lifeCycle = checkMissionInfosComplete() ? 2 : 1;
     if (window.params.get("action") === "edit") {
-        Bridge.callAsync("ActionMissionController", "editMission", [window.params.get("id"), title, convertDate(date), duration, nbPeople, skills, people, lifeCycle]);
+        Bridge.call("ActionMissionController", "editMission", [window.params.get("id"), title, convertDate(date), duration, nbPeople, skills, people, lifeCycle]);
     } else {
-        Bridge.callAsync("ActionMissionController", "addMission", [title, convertDate(date), duration, nbPeople, skills, people, lifeCycle]);
+        Bridge.call("ActionMissionController", "addMission", [title, convertDate(date), duration, nbPeople, skills, people, lifeCycle]);
     }
 
     Bridge.call("layouts.DefaultLayoutController", "moveTo", ["missions"]);
@@ -246,8 +247,16 @@ function deletePerson(id) {
 }
 
 function updateSkillContainer(id) {
+    const alertDiv = document.querySelector(`.skill[data-id="${id}"] .alert`);
+    const missingCount = skillsSelected[id].missing;
+
     document.querySelector(`.skill[data-id="${id}"] .nb-people`).innerText = skillsSelected[id].nbPeople;
     document.querySelector(`.skill[data-id="${id}"] .alert span span`).innerText = skillsSelected[id].missing;
+    if (missingCount === 0) {
+        alertDiv.classList.add("valid");
+    } else {
+        alertDiv.classList.remove("valid");
+    }
 }
 
 function findMatchingPeople() {
@@ -285,7 +294,7 @@ function findMatchingPeople() {
                             const html = `
                                 <div style="display: flex; flex-direction: column; gap: 5px;">
                                     <span>${person.person_firstname} ${person.person_lastname}</span>
-                                    <div style="background-color: #F2F0FD; border-radius: 5px; padding: 5px;">
+                                    <div class="matching-skills" style="background-color: #F2F0FD; border-radius: 5px; padding: 5px;">
                                         ${person.nb_matchs} matching skill${person.nb_matchs > 1 ? "s" : ""}
                                     </div>
                                 </div>
@@ -346,6 +355,7 @@ function addPerson() {
                     skillsSelected[skill].missing--;
                     document.querySelector(`.skill[data-id="${skill}"] .alert span span`).innerText = skillsSelected[skill].missing;
                 }
+                updateSkillContainer(skill);
             }
             const max = parseInt(document.getElementById("nb_people-mission").value);
             if (Object.entries(peopleSelected).length >= max) {

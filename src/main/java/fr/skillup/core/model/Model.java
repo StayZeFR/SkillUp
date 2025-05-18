@@ -21,6 +21,7 @@ public abstract class Model {
 
     /**
      * Récupère une instance de la classe Model
+     *
      * @param clazz : la classe du modèle
      * @return une instance de la classe Model
      */
@@ -28,7 +29,8 @@ public abstract class Model {
         if (!Model.models.containsKey(clazz)) {
             try {
                 Model.models.put(clazz, clazz.getDeclaredConstructor().newInstance());
-            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
+                     NoSuchMethodException e) {
                 Logger.getLogger(Model.class.getName()).severe(e.getMessage());
             }
         }
@@ -37,9 +39,10 @@ public abstract class Model {
 
     /**
      * Exécute une requête de type SELECT
-     * @param query : la requête SQL
+     *
+     * @param query  : la requête SQL
      * @param params : les paramètres de la requête
-     * @param clazz : les classes des objets à instancier
+     * @param clazz  : les classes des objets à instancier
      * @return un objet Result
      */
     protected Result select(String query, List<Object> params, Class<?>... clazz) {
@@ -69,6 +72,7 @@ public abstract class Model {
 
     /**
      * Exécute une requête de type SELECT
+     *
      * @param query : la requête SQL
      * @param clazz : les classes des objets à instancier
      * @return un objet Result
@@ -79,7 +83,8 @@ public abstract class Model {
 
     /**
      * Exécute une requête de type INSERT
-     * @param query : la requête SQL
+     *
+     * @param query  : la requête SQL
      * @param params : les paramètres de la requête
      * @return l'identifiant de l'objet inséré
      */
@@ -113,7 +118,8 @@ public abstract class Model {
 
     /**
      * Exécute une requête de type INSERT, UPDATE ou DELETE
-     * @param query : la requête SQL
+     *
+     * @param query  : la requête SQL
      * @param params : les paramètres de la requête
      */
     public void execute(String query, List<Object> params) {

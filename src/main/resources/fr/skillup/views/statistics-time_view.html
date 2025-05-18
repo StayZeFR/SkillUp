@@ -54,49 +54,19 @@
         <div>
             <h2> Skills over time statistics </h2>
             <p>An overview of statistics on skills over time.</p>
+            <div id="filters">
+                <sup-select id="select-skills"></sup-select>
+            </div>
         </div>
         <div class="graph-container">
             <div class="number-per-month-container">
                 <div>
                     <h3>Number of missions per month with selected skills</h3>
                     <div>
-                        <canvas id="myLineChartTime"></canvas>
-                        <script>
-                            const lineCtx = document.getElementById('myLineChartTime');
-                            new Chart(lineCtx, {
-                                type: 'line',
-                                data: {
-                                    labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
-                                    datasets: [{
-                                        data: [90, 15, 30, 35, 95, 20, 35, 10, 80, 25, 95, 55],
-                                        borderColor: 'rgba(123, 105, 237, 1)',
-                                        backgroundColor: 'rgba(123, 105, 237, 0.2)',
-                                        pointBackgroundColor: 'rgba(123, 105, 237, 0.2)',
-                                        pointBorderColor: '#7B69ED',
-                                        pointRadius: 6,
-                                        pointHoverRadius: 8,
-                                        fill: false,
-                                        borderWidth: 2
-                                    }]
-                                },
-                                options: {
-                                    responsive: true,
-                                    maintainAspectRatio: false,
-                                plugins: {
-                                    legend: {
-                                        display: false
-                                            }
-
-                                            }
-                                }
-
-                            });
-
-                        </script>
+                        <canvas id="lineChartSkills"></canvas>
                     </div>
                 </div>
             </div>
-
 
             <div class="availability-over-time-container">
                 <div>
@@ -115,12 +85,12 @@
                                 labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
                                 datasets: [
                                     {
-                                    label: 'Busy',
-                                    data: [8, 10, 5, 8, 5, 4, 10, 7, 9, 2, 5, 4],
-                                    borderWidth: 1,
-                                    backgroundColor: '#C79CFF',
-                                    borderColor: '#9747FF',
-                                    borderRadius: 4
+                                        label: 'Busy',
+                                        data: [8, 10, 5, 8, 5, 4, 10, 7, 9, 2, 5, 4],
+                                        borderWidth: 1,
+                                        backgroundColor: '#C79CFF',
+                                        borderColor: '#9747FF',
+                                        borderRadius: 4
                                     },
                                     {
                                         label: 'Available',
@@ -172,6 +142,5 @@
                 </div>
             </div>
         </div>
-
-
+    </div>
 </render-section>

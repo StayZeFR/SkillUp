@@ -14,7 +14,7 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.btn-container{
+.btn-container {
     display: flex;
     flex-direction: row;
     gap: 15px;
@@ -89,6 +89,7 @@ P {
     color: #313132;
     margin: 0;
     padding: 0;
+    margin-bottom: 10px;
 }
 
 .graph-container {
@@ -101,7 +102,7 @@ P {
 
 .number-per-month-container,
 .availability-over-time-container {
-    margin-top: 30px;
+    margin-top: 10px;
     padding: 0 15px 30px;
     display: flex;
     flex-direction: column;
@@ -127,13 +128,30 @@ h3 {
     margin-top: 10px;
 }
 
-#myLineChartTime {
+#lineChartSkills {
     height: 200px;
     width: auto;
 }
 
-#myChartTime{
+#myChartTime {
     height: 200px;
     width: auto;
 }
 
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-select {
+    margin-left: 40px;
+}
+
+.filters {
+    background-color: hotpink;
+}

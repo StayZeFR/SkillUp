@@ -14,7 +14,7 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.btn-container{
+.btn-container {
     display: flex;
     flex-direction: row;
     gap: 15px;
@@ -96,14 +96,13 @@ P {
     flex-direction: row;
     width: 100%;
     gap: 10px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
+
 .top-5-container,
-.people-selected-skills-container,
-.sens-container {
+.people-selected-skills-container {
     margin-top: 30px;
-    padding: 0 15px 30px;
     display: flex;
     flex-direction: column;
     border-radius: 18px;
@@ -115,12 +114,17 @@ P {
     height: 270px;
     align-items: center;
     flex: 1;
+    min-width: 0;
+    padding: 10px;
+}
+
+.people-selected-skills-container {
+    min-width: 400px;
 }
 
 h3 {
     font-size: 19px;
     color: #7B69ED;
-    margin-bottom: 15px;
 }
 
 .statistics {
@@ -128,18 +132,58 @@ h3 {
     margin-top: 10px;
 }
 
-#myDoughnutChartSkills {
-    height: 200px;
-    width: auto;
+#chartSkills {
+    width: 200px;
+    height: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-#myChartSkills{
-    width: 200px;
+#chartSkillsTop5 {
+    width: 400px;
     height: 200px;
 }
 
-#myChartSkills2{
-    width: 200px;
-    height: 200px;
+.graph-row {
+    display: flex;
+    flex-direction: row;
 }
+
+.legend {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-family: Arial, sans-serif;
+}
+
+.legend_details {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-color {
+    width: 35px;
+    height: 8px;
+    display: inline-block;
+    border-radius: 1px;
+    border: 2px solid;
+}
+
+.label {
+    color: #959191;
+    font-size: 13px;
+}
+
+.with {
+    background-color: #FFEFE2;
+    border-color: #EF825E;
+}
+
+.without {
+    background-color: #D7B5FA;
+    border-color: #9747FF;
+}
+
 
