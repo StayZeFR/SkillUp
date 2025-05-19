@@ -1,3 +1,11 @@
+#container {
+    box-sizing: border-box;
+    width: calc(100% - 40px);
+    height: calc(100% - 60px);
+    display: flex;
+    flex-direction: column;
+}
+
 .title-container {
     width: 95%;
     padding: 20px;
@@ -73,6 +81,19 @@
     border-radius: 18px;
     padding: 20px;
     overflow: scroll;
+}
+
+.container::-webkit-scrollbar {
+    width: 12px;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background: #FAFBFE;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius : 15px;
+}
+.container::-webkit-scrollbar-thumb:hover {
+    background: #B6B8F1;
 }
 
 h2 {

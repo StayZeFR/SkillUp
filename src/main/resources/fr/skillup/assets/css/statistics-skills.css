@@ -1,3 +1,11 @@
+#container {
+    box-sizing: border-box;
+    width: calc(100% - 40px);
+    height: calc(100% - 60px);
+    display: flex;
+    flex-direction: column;
+}
+
 .title-container {
     width: 95%;
     padding: 20px;
@@ -75,6 +83,19 @@
     overflow: scroll;
 }
 
+.container::-webkit-scrollbar {
+    width: 12px;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background: #FAFBFE;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius : 15px;
+}
+.container::-webkit-scrollbar-thumb:hover {
+    background: #B6B8F1;
+}
+
 h2 {
     font-weight: 700;
     font-size: 25px;
@@ -96,7 +117,7 @@ P {
     flex-direction: row;
     width: 100%;
     gap: 10px;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 
 
@@ -114,8 +135,8 @@ P {
     height: 270px;
     align-items: center;
     flex: 1;
-    min-width: 0;
     padding: 10px;
+    width: auto;
 }
 
 .people-selected-skills-container {

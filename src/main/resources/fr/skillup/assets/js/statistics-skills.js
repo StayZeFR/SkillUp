@@ -46,7 +46,7 @@ App.onLoad(async () => {
             const skillId = parseInt(select.getSelected());
 
             Bridge.getAsync("StatisticsSkillsController", "getStatPersonsHaveSkills", [skillId]).then((result) => {
-                chartSkills.data.datasets[0].data = [result[0]["nb_have_skill"], result[0]["nb_total"]];
+                chartSkills.data.datasets[0].data = [result[0]["nb_have_skill"], (result[0]["nb_total"] - result[0]["nb_have_skill"])];
                 chartSkills.update();
             });
         });
