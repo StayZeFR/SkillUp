@@ -145,4 +145,48 @@ public class StatisticModel extends Model {
         return super.select(request, params, Integer.class, Integer.class);
     }
 
+    public Result getStatPersonMonthSkills(int skillId) {
+        String query = """
+                with months as
+                                	(select 1 as m
+                                     union all
+                                     select 2
+                                     union all
+                                     select 3
+                                     union all
+                                     select 4
+                                     union all
+                                     select 5
+                                     union all
+                                     select 6
+                                     union all
+                                     select 7
+                                     union all
+                                     select 8
+                                     union all
+                                     select 9
+                                     union all
+                                     select 10
+                                     union all
+                                     select 11
+                                     union all
+                                     select 12)
+                                select
+                					months.m,
+                                	count(m.id) as mission_total,
+                                    (select count(*) from person_skill ps where ps.skill_id = ?) as total
+                                from months
+                                left join mission m on year(m.start_date) = year(now()) and month(m.start_date) = months.m and
+                                	(select 1
+                                     from mission_skill ms
+                                     where ms.mission_id = m.id
+                                     and ms.skill_id = ?)
+                                group by months.m
+                                order by months.m;
+                """;
+
+        List<Object> params = List.of(skillId, skillId);
+        return super.select(query, params, Integer.class, Integer.class, Integer.class);
+    }
+
 }

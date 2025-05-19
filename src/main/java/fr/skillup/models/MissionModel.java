@@ -145,7 +145,7 @@ public class MissionModel extends Model {
                     m.nb_people as mission_nb_people,
                     lc.id as life_cycle_id,
                     lc.label as life_cycle_label,
-                    case when DATE(DATE_ADD(NOW(), INTERVAL 1 DAY)) = start_date then 1 else 0 end as warning
+                    case when DATE(DATE_ADD(NOW(), INTERVAL 1 DAY)) = start_date and lc.label = 'In preparation' then 1 else 0 end as warning
                 from
                     mission m,
                     life_cycle lc

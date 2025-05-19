@@ -16,4 +16,9 @@ public class StatisticsTimeController extends Controller {
         StatisticModel model = Model.get(StatisticModel.class);
         return model.getStatYearBySkill(skillId).toJson();
     }
+
+    public String getStatPersonMonthSkills(int skillId) {
+        StatisticModel model = Model.get(StatisticModel.class);
+        return model.getStatPersonMonthSkills(skillId).toJson();
+    }
 }
