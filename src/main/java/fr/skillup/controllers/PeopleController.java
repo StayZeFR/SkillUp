@@ -5,6 +5,7 @@ import fr.skillup.core.model.Model;
 import fr.skillup.models.PersonModel;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PeopleController extends Controller {
@@ -33,8 +34,13 @@ public class PeopleController extends Controller {
         return model.getPersonSkills(id).toJson();
     }
 
-    public void savePerson(int id, String firstName, String lastName, String job) {
+    public void savePerson(int id, String firstName, String lastName, String job, List<String> skills) {
         PersonModel model = Model.get(PersonModel.class);
-        model.savePerson(id, firstName, lastName, job);
+        model.savePerson(id, firstName, lastName, job, skills);
+    }
+
+    public void addPerson(String firstName, String lastName, String job, List<String> skills) {
+        PersonModel model = Model.get(PersonModel.class);
+        model.addPerson(firstName, lastName, job, skills);
     }
 }

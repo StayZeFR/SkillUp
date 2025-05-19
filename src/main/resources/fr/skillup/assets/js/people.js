@@ -1,6 +1,33 @@
 let peopleFiltered;
 let allSkills;
 
+const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+    }
+});
+
+function addSkillsToSelect() {
+    allSkills.forEach(skill => {
+        document.getElementById("add-skills").addOption(skill["skill_id"], skill["skill_label"]);
+    });
+}
+
+function displaySkillsModal(skills) {
+    let html = skills.slice(0, 10).map(skill => `
+        <div class='skill-text' style="background-color: #${skill["category_color"]}">
+            ${skill["category_icon"]}<p>${skill["skill_label"]}</p>
+        </div>
+    `).join("");
+    return html;
+}
+
 App.onLoad(() => {
     const people = JSON.parse(Bridge.get("PeopleController", "getPeople"));
     const selectAddSkills = document.getElementById("add-skills");
@@ -9,9 +36,7 @@ App.onLoad(() => {
     selectAddSkills.setTitle("Select skills");
     Bridge.getAsync("SkillsController", "getSkills").then((skills) => {
         allSkills = skills;
-        skills.forEach(skill => {
-            selectAddSkills.addOption(skill["id"], skill["skill_label"]);
-        });
+        addSkillsToSelect()
     });
 
     peopleFiltered = people;
@@ -50,7 +75,15 @@ App.onLoad(() => {
     initTable(peopleFiltered, 0, max);
 
     selectAddSkills.addEventListener("change", () => {
-        App.log(JSON.stringify(document.getElementById("add-skills").getSelected()));
+        let currentSelectedSkills = selectAddSkills.getSelected();
+        let selectedSkills = [];
+        allSkills.forEach(skill => {
+            if (currentSelectedSkills.includes(skill["skill_id"].toString())) {
+                selectedSkills.push(skill);
+            }
+        })
+        document.getElementById("skills-modal").innerHTML = displaySkillsModal(selectedSkills);
+
     });
 });
 
@@ -121,31 +154,26 @@ function initTable(people, start, max) {
         return html;
     }
 
-    function displaySkillsModal(skills) {
-        let html = skills.slice(0, 10).map(skill => `
-        <div class='skill-text' style="background-color: #${skill["category_color"]}">
-            ${skill["category_icon"]}<p>${skill["skill_label"]}</p>
-        </div>
-    `).join("");
-        return html;
-    }
-
     function showModal(person) {
+        document.getElementById("add-skills").clearSelection();
+        document.getElementById("info-card").style.display = "flex";
         document.getElementById("modal-container").classList.add("show");
         document.getElementById("modal-id").value = person["id"];
         document.getElementById("modal-firstname").value = person["firstname"];
+        document.getElementById("modal-firstname").style.backgroundColor = "#FFFFFF";
         document.getElementById("modal-lastname").value = person["lastname"];
+        document.getElementById("modal-lastname").style.backgroundColor = "#FFFFFF";
         document.getElementById("modal-job").value = person["job"];
+        document.getElementById("modal-job").style.backgroundColor = "#FFFFFF";
         document.getElementById("modal-picture").src = `data:image/png;base64,${person["picture"]}`;
         document.getElementById("modal-general-name").innerText = `${person["firstname"]} ${person["lastname"]}`;
         document.getElementById("modal-general-job").innerText = person["job"];
         document.getElementById("modal-entry-date").value = person["entry_date"];
-        document.getElementById("skills-modal").innerHTML = displaySkillsModal(person["skills"]);
+        document.getElementById("buttons-add-person").style.display = "none";
         person["skills"].forEach(skill => {
-            App.log(skill["skill_id"])
             document.getElementById("add-skills").select(skill["skill_id"]);
         });
-        App.log(JSON.stringify(document.getElementById("add-skills").getSelectedLabels()));
+        document.getElementById("skills-modal").innerHTML = displaySkillsModal(person["skills"]);
     }
 
 
@@ -173,15 +201,24 @@ function save() {
     const lastname = document.getElementById("modal-lastname").value.trim();
     const job = document.getElementById("modal-job").value.trim();
 
-    if (firstname === "" || lastname === "" || job === "") {
-
+    if (firstname.length === 0 || lastname.length === 0 || job.length === 0) {
+        Toast.fire({
+            icon: "error",
+            title: "Please fill in all fields"
+        });
+        return;
     }
 
-    const params = [id, firstname, lastname, job];
+    const skills = document.getElementById("add-skills").getSelected();
+    const params = [id, firstname, lastname, job, skills];
     Bridge.call("PeopleController", "savePerson", params);
     closeModal();
     reset();
     initTable(peopleFiltered, 0, 6);
+    Toast.fire({
+        icon: "success",
+        title: "Person saved successfully"
+    });
 }
 
 function closeModal() {
@@ -189,5 +226,57 @@ function closeModal() {
 }
 
 function showModalAdd() {
-    document.getElementById("modal-container-add").classList.add("show");
+    document.getElementById("add-skills").clearSelection();
+    document.getElementById("modal-container").classList.add("show");
+    document.getElementById("modal-id").value = "";
+    document.getElementById("modal-firstname").value = "";
+    document.getElementById("modal-firstname").style.backgroundColor = "#F2F0FD";
+    document.getElementById("modal-lastname").value = "";
+    document.getElementById("modal-lastname").style.backgroundColor = "#F2F0FD";
+    document.getElementById("modal-job").value = "";
+    document.getElementById("modal-job").style.backgroundColor = "#F2F0FD";
+    document.getElementById("modal-picture").src = "";
+    document.getElementById("modal-general-name").innerText = "";
+    document.getElementById("modal-general-job").innerText = "";
+    document.getElementById("modal-entry-date").value = getTodayDate();
+    document.getElementById("info-card").style.display = "none";
+    document.getElementById("skills-modal").innerHTML = "";
+    document.getElementById("buttons-add-person").style.display = "flex";
+}
+
+function addPerson() {
+    const firstname = document.getElementById("modal-firstname").value.trim();
+    const lastname = document.getElementById("modal-lastname").value.trim();
+    const job = document.getElementById("modal-job").value.trim();
+
+    if (firstname.length === 0 || lastname.length === 0 || job.length === 0) {
+        Toast.fire({
+            icon: "error",
+            title: "Please fill in all fields"
+        });
+        return;
+    }
+
+    const skills = document.getElementById("add-skills").getSelected();
+    const params = [firstname, lastname, job, skills];
+    Bridge.call("PeopleController", "addPerson", params);
+    closeModal();
+    reset();
+    initTable(peopleFiltered, 0, 6);
+    Toast.fire({
+        icon: "success",
+        title: "Person added successfully"
+    });
+}
+
+function cancelAddPerson() {
+    closeModal();
+}
+
+function getTodayDate() {
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, "0");
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const year = today.getFullYear();
+    return `${day}/${month}/${year}`;
 }
