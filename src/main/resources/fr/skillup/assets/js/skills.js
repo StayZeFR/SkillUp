@@ -11,6 +11,7 @@ App.onLoad(async () => {
             categories.forEach(category => {
                 select.addOption(category["id"], category["label"]);
             });
+            select.select("all");
         }
     }).catch((err) => {
         App.log("Error : " + err);
