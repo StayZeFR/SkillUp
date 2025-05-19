@@ -6,7 +6,7 @@ import fr.skillup.models.PersonModel;
 
 import java.util.HashMap;
 import java.util.Map;
-
+// People
 public class PeopleController extends Controller {
     private static final String VIEW = "people";
 

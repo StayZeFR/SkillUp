@@ -1,12 +1,6 @@
-// people.js
-
-console.log("✅ people.js chargé");
-
 let peopleFiltered;
 
 App.onLoad(() => {
-    console.log("🔁 App.onLoad exécuté");
-
     const people = JSON.parse(Bridge.get("PeopleController", "getPeople"));
     peopleFiltered = people;
     let max = 6;
@@ -47,7 +41,6 @@ App.onLoad(() => {
 });
 
 function reset() {
-    console.log("🔄 reset() appelé");
     peopleFiltered = JSON.parse(Bridge.get("PeopleController", "getPeople"));
     document.getElementById("filter-label").value = "";
 }
@@ -170,13 +163,9 @@ function closeModal() {
 }
 
 function showModalAdd() {
-    console.log("showModalAdd called");
     const modal = document.getElementById("modal-container-add");
     if (modal) {
         modal.classList.add("show");
-        console.log("Modal displayed");
-    } else {
-        console.warn("Modal container not found");
     }
 }
 
@@ -189,27 +178,23 @@ function addPerson() {
     const firstname = document.getElementById("add-firstname").value.trim();
     const lastname = document.getElementById("add-lastname").value.trim();
     const job = document.getElementById("add-job").value.trim();
-    const picture = document.getElementById("add-picture").value.trim(); // <- nouveau champ
+    const picture = document.getElementById("add-picture").value.trim();
 
     if (!firstname || !lastname || !job) {
-        alert("❌ Tous les champs sont obligatoires !");
+        alert("Tous les champs sont obligatoires !");
         return;
     }
 
-    console.log("✅ addPerson() appelée avec :", firstname, lastname, job, picture || "(aucune image)");
-
-    const params = [firstname, lastname, job, picture]; // <- inclu picture même s'il est vide
+    const params = [firstname, lastname, job, picture];
     Bridge.call("PeopleController", "addPerson", params);
 
-    alert("✅ Personne ajoutée !");
+    alert("Personne ajoutée !");
     closeModalAdd();
     reset();
     initTable(peopleFiltered, 0, 6);
 
-    // Nettoyage des champs
     document.getElementById("add-firstname").value = "";
     document.getElementById("add-lastname").value = "";
     document.getElementById("add-job").value = "";
-    document.getElementById("add-picture").value = ""; // <- reset image aussi
+    document.getElementById("add-picture").value = "";
 }
-
