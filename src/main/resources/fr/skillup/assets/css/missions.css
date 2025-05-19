@@ -211,3 +211,16 @@
     height: 100%;
 }
 
+
+.warning {
+    background-color: #FFEFE2;
+    color: #F58E11;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    margin-top: 6px;
+    max-width: max-content;
+}
