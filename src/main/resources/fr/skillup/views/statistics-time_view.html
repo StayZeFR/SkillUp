@@ -75,71 +75,8 @@
                     </div>
                     <div>
                         <div>
-                            <canvas id="myChartTime"></canvas>
+                            <canvas id="chartTime"></canvas>
                         </div>
-                        <script>
-                            const ctx = document.getElementById('myChartTime');
-
-                            new Chart(ctx, {
-                                type: 'bar',
-                                data: {
-                                    labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
-                                    datasets: [
-                                        {
-                                            label: 'Busy',
-                                            data: [8, 10, 5, 8, 5, 4, 10, 7, 9, 2, 5, 4],
-                                            borderWidth: 1,
-                                            backgroundColor: '#C79CFF',
-                                            borderColor: '#9747FF',
-                                            borderRadius: 4
-                                        },
-                                        {
-                                            label: 'Available',
-                                            data: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-                                            borderWidth: 1,
-                                            backgroundColor: '#E0F8FB',
-                                            borderColor: '#6EDBE8',
-                                            borderRadius: 4
-
-                                        }
-
-                                    ]
-                                },
-                                options: {
-                                    responsive: true,
-                                    maintainAspectRatio: false,
-                                    scales: {
-                                        x: {
-                                            stacked: true,
-                                            ticks: {
-                                                font: {
-                                                    family: 'Arial'
-                                                }
-                                            },
-                                            grid: {
-                                                drawOnChartArea: false
-                                            }
-                                        },
-                                        y: {
-                                            stacked: true,
-                                            beginAtZero: true,
-                                            max: 10,
-                                            ticks: {
-                                                stepSize: 1,
-                                                font: {
-                                                    family: 'Arial'
-                                                }
-                                            }
-                                        }
-                                    },
-                                    plugins: {
-                                        legend: {
-                                            position: 'bottom',
-                                        }
-                                    }
-                                }
-                            });
-                        </script>
                     </div>
                 </div>
             </div>
