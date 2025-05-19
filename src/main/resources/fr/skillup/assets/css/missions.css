@@ -71,7 +71,7 @@
 #missions > .kanban .column > header > svg {
     width: 20px;
     height: auto;
-    fill: #383EC8;
+    color: #383EC8;
 }
 
 #missions > .kanban div > button {
