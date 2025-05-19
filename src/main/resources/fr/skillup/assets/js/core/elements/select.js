@@ -256,12 +256,24 @@ class Select extends HTMLElement {
         this.optionsContainer.querySelectorAll('.option').forEach(option => option.remove());
     }
 
+
+
     unselect(value) {
         const option = this.optionsContainer.querySelector(`input[value="${value}"]`);
         if (option) {
             option.checked = false;
             this.handleSelection({target: option});
         }
+    }
+
+    unselectAll() {
+        this.optionsContainer.querySelectorAll('.option input').forEach(input => {
+            input.checked = false;
+            this.handleSelection({target: input});
+        });
+        this.selectedValues = [];
+        this.selectedLabels = [];
+        this.selected.textContent = this._title;
     }
 }
 

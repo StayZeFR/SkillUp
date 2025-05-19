@@ -1,7 +1,18 @@
 let peopleFiltered;
+let allSkills;
 
 App.onLoad(() => {
     const people = JSON.parse(Bridge.get("PeopleController", "getPeople"));
+    const selectAddSkills = document.getElementById("add-skills");
+    selectAddSkills.setMultiple(true);
+    selectAddSkills.setEnableSearch(true);
+    selectAddSkills.setTitle("Select skills");
+    Bridge.getAsync("SkillsController", "getSkills").then((skills) => {
+        allSkills = skills;
+        skills.forEach(skill => {
+            selectAddSkills.addOption(skill["id"], skill["skill_label"]);
+        });
+    });
 
     peopleFiltered = people;
     let max = 6;
@@ -37,6 +48,10 @@ App.onLoad(() => {
         initTable(peopleFiltered, start * max, max);
     });
     initTable(peopleFiltered, 0, max);
+
+    selectAddSkills.addEventListener("change", () => {
+        App.log(JSON.stringify(document.getElementById("add-skills").getSelected()));
+    });
 });
 
 function reset() {
@@ -126,15 +141,11 @@ function initTable(people, start, max) {
         document.getElementById("modal-general-job").innerText = person["job"];
         document.getElementById("modal-entry-date").value = person["entry_date"];
         document.getElementById("skills-modal").innerHTML = displaySkillsModal(person["skills"]);
-        skillsContainer.innerHTML = "";
         person["skills"].forEach(skill => {
-            let skillHTML = `
-                <div class='skill-text-modal' style="background-color: #${skill["category_color"]}">
-                    ${skill["category_icon"]}
-                    <p>${skill["skill_label"]}</p>
-                </div>`;
-            skillsContainer.innerHTML += skillHTML;
+            App.log(skill["skill_id"])
+            document.getElementById("add-skills").select(skill["skill_id"]);
         });
+        App.log(JSON.stringify(document.getElementById("add-skills").getSelectedLabels()));
     }
 
 
