@@ -9,6 +9,7 @@ import java.util.Map;
 // People
 public class PeopleController extends Controller {
     private static final String VIEW = "people";
+    private final PersonModel model = new PersonModel();
 
     @Override
     public void init() {
@@ -37,10 +38,8 @@ public class PeopleController extends Controller {
         PersonModel model = Model.get(PersonModel.class);
         model.savePerson(id, firstName, lastName, job);
     }
-    public void addPerson(String firstName, String lastName, String job, String picture) {
-        PersonModel model = Model.get(PersonModel.class);
-        model.insertPerson(firstName, lastName, job, picture);
+    public void insertPerson(String firstname, String lastname, String job, String picture) {
+        model.insertPerson(firstname, lastname, job, picture);
     }
-
 
 }

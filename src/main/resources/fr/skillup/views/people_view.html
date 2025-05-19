@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <!-- Edit Person Modal -->
+        <!-- MODALE -->
         <div class="modal_container" id="modal-container">
             <div class="modal">
                 <div class="titleclose">
@@ -42,8 +42,10 @@
                             <p class="job-modal" id="modal-general-job"></p>
                         </div>
                         <button class="close" onclick="closeModal()">&#10006;</button>
-                        <button class="save" onclick="save()">&#128190;</button>
+                        <button class="save" id="save-button" onclick="save()">&#128190;</button>
+                        <button class="save" id="create-button" onclick="create()">&#10010;</button>
                     </div>
+
                     <div class="personnal-info-modal">
                         <h1 class="titre-info-modal">Informations</h1>
                         <div class="information-container">
@@ -55,14 +57,16 @@
                                 <p class="titre">Entry date</p>
                             </div>
                             <div class="titre-information">
-                                <input type="number" id="modal-id" class="data-information-readonly" readonly>
+                                <input type="text" id="modal-id" class="data-information-readonly" readonly>
                                 <input type="text" id="modal-lastname" class="data-information">
                                 <input type="text" id="modal-firstname" class="data-information">
                                 <input type="text" id="modal-job" class="data-information">
                                 <input type="text" id="modal-entry-date" class="data-information-readonly" readonly>
+                                <input type="hidden" id="modal-mode" value="edit">
                             </div>
                         </div>
                     </div>
+
                     <div class="skill-info-modal">
                         <h1 class="titre-info-modal">Skills</h1>
                         <div id="skills-modal" class="skill-people-modal"></div>
@@ -70,35 +74,5 @@
                 </div>
             </div>
         </div>
-
-        <!-- Add Person Modal -->
-        <div class="modal_container" id="modal-container-add">
-            <div class="modal">
-                <div class="titleclose">
-                    <h2>Add a New Person</h2>
-                    <button class="close" onclick="closeModalAdd()">Cancel</button>
-                    <button class="save" onclick="addPerson()">Create</button>
-                </div>
-                <div class="personnal-info-modal">
-                    <h3 class="titre-info-modal">Enter person details</h3>
-                    <div class="information-container">
-                        <div class="titre-information">
-                            <p class="titre">Picture (optional)</p>
-                            <p class="titre">Firstname</p>
-                            <p class="titre">Lastname</p>
-                            <p class="titre">Job</p>
-                        </div>
-                        <div class="titre-information">
-                            <input type="text" id="add-picture" class="data-information" placeholder="Image URL or path">
-                            <input type="text" id="add-firstname" class="data-information" placeholder="First name">
-                            <input type="text" id="add-lastname" class="data-information" placeholder="Last name">
-                            <input type="text" id="add-job" class="data-information" placeholder="Job title">
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
     </div>
 </render-section>

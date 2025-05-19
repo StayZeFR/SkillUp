@@ -92,55 +92,88 @@ function initTable(people, start, max) {
     document.getElementById("previous-page-button").style.visibility = start === 0 ? "hidden" : "visible";
     document.getElementById("next-page-button").style.visibility = start + max >= people.length ? "hidden" : "visible";
     document.getElementById("last-page-button").style.visibility = start + max >= people.length ? "hidden" : "visible";
+}
 
-    function displaySkills(skills) {
-        let html = skills.slice(0, 2).map(skill => `
-            <div class='skill-text' style="background-color: #${skill["category_color"]}">
-                ${skill["category_icon"]}<p>${skill["skill_label"]}</p>
-            </div>
-        `).join("");
+function displaySkills(skills) {
+    let html = skills.slice(0, 2).map(skill => `
+        <div class='skill-text' style="background-color: #${skill["category_color"]}">
+            ${skill["category_icon"]}<p>${skill["skill_label"]}</p>
+        </div>
+    `).join("");
 
-        if (skills.length > 2) {
-            html += `
-                <div class='skill-text other'>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
-                        <path d="..."/>
-                    </svg>
-                    <p>+ ${skills.length - 2} others</p>
-                </div>`;
-        }
-
-        return html;
+    if (skills.length > 2) {
+        html += `
+            <div class='skill-text other'>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                    <path d="M6 10a4 4 0 1 1 8 0 4 4 0 0 1-8 0Z"/>
+                </svg>
+                <p>+ ${skills.length - 2} others</p>
+            </div>`;
     }
 
-    function displaySkillsModal(skills) {
-        return skills.slice(0, 10).map(skill => `
-            <div class='skill-text' style="background-color: #${skill["category_color"]}">
-                ${skill["category_icon"]}<p>${skill["skill_label"]}</p>
-            </div>
-        `).join("");
-    }
+    return html;
+}
 
-    function showModal(person) {
-        document.getElementById("modal-container").classList.add("show");
-        document.getElementById("modal-id").value = person["id"];
-        document.getElementById("modal-firstname").value = person["firstname"];
-        document.getElementById("modal-lastname").value = person["lastname"];
-        document.getElementById("modal-job").value = person["job"];
-        document.getElementById("modal-picture").src = `data:image/png;base64,${person["picture"]}`;
-        document.getElementById("modal-general-name").innerText = `${person["firstname"]} ${person["lastname"]}`;
-        document.getElementById("modal-general-job").innerText = person["job"];
-        document.getElementById("modal-entry-date").value = person["entry_date"];
-        document.getElementById("skills-modal").innerHTML = displaySkillsModal(person["skills"]);
-        skillsContainer.innerHTML = "";
-        person["skills"].forEach(skill => {
-            skillsContainer.innerHTML += `
-                <div class='skill-text-modal' style="background-color: #${skill["category_color"]}">
-                    ${skill["category_icon"]}
-                    <p>${skill["skill_label"]}</p>
-                </div>`;
-        });
-    }
+function displaySkillsModal(skills) {
+    return skills.slice(0, 10).map(skill => `
+        <div class='skill-text' style="background-color: #${skill["category_color"]}">
+            ${skill["category_icon"]}<p>${skill["skill_label"]}</p>
+        </div>
+    `).join("");
+}
+
+function showModal(person) {
+    document.getElementById("modal-mode").value = "edit";
+    document.getElementById("modal-container").classList.add("show");
+
+    document.getElementById("modal-id").value = person["id"];
+    document.getElementById("modal-firstname").value = person["firstname"];
+    document.getElementById("modal-lastname").value = person["lastname"];
+    document.getElementById("modal-job").value = person["job"];
+    document.getElementById("modal-picture").src = `data:image/png;base64,${person["picture"] || ""}`;
+    document.getElementById("modal-general-name").innerText = `${person["firstname"]} ${person["lastname"]}`;
+    document.getElementById("modal-general-job").innerText = person["job"];
+    document.getElementById("modal-entry-date").value = person["entry_date"];
+    document.getElementById("skills-modal").innerHTML = displaySkillsModal(person["skills"]);
+    skillsContainer.innerHTML = "";
+    person["skills"].forEach(skill => {
+        skillsContainer.innerHTML += `
+            <div class='skill-text-modal' style="background-color: #${skill["category_color"]}">
+                ${skill["category_icon"]}
+                <p>${skill["skill_label"]}</p>
+            </div>`;
+    });
+
+    document.getElementById("save-button").style.display = "inline-block";
+    document.getElementById("create-button").style.display = "none";
+}
+
+function showModalCreate() {
+    document.getElementById("modal-mode").value = "create";
+    document.getElementById("modal-container").classList.add("show");
+
+    document.getElementById("modal-id").value = "Auto";
+    document.getElementById("modal-firstname").value = "";
+    document.getElementById("modal-lastname").value = "";
+    document.getElementById("modal-job").value = "";
+    document.getElementById("modal-entry-date").value = new Date().toISOString().slice(0, 10);
+
+    document.getElementById("modal-picture").src = "";
+    document.getElementById("modal-general-name").innerText = "New Person";
+    document.getElementById("modal-general-job").innerText = "";
+    document.getElementById("skills-modal").innerHTML = "";
+    skillsContainer.innerHTML = "";
+
+    document.getElementById("save-button").style.display = "none";
+    document.getElementById("create-button").style.display = "inline-block";
+}
+
+function showModalAdd() {
+    showModalCreate();
+}
+
+function closeModal() {
+    document.getElementById("modal-container").classList.remove("show");
 }
 
 function save() {
@@ -158,27 +191,11 @@ function save() {
     initTable(peopleFiltered, 0, 6);
 }
 
-function closeModal() {
-    document.getElementById("modal-container").classList.remove("show");
-}
-
-function showModalAdd() {
-    const modal = document.getElementById("modal-container-add");
-    if (modal) {
-        modal.classList.add("show");
-    }
-}
-
-function closeModalAdd() {
-    const modal = document.getElementById("modal-container-add");
-    if (modal) modal.classList.remove("show");
-}
-
-function addPerson() {
-    const firstname = document.getElementById("add-firstname").value.trim();
-    const lastname = document.getElementById("add-lastname").value.trim();
-    const job = document.getElementById("add-job").value.trim();
-    const picture = document.getElementById("add-picture").value.trim();
+function create() {
+    const firstname = document.getElementById("modal-firstname").value.trim();
+    const lastname = document.getElementById("modal-lastname").value.trim();
+    const job = document.getElementById("modal-job").value.trim();
+    const picture = ""; // à compléter si vous ajoutez un champ
 
     if (!firstname || !lastname || !job) {
         alert("Tous les champs sont obligatoires !");
@@ -186,15 +203,10 @@ function addPerson() {
     }
 
     const params = [firstname, lastname, job, picture];
-    Bridge.call("PeopleController", "addPerson", params);
+    Bridge.call("PeopleController", "insertPerson", params);
 
     alert("Personne ajoutée !");
-    closeModalAdd();
+    closeModal();
     reset();
     initTable(peopleFiltered, 0, 6);
-
-    document.getElementById("add-firstname").value = "";
-    document.getElementById("add-lastname").value = "";
-    document.getElementById("add-job").value = "";
-    document.getElementById("add-picture").value = "";
 }
