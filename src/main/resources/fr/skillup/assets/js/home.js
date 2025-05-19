@@ -124,7 +124,7 @@ function showPeople(people) {
     Bridge.getAsync("HomeController", "getWarningMissions").then(result => {
         document.getElementById("nb-warning").innerText = result.length;
 
-        for (i = 0; i < 2; i++) {
+        for (i = 0; i < 3; i++) {
             const mission = result[i];
             const html = `
                             <div class="mission">

@@ -7,7 +7,7 @@ App.onLoad(async () => {
         new Chart(statMissionsCompleted, {
             type: "pie",
             data: {
-                labels: ["Completed missions", "Missions in progress"],
+                labels: ["Completed missions", "Uncompleted missions"],
                 datasets: [{
                     data: [parseInt(data[0]["done"]), parseInt(data[0]["progress"])],
                     backgroundColor: ["#C79CFF", "#FAF3DE"],
