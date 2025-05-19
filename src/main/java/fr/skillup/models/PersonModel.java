@@ -55,4 +55,21 @@ public class PersonModel extends Model {
         this.execute("UPDATE person SET firstname = ?, lastname = ?, job = ? WHERE id = ?", params);
     }
 
+    /**
+     * Ajoute une nouvelle personne dans la base
+     *
+     * @param firstName : le prénom
+     * @param lastName  : le nom
+     * @param job       : le métier
+     */
+    public void insertPerson(String firstName, String lastName, String job, String picture) {
+        List<Object> params = List.of(firstName, lastName, job, picture.isEmpty() ? null : picture);
+        this.execute(
+                "INSERT INTO person (firstname, lastname, job, picture, entry_date) VALUES (?, ?, ?, ?, NOW())",
+                params
+        );
+    }
+
+
+
 }

@@ -16,53 +16,22 @@
                 <div class="filter-control">
                     <input type="text" placeholder="Search by name" id="filter-label" class="filter">
                 </div>
-                <!--<button onclick="showModalAdd()">Add Person</button>-->
+                <button onclick="showModalAdd()">Add Person</button>
             </div>
         </div>
 
         <div class="container-personnel">
-            <div id="container-personnel">
-            </div>
+            <div id="container-personnel"></div>
             <div id="pages">
-                <div class="button-page" id="first-page-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="svgbtn">
-                        <path fill-rule="evenodd"
-                              d="M10.72 11.47a.75.75 0 0 0 0 1.06l7.5 7.5a.75.75 0 1 0 1.06-1.06L12.31 12l6.97-6.97a.75.75 0 0 0-1.06-1.06l-7.5 7.5Z"
-                              clip-rule="evenodd"/>
-                        <path fill-rule="evenodd"
-                              d="M4.72 11.47a.75.75 0 0 0 0 1.06l7.5 7.5a.75.75 0 1 0 1.06-1.06L6.31 12l6.97-6.97a.75.75 0 0 0-1.06-1.06l-7.5 7.5Z"
-                              clip-rule="evenodd"/>
-                    </svg>
-                </div>
-                <div class="button-page" id="previous-page-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="svgbtn">
-                        <path fill-rule="evenodd"
-                              d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z"
-                              clip-rule="evenodd"/>
-                    </svg>
-                </div>
+                <div class="button-page" id="first-page-button">&#171;&#171;</div>
+                <div class="button-page" id="previous-page-button">&#171;</div>
                 <div><span id="current-page">1</span> / <span id="max-page">n</span></div>
-                <div class="button-page" id="next-page-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="svgbtn">
-                        <path fill-rule="evenodd"
-                              d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                              clip-rule="evenodd"/>
-                    </svg>
-                </div>
-                <div class="button-page" id="last-page-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="svgbtn">
-                        <path fill-rule="evenodd"
-                              d="M13.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L11.69 12 4.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                              clip-rule="evenodd"/>
-                        <path fill-rule="evenodd"
-                              d="M19.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06L17.69 12l-6.97-6.97a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                              clip-rule="evenodd"/>
-                    </svg>
-                </div>
+                <div class="button-page" id="next-page-button">&#187;</div>
+                <div class="button-page" id="last-page-button">&#187;&#187;</div>
             </div>
         </div>
 
-        <!-- Modal -->
+        <!-- Edit Person Modal -->
         <div class="modal_container" id="modal-container">
             <div class="modal">
                 <div class="titleclose">
@@ -71,72 +40,65 @@
                         <div class="info-general">
                             <p class="name-modal" id="modal-general-name"></p>
                             <p class="job-modal" id="modal-general-job"></p>
-                            <p class="disponibility-modal" id="modal-general-disponibility"></p>
                         </div>
-                        <div>
-                            <button class="close" id="close" onclick="closeModal()">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                     class="icon">
-                                    <path fill-rule="evenodd"
-                                          d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z"
-                                          clip-rule="evenodd"/>
-                                </svg>
-                            </button>
-                        </div>
-                        <div>
-                            <button class="save" onclick="save()">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                     class="icon">
-                                    <path fill-rule="evenodd"
-                                          d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V9A.75.75 0 1 0 9 9V5.25a1.5 1.5 0 0 1 1.5-1.5h6Zm-5.03 4.72a.75.75 0 0 0 0 1.06l1.72 1.72H2.25a.75.75 0 0 0 0 1.5h10.94l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 0 0-1.06 0Z"
-                                          clip-rule="evenodd"/>
-                                </svg>
-                            </button>
-                        </div>
-                        <div>
-                            <button class="cancel">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                     class="icon">
-                                    <path fill-rule="evenodd"
-                                          d="M9.53 2.47a.75.75 0 0 1 0 1.06L4.81 8.25H15a6.75 6.75 0 0 1 0 13.5h-3a.75.75 0 0 1 0-1.5h3a5.25 5.25 0 1 0 0-10.5H4.81l4.72 4.72a.75.75 0 1 1-1.06 1.06l-6-6a.75.75 0 0 1 0-1.06l6-6a.75.75 0 0 1 1.06 0Z"
-                                          clip-rule="evenodd"/>
-                                </svg>
-
-                            </button>
+                        <button class="close" onclick="closeModal()">&#10006;</button>
+                        <button class="save" onclick="save()">&#128190;</button>
+                    </div>
+                    <div class="personnal-info-modal">
+                        <h1 class="titre-info-modal">Informations</h1>
+                        <div class="information-container">
+                            <div class="titre-information">
+                                <p class="titre">ID</p>
+                                <p class="titre">Firstname</p>
+                                <p class="titre">Lastname</p>
+                                <p class="titre">Job</p>
+                                <p class="titre">Entry date</p>
+                            </div>
+                            <div class="titre-information">
+                                <input type="number" id="modal-id" class="data-information-readonly" readonly>
+                                <input type="text" id="modal-lastname" class="data-information">
+                                <input type="text" id="modal-firstname" class="data-information">
+                                <input type="text" id="modal-job" class="data-information">
+                                <input type="text" id="modal-entry-date" class="data-information-readonly" readonly>
+                            </div>
                         </div>
                     </div>
-
-                </div>
-                <div class="personnal-info-modal">
-                    <h1 class="titre-info-modal">Informations</h1>
-                    <div class="information-container">
-                        <div class="titre-information">
-                            <p class="titre" id="person-id">ID</p>
-                            <p class="titre" id="person-firstname">Firstname</p>
-                            <p class="titre" id="person-lastname">Lastname</p>
-                            <p class="titre" id="person-job">Job</p>
-                            <p class="titre">Entry date</p>
-                        </div>
-                        <div class="titre-information">
-                            <input type="number" id="modal-id" class="data-information-readonly" readonly>
-                            <input type="text" id="modal-lastname" class="data-information">
-                            <input type="text" id="modal-firstname" class="data-information">
-                            <input type="text" id="modal-job" class="data-information">
-                            <input type="text" id="modal-entry-date" value="08/12/2000"
-                                   class="data-information-readonly" readonly>
-                        </div>
-
-                    </div>
-
-                </div>
-                <div class="skill-info-modal">
-                    <h1 class="titre-info-modal">Skills</h1>
-                    <div id="skills-modal" class="skill-people-modal">
-                        <div class='skill-text-modal' id="skill-text">
-                        </div>
+                    <div class="skill-info-modal">
+                        <h1 class="titre-info-modal">Skills</h1>
+                        <div id="skills-modal" class="skill-people-modal"></div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Add Person Modal -->
+        <div class="modal_container" id="modal-container-add">
+            <div class="modal">
+                <div class="titleclose">
+                    <h2>Add a New Person</h2>
+                    <button class="close" onclick="closeModalAdd()">Cancel</button>
+                    <button class="save" onclick="addPerson()">Create</button>
+                </div>
+                <div class="personnal-info-modal">
+                    <h3 class="titre-info-modal">Enter person details</h3>
+                    <div class="information-container">
+                        <div class="titre-information">
+                            <p class="titre">Picture (optional)</p>
+                            <p class="titre">Firstname</p>
+                            <p class="titre">Lastname</p>
+                            <p class="titre">Job</p>
+                        </div>
+                        <div class="titre-information">
+                            <input type="text" id="add-picture" class="data-information" placeholder="Image URL or path">
+                            <input type="text" id="add-firstname" class="data-information" placeholder="First name">
+                            <input type="text" id="add-lastname" class="data-information" placeholder="Last name">
+                            <input type="text" id="add-job" class="data-information" placeholder="Job title">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </div>
 </render-section>

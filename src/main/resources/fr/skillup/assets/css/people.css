@@ -543,3 +543,19 @@
     width: 15px;
     height: auto;
 }
+
+#modal-container-add .save {
+    right: 100px;
+    top: 20px;
+    position: absolute;
+    background-color: #F2F0FD;
+    fill: #7B69ED;
+}
+
+#modal-container-add .cancel {
+    right: 160px;
+    top: 20px;
+    position: absolute;
+    background-color: #F2F0FD;
+    color: black;
+}

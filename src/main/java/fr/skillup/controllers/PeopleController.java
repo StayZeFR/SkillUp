@@ -37,4 +37,10 @@ public class PeopleController extends Controller {
         PersonModel model = Model.get(PersonModel.class);
         model.savePerson(id, firstName, lastName, job);
     }
+    public void addPerson(String firstName, String lastName, String job, String picture) {
+        PersonModel model = Model.get(PersonModel.class);
+        model.insertPerson(firstName, lastName, job, picture);
+    }
+
+
 }
