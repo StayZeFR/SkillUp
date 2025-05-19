@@ -20,6 +20,7 @@ public class HTMLBuilder {
 
     /**
      * Construit une vue HTML à partir d'un fichier de ressource
+     *
      * @param resourcePath : Chemin du fichier de ressource
      * @return String : Vue HTML
      */
@@ -91,6 +92,13 @@ public class HTMLBuilder {
         return null;
     }
 
+    /**
+     * Insert les paramètres dans le HTML
+     *
+     * @param html   : HTML à modifier
+     * @param params : Paramètres à insérer
+     * @return String : HTML modifié
+     */
     private static String insertParams(String html, Map<String, Object> params) {
         for (Map.Entry<String, Object> entry : params.entrySet()) {
             html = html.replace("{{" + entry.getKey() + "}}", entry.getValue().toString());

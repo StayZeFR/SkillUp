@@ -24,7 +24,8 @@ public abstract class Controller {
 
     /**
      * Permet de charger une vue dans la fenêtre
-     * @param view : Nom de la vue
+     *
+     * @param view   : Nom de la vue
      * @param params : Paramètres à passer à la vue
      */
     protected void render(String view, Map<String, Object> params) {
@@ -53,6 +54,7 @@ public abstract class Controller {
 
     /**
      * Permet de charger une vue dans la fenêtre
+     *
      * @param view : Nom de la vue
      */
     protected void render(String view) {
@@ -61,6 +63,7 @@ public abstract class Controller {
 
     /**
      * Permet de récupérer les paramètres passés au contrôleur
+     *
      * @param params : Paramètres passés au contrôleur
      */
     public void setParams(Map<String, Object> params) {

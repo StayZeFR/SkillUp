@@ -22,7 +22,7 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-#title {
+#title-mission {
     border: none;
     outline: none;
     color: #313132;
@@ -30,6 +30,7 @@
     background: transparent;
     width: 100%;
     font-weight: 600;
+    text-align: left;
 }
 
 h2 {
@@ -51,6 +52,20 @@ h2 {
     padding: 20px;
     gap: 20px;
     overflow: scroll;
+}
+
+#action-mission > .container::-webkit-scrollbar {
+    width: 12px;
+}
+
+#action-mission > .container::-webkit-scrollbar-thumb {
+    background: #FAFBFE;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius : 15px;
+}
+
+#action-mission > .container::-webkit-scrollbar-thumb:hover {
+    background: #B6B8F1;
 }
 
 #action-mission > .container > section {
@@ -82,6 +97,10 @@ h2 {
     display: flex;
     flex-direction: column;
     gap: 5px;
+}
+
+#action-mission > .container > section.information-mission > .information-container > div > label > sup {
+    color: #FF4D4D;
 }
 
 #action-mission > .container > section.information-mission > .information-container > div > input {
@@ -213,23 +232,32 @@ h2 {
     align-items: center;
 }
 
+#action-mission > .container > section.skill-mission > .container > .skills > .skill > .action > .alert.valid {
+    background-color: #58A68A!important;
+}
+
+
 #action-mission > .container > section.skill-mission > .container > .skills > .skill > .action > .alert > svg {
     width: 15px;
     height: auto;
     fill: white;
 }
 
+#action-mission > .container > section.skill-mission > .container > .skills > .skill > .action > .alert.valid > svg {
+    display: none;
+}
+
 #action-mission > .container > section.skill-mission > .container > .skills > .skill > .action > .alert > span {
     font-size: 0.8em;
 }
 
-#action-mission > .container > section.people-mission > .container > div:first-child {
+#action-mission > .container > section.people-mission > .container > div.select {
     display: flex;
     flex-direction: row;
     gap: 10px;
 }
 
-#action-mission > .container > section.people-mission > .container > div:first-child > button {
+#action-mission > .container > section.people-mission > .container > div.select > button {
     border: none;
     outline: none;
     background: #7B69ED;

@@ -22,7 +22,7 @@ h1 {
     display: flex;
     flex-direction: row !important;
     width : 100%;
-    gap : 40px;
+    gap : 10px;
     align-items : center;
 }
 
@@ -76,14 +76,13 @@ h1 {
     width : 90%;
     padding:20px;
     align-items: flex-start;
-    margin : 20px auto;
-    margin-top : 10px;
+    margin: 10px auto 20px;
     border-radius: 18px;
     flex-direction: column;
     background: rgba(255, 255, 255, 0.80);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4.6px);
-    -webkit-backdrop-filter: blur(4.6px);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -148,7 +147,7 @@ h1 {
     padding: 5px;
     width:100%;
     margin-top : 10px;
-    margin-bottom : 0px;
+    margin-bottom : 0;
 }
 
 #skills > #table > #pages > div > svg {
@@ -173,8 +172,7 @@ h1 {
 #filter-contener{
     width : 90%;
     padding:20px;
-    margin : 20px auto;
-    margin-bottom : 0;
+    margin: 20px auto 0;
     display: flex;
     align-items: flex-start;
     border-radius: 18px;
@@ -182,22 +180,9 @@ h1 {
     flex-direction: column;
     background: rgba(255, 255, 255, 0.26);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4.6px);
-    -webkit-backdrop-filter: blur(4.6px);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-#filter-category{
-    margin-left : 20px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    margin-right : 10px;
-    }
-
-#filter-category-list{
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    margin-left : 20px;
-    margin-right : 10px;
 }
 
 .filter {
@@ -205,13 +190,13 @@ h1 {
     padding: 10px;
     border-radius : 10px;
     margin-left : 20px;
-    box-shadow: 0px 2px 9px 0px rgba(7, 14, 194, 0.2);
+    box-shadow: 0 2px 9px 0 rgba(7, 14, 194, 0.2);
     outline: none;
 }
 
 
 .category {
     width:130px;
-    justify-content : justify;
-
 }
+
+

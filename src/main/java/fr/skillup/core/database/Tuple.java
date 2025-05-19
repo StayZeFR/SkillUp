@@ -18,6 +18,7 @@ public class Tuple {
 
     /**
      * Récupère la valeur associée à une clé dans le tuple et la cast dans le type attendu
+     *
      * @param key : Clé de la valeur à récupérer
      * @return Valeur associée à la clé
      */
@@ -38,6 +39,7 @@ public class Tuple {
 
     /**
      * Convertit le tuple en JSON
+     *
      * @return JSON représentant le tuple
      */
     public String toJson() {

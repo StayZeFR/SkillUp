@@ -17,6 +17,11 @@ public abstract class Database {
 
     private static Connection connection;
 
+    /**
+     * Récupère la connexion à la base de données
+     *
+     * @return La connexion à la base de données
+     */
     public static Connection getConnection() {
         if (Database.connection == null) {
             try {

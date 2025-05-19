@@ -163,10 +163,9 @@
     padding: 10px;
     margin-left: 10px;
     margin-bottom: 20px;
-    border: 1px solid #131AC3;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4.6px);
-    -webkit-backdrop-filter: blur(4.6px);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: #8B8B8B;
     background: rgba(255, 255, 255, 0.80) url("assets/images/arrow.svg") no-repeat right 10px center;
@@ -249,8 +248,8 @@
     width: 550px;
     background: rgba(255, 255, 255, 1);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4.6px);
-    -webkit-backdrop-filter: blur(4.6px);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     position: relative;
 }
@@ -308,8 +307,7 @@
     height: 110px;
     border-radius: 25%;
     object-fit: cover;
-    margin: 20px;
-    margin-right: 0px;
+    margin: 20px 0 20px 20px;
 }
 
 .icon {
@@ -328,14 +326,12 @@
     font-size: 30px;
     white-space: nowrap;
     overflow: hidden;
-    margin-bottom: 10px;
+    margin: 0 0 10px 0;
     padding: 0;
-    margin: 0;
 }
 
 .job-modal {
-    margin: 0;
-    margin-bottom: 10px;
+    margin: 0 0 10px 0;
     padding: 0;
     font-weight: 700;
     color: #C5C5C6;
@@ -372,10 +368,8 @@
 .titre-info-modal {
     justify-content: right;
     font-size: 20px;
-    margin: 0;
+    margin: 0 0 20px 25px;
     padding: 0;
-    margin-left: 25px;
-    margin-bottom : 20px;
     width: 100%;
     color: #7B69ED;
 
@@ -391,8 +385,7 @@
 
 .information-container {
     display: flex;
-    margin: 0;
-    margin-left: 25px;
+    margin: 0 0 0 25px;
     gap: 0;
     padding: 0;
 
@@ -438,7 +431,7 @@
     padding: 10px;
     border-radius : 10px;
     margin-left : 20px;
-    box-shadow: 0px 2px 9px 0px rgba(7, 14, 194, 0.2);
+    box-shadow: 0 2px 9px 0 rgba(7, 14, 194, 0.2);
     outline: none;
 }
 
@@ -468,7 +461,7 @@
     gap: 10px;
     width:80%;
     margin-top : 10px;
-    margin-bottom : 0px;
+    margin-bottom : 0;
 }
 
 .svgbtn {
@@ -481,15 +474,12 @@
 
 
 .skill-people-modal {
-    margin-left: 20px;
-    margin-top : 15px;
-    margin-bottom : 20px;
+    margin : 15px 20px 20px 20px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     gap: 10px;
     font-family: Kumbh Sans, serif;
-    margin: 0;
     padding: 0 10px;
 }
 
