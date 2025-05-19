@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
 public class MissionsController extends Controller {
@@ -57,19 +58,12 @@ public class MissionsController extends Controller {
             Result missions = model.getMissions();
             missions.forEach(mission -> {
                 Date start = DateUtils.toDate(mission.get("mission_start_date"));
-                switch (mission.get("life_cycle_label").toString()) {
-                    case "Planned" -> {
-                        if (!date.isEqual(start.toLocalDate()) && !date.isAfter(start.toLocalDate())) {
-                            return;
-                        }
+                if (Objects.equals(mission.get("life_cycle_label").toString(), "Planned")) {
+                    if (date.isEqual(start.toLocalDate()) || date.isAfter(start.toLocalDate())) {
                         model.updateMissionStatus(mission.get("mission_id"), "In progress");
                     }
-                    case "In progress" -> {
-                        if (!date.isAfter(start.toLocalDate().plusDays(Integer.parseInt(mission.get("mission_duration").toString())))) {
-                            return;
-                        }
-                        model.updateMissionStatus(mission.get("mission_id"), "Done");
-                    }
+                } else if (Objects.equals(mission.get("life_cycle_label").toString(), "In progress") && date.isAfter(start.toLocalDate().plusDays(Integer.parseInt(mission.get("mission_duration").toString())))) {
+                    model.updateMissionStatus(mission.get("mission_id"), "Done");
                 }
             });
         });

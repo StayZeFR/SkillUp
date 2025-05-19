@@ -4,10 +4,10 @@ App.onLoad(() => {
     const people = JSON.parse(Bridge.get("PeopleController", "getPeople"));
 
     peopleFiltered = people;
-    let max = getMax();
+    let max = 6;
 
     window.addEventListener("resize", () => {
-        max = getMax();
+        max = 6;
         initTable(filter(peopleFiltered), 0, max);
     });
 
@@ -39,20 +39,10 @@ App.onLoad(() => {
     initTable(peopleFiltered, 0, max);
 });
 
-function getMax() {
-    let max = 6;
-    if (window.innerHeight < 1400) {
-        max = 6;
-    } else if (window.innerHeight < 1500) {
-        max = 9;
-    } else if (window.innerHeight < 1650) {
-        max = 12;
-    } else if (window.innerHeight < 1700) {
-        max = 15;
-    }
-    return max;
+function reset() {
+    peopleFiltered = JSON.parse(Bridge.get("PeopleController", "getPeople"));
+    document.getElementById("filter-label").value = "";
 }
-
 
 function filter(people) {
     const label = document.getElementById("filter-label").value;
@@ -115,6 +105,7 @@ function initTable(people, start, max) {
         }
         return html;
     }
+
     function displaySkillsModal(skills) {
         let html = skills.slice(0, 10).map(skill => `
         <div class='skill-text' style="background-color: #${skill["category_color"]}">
@@ -176,11 +167,16 @@ function save() {
     }
 
     const params = [id, firstname, lastname, job];
-    Bridge.callAsync("PeopleController", "savePerson", params);
+    Bridge.call("PeopleController", "savePerson", params);
     closeModal();
-    initTable(peopleFiltered, 0, getMax());
+    reset();
+    initTable(peopleFiltered, 0, 6);
 }
 
 function closeModal() {
     document.getElementById("modal-container").classList.remove("show");
+}
+
+function showModalAdd() {
+    document.getElementById("modal-container-add").classList.add("show");
 }
