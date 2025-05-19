@@ -170,14 +170,14 @@ public class StatisticModel extends Model {
                      count(m.id) as mission_total,
                      (select count(*)
                      from person_skill ps
-                     where ps.skill_id = 1) as total
+                     where ps.skill_id = ?) as total
                 from months
                 left join mission m on year(m.start_date) = year(now())
                 and month(m.start_date) = months.m
                 and (select 1
                      from mission_skill ms
                      where ms.mission_id = m.id
-                     and ms.skill_id = 1)
+                     and ms.skill_id = ?)
                 group by months.m
                 order by months.m;
                 """;

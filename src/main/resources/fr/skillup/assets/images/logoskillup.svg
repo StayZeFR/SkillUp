@@ -14,7 +14,7 @@
         fill: url(#Dégradé_sans_nom_10);
       }
     </style>
-    <linearGradient id="Dégradé_sans_nom_10" data-name="Dégradé sans nom 10" x1="0" y1="40.83" x2="256.89" y2="40.83" gradientUnits="userSpaceOnUse">
+    <linearGradient id="Dégradé_sans_nom_10" x1="0" y1="40.83" x2="256.89" y2="40.83" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#868ada"/>
       <stop offset=".47" stop-color="#2026c5"/>
       <stop offset="1" stop-color="#070ec2"/>

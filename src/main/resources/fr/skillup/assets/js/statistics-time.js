@@ -128,6 +128,7 @@ App.onLoad(async () => {
             });
 
             Bridge.getAsync("StatisticsTimeController", "getStatPersonMonthSkills", [skillId]).then((result) => {
+                App.log(JSON.stringify(result));
                 chartTime.data.datasets[0].data = [
                     result[0]["mission_total"],
                     result[1]["mission_total"],
