@@ -106,7 +106,7 @@ public class StatisticModel extends Model {
     public Result getStatYearBySkill(int skillId) {
         String request = """
                 with months as
-                	(select 1 as m
+                    (select 1 as m
                      union all
                      select 2
                      union all
@@ -133,7 +133,7 @@ public class StatisticModel extends Model {
                 	months.m,
                 	count(m.id) as total
                 from months
-                left join mission m on year(m.start_date) = year(now()) and month(m.start_date) = months.m and\s
+                left join mission m on year(m.start_date) = year(now()) and month(m.start_date) = months.m and
                 	(select 1
                      from mission_skill ms
                      where ms.mission_id = m.id
@@ -145,44 +145,41 @@ public class StatisticModel extends Model {
         return super.select(request, params, Integer.class, Integer.class);
     }
 
+    /**
+     * Récupère le nombre de personnes par mois pour une compétence donnée
+     *
+     * @param skillId : l'id de la compétence
+     * @return le nombre de personnes par mois pour la compétence
+     */
     public Result getStatPersonMonthSkills(int skillId) {
         String query = """
                 with months as
-                                	(select 1 as m
-                                     union all
-                                     select 2
-                                     union all
-                                     select 3
-                                     union all
-                                     select 4
-                                     union all
-                                     select 5
-                                     union all
-                                     select 6
-                                     union all
-                                     select 7
-                                     union all
-                                     select 8
-                                     union all
-                                     select 9
-                                     union all
-                                     select 10
-                                     union all
-                                     select 11
-                                     union all
-                                     select 12)
-                                select
-                					months.m,
-                                	count(m.id) as mission_total,
-                                    (select count(*) from person_skill ps where ps.skill_id = ?) as total
-                                from months
-                                left join mission m on year(m.start_date) = year(now()) and month(m.start_date) = months.m and
-                                	(select 1
-                                     from mission_skill ms
-                                     where ms.mission_id = m.id
-                                     and ms.skill_id = ?)
-                                group by months.m
-                                order by months.m;
+                    (select 1 as m
+                     union all select 2
+                     union all select 3
+                     union all select 4
+                     union all select 5
+                     union all select 6
+                     union all select 7
+                     union all select 8
+                     union all select 9
+                     union all select 10
+                     union all select 11
+                     union all select 12)
+                select months.m,
+                     count(m.id) as mission_total,
+                     (select count(*)
+                     from person_skill ps
+                     where ps.skill_id = ?) as total
+                from months
+                left join mission m on year(m.start_date) = year(now())
+                and month(m.start_date) = months.m
+                and (select 1
+                     from mission_skill ms
+                     where ms.mission_id = m.id
+                     and ms.skill_id = ?)
+                group by months.m
+                order by months.m;
                 """;
 
         List<Object> params = List.of(skillId, skillId);

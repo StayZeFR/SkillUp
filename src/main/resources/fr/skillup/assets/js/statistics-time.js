@@ -33,10 +33,16 @@ App.onLoad(async () => {
                     legend: {
                         display: false
                     }
-
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
                 }
             }
-
         });
 
         chartTime = new Chart(document.getElementById("chartTime"), {
@@ -49,14 +55,17 @@ App.onLoad(async () => {
                         borderWidth: 1,
                         backgroundColor: "#C79CFF",
                         borderColor: "#9747FF",
-                        borderRadius: 4
+                        borderRadius: 4,
+                        order: 1,
+                        grouped: false,
                     },
                     {
                         label: "Available",
                         borderWidth: 1,
                         backgroundColor: "#E0F8FB",
                         borderColor: "#6EDBE8",
-                        borderRadius: 4
+                        borderRadius: 4,
+                        order: 2,
 
                     }
 
@@ -67,7 +76,7 @@ App.onLoad(async () => {
                 maintainAspectRatio: false,
                 scales: {
                     x: {
-                        stacked: true,
+                        stacked: false,
                         ticks: {
                             font: {
                                 family: "Arial"
@@ -78,7 +87,7 @@ App.onLoad(async () => {
                         }
                     },
                     y: {
-                        stacked: true,
+                        stacked: false,
                         beginAtZero: true,
                         max: 10,
                         ticks: {
@@ -119,6 +128,7 @@ App.onLoad(async () => {
             });
 
             Bridge.getAsync("StatisticsTimeController", "getStatPersonMonthSkills", [skillId]).then((result) => {
+                App.log(JSON.stringify(result));
                 chartTime.data.datasets[0].data = [
                     result[0]["mission_total"],
                     result[1]["mission_total"],

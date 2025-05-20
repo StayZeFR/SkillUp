@@ -16,6 +16,11 @@ public class HomeController extends Controller {
         this.render("home_view", params);
     }
 
+    /**
+     * Récupère la liste des missions en alerte
+     *
+     * @return liste des missions
+     */
     public String getWarningMissions() {
         MissionModel model = Model.get(MissionModel.class);
         return model.getWarningMissions().toJson();

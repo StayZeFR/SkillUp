@@ -25,12 +25,18 @@ public class MissionsController extends Controller {
         super.render("missions_view", params);
     }
 
+    /**
+     * Affiche l'écran de gestion des missions
+     */
     public void viewMissions() {
         Map<String, Object> params = new HashMap<>();
         params.put("view", MissionsController.VIEW);
         super.window.show(MissionsController.class, params);
     }
 
+    /**
+     * Afficher l'écran de l'ajout d'une mission
+     */
     public void addMission() {
         Map<String, Object> params = new HashMap<>();
         params.put("view", MissionsController.VIEW);
@@ -38,6 +44,11 @@ public class MissionsController extends Controller {
         super.window.show(ActionMissionController.class, params);
     }
 
+    /**
+     * Afficher l'écran de l'édition d'une mission
+     *
+     * @param id : id de la mission
+     */
     public void editMission(int id) {
         Map<String, Object> params = new HashMap<>();
         params.put("view", MissionsController.VIEW);
@@ -46,11 +57,21 @@ public class MissionsController extends Controller {
         super.window.show(ActionMissionController.class, params);
     }
 
+    /**
+     * Récupère la liste des missions
+     *
+     * @return liste des missions
+     */
     public String getMissions() {
         MissionModel model = Model.get(MissionModel.class);
         return model.getMissions().toJson();
     }
 
+    /**
+     * Mets à jour le statut des missions
+     *
+     * @param dateStr : date de mise à jour
+     */
     public void updateMissions(String dateStr) {
         LocalDate date = LocalDate.parse(dateStr);
         CompletableFuture.runAsync(() -> {

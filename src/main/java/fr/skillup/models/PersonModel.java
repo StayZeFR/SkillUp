@@ -49,10 +49,32 @@ public class PersonModel extends Model {
      * @param firstName : le prénom
      * @param lastName  : le nom
      * @param job       : le métier
+     * @param skills    : la liste des compétences
      */
-    public void savePerson(int id, String firstName, String lastName, String job) {
+    public void savePerson(int id, String firstName, String lastName, String job, List<String> skills) {
         List<Object> params = List.of(firstName, lastName, job, id);
         this.execute("UPDATE person SET firstname = ?, lastname = ?, job = ? WHERE id = ?", params);
+
+        this.execute("DELETE FROM person_skill WHERE person_id = ?", List.of(id));
+        for (String skill : skills) {
+            this.execute("INSERT INTO person_skill (person_id, skill_id) VALUES (?, ?)", List.of(id, skill));
+        }
+    }
+
+    /**
+     * Ajoute une personne
+     *
+     * @param firstName : le prénom
+     * @param lastName  : le nom
+     * @param job       : le métier
+     */
+    public void addPerson(String firstName, String lastName, String job, List<String> skills) {
+        List<Object> params = List.of(firstName, lastName, job);
+        int id = super.insert("INSERT INTO person (firstname, lastname, job, entry_date) VALUES (?, ?, ?, now())", params);
+
+        for (String skill : skills) {
+            this.insert("INSERT INTO person_skill (person_id, skill_id) VALUES (?, ?)", List.of(id, skill));
+        }
     }
 
 }

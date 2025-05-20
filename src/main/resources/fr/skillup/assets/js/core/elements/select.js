@@ -24,7 +24,9 @@ class Select extends HTMLElement {
                     align-items: center;
                     justify-content: space-between;
                     cursor: pointer;
-                    box-sizing: border-box;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
                 .select-selected.disabled {
                     background: #f1f1f1;
@@ -215,18 +217,20 @@ class Select extends HTMLElement {
             if (checked) {
                 this.selectedValues.push(value);
                 this.selectedLabels.push(label);
-            } else {
+                event.target.closest('.option').classList.add('selected');
+            }else {
                 this.selectedValues = this.selectedValues.filter(val => val !== value);
                 this.selectedLabels = this.selectedLabels.filter(lbl => lbl !== label);
+                event.target.closest('.option').classList.remove('selected');
             }
-            this.selected.textContent = this.hasAttribute('hide-values') ? this._title : (this.selectedLabels.length ? this.selectedLabels.join(', ') : this._title);
+            this.selected.textContent = this.selectedLabels.length ? this.selectedLabels.join(', ') : this._title;
         } else {
             this.optionsContainer.querySelectorAll('.option').forEach(opt => {
                 opt.classList.remove('selected');
             });
             this.selectedValues = [value];
             this.selectedLabels = [label];
-            this.selected.textContent = this.hasAttribute('hide-values') ? this._title : label;
+            this.selected.textContent = label;
             this.itemsContainer.classList.remove('open');
         }
         if (!this._isMultiple) {
@@ -254,6 +258,16 @@ class Select extends HTMLElement {
         this.selectedLabels = [];
         this.selected.textContent = this._title;
         this.optionsContainer.querySelectorAll('.option').forEach(option => option.remove());
+    }
+
+    clearSelection() {
+        this.selectedValues = [];
+        this.selectedLabels = [];
+        this.selected.textContent = this._title;
+        this.optionsContainer.querySelectorAll('.option input').forEach(input => {
+            input.checked = false;
+            input.closest('.option').classList.remove('selected');
+        });
     }
 
     unselect(value) {

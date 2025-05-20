@@ -5,6 +5,7 @@
 </render-section>
 
 <render-section name="js">
+    <script src="assets/js/core/elements/select.js"></script>
     <script src="assets/js/people.js"></script>
 </render-section>
 
@@ -16,7 +17,15 @@
                 <div class="filter-control">
                     <input type="text" placeholder="Search by name" id="filter-label" class="filter">
                 </div>
-                <!--<button onclick="showModalAdd()">Add Person</button>-->
+                <button id="btn-addperson" onclick="showModalAdd()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                        <path fill-rule="evenodd"
+                              d="M5.625 1.5H9a3.75 3.75 0 0 1 3.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H16.5a3.75 3.75 0 0 1 3.75 3.75v7.875c0 1.035-.84 1.875-1.875 1.875H5.625a1.875 1.875 0 0 1-1.875-1.875V3.375c0-1.036.84-1.875 1.875-1.875ZM12.75 12a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V18a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V12Z"
+                              clip-rule="evenodd"/>
+                        <path d="M14.25 5.25a5.23 5.23 0 0 0-1.279-3.434 9.768 9.768 0 0 1 6.963 6.963A5.23 5.23 0 0 0 16.5 7.5h-1.875a.375.375 0 0 1-.375-.375V5.25Z"/>
+                    </svg>
+                    <span>Add person</span>
+                </button>
             </div>
         </div>
 
@@ -66,7 +75,7 @@
         <div class="modal_container" id="modal-container">
             <div class="modal">
                 <div class="titleclose">
-                    <div class="info-card">
+                    <div class="info-card" id="info-card">
                         <img src="" alt="People Picture" class="profile-picture-modale" id="modal-picture">
                         <div class="info-general">
                             <p class="name-modal" id="modal-general-name"></p>
@@ -91,17 +100,6 @@
                                           d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V9A.75.75 0 1 0 9 9V5.25a1.5 1.5 0 0 1 1.5-1.5h6Zm-5.03 4.72a.75.75 0 0 0 0 1.06l1.72 1.72H2.25a.75.75 0 0 0 0 1.5h10.94l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 0 0-1.06 0Z"
                                           clip-rule="evenodd"/>
                                 </svg>
-                            </button>
-                        </div>
-                        <div>
-                            <button class="cancel">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                     class="icon">
-                                    <path fill-rule="evenodd"
-                                          d="M9.53 2.47a.75.75 0 0 1 0 1.06L4.81 8.25H15a6.75 6.75 0 0 1 0 13.5h-3a.75.75 0 0 1 0-1.5h3a5.25 5.25 0 1 0 0-10.5H4.81l4.72 4.72a.75.75 0 1 1-1.06 1.06l-6-6a.75.75 0 0 1 0-1.06l6-6a.75.75 0 0 1 1.06 0Z"
-                                          clip-rule="evenodd"/>
-                                </svg>
-
                             </button>
                         </div>
                     </div>
@@ -131,9 +129,16 @@
                 </div>
                 <div class="skill-info-modal">
                     <h1 class="titre-info-modal">Skills</h1>
+                    <sup-select id="add-skills"></sup-select>
                     <div id="skills-modal" class="skill-people-modal">
                         <div class='skill-text-modal' id="skill-text">
                         </div>
+                    </div>
+                </div>
+                <div id="buttons-add-person">
+                    <div>
+                        <button class="cancel-add-person" onclick="cancelAddPerson()">Cancel</button>
+                        <button class="add-person" onclick="addPerson()">Add Person</button>
                     </div>
                 </div>
             </div>

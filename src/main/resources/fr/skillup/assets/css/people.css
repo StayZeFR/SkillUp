@@ -49,6 +49,7 @@
     overflow: scroll;
     position: relative;
 }
+
 .container-personnel::-webkit-scrollbar {
     width: 12px;
 }
@@ -56,8 +57,9 @@
 .container-personnel::-webkit-scrollbar-thumb {
     background: #FAFBFE;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    border-radius : 15px;
+    border-radius: 15px;
 }
+
 .container-personnel::-webkit-scrollbar-thumb:hover {
     background: #B6B8F1;
 }
@@ -94,7 +96,7 @@
 
 .info-card {
     display: flex;
-    flex-direction : row;
+    flex-direction: row;
     align-items: center;
     gap: 20px;
 }
@@ -129,7 +131,7 @@
     overflow: hidden;
     margin-top: 30px;
     margin-bottom: 0;
-    white-space : nowrap;
+    white-space: nowrap;
 }
 
 #people > .container-personnel > div:first-child > .people-card > .info-card > .info > .job {
@@ -244,14 +246,34 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: auto;
     width: 550px;
+    height: 630px;
+    max-height: 590px;
     background: rgba(255, 255, 255, 1);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.modal::-webkit-scrollbar {
+    width: 12px;
+}
+
+.modal::-webkit-scrollbar-thumb {
+    background: #FAFBFE;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+.modal::-webkit-scrollbar-thumb:hover {
+    background: #B6B8F1;
 }
 
 .titleclose {
@@ -343,12 +365,13 @@
 
 .modal_container {
     visibility: hidden;
-    position: fixed;
+    position: absolute;
     background-color: rgba(0, 0, 0, 0.3);
     align-items: center;
     justify-content: center;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100vw;
     height: 100vh;
     pointer-events: none;
@@ -359,7 +382,7 @@
 
 .modal_container.show {
     opacity: 1;
-    display : flex;
+    display: flex;
     pointer-events: auto;
     visibility: visible;
 }
@@ -421,16 +444,16 @@
 #filters {
     display: flex;
     flex-direction: row !important;
-    width : 100%;
-    gap : 40px;
-    align-items : center;
+    width: 100%;
+    gap: 40px;
+    align-items: center;
 }
 
 .filter {
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 10px;
-    border-radius : 10px;
-    margin-left : 20px;
+    border-radius: 10px;
+    margin-left: 20px;
     box-shadow: 0 2px 9px 0 rgba(7, 14, 194, 0.2);
     outline: none;
 }
@@ -438,13 +461,13 @@
 .button-page {
     scale: 1.1;
     cursor: pointer;
-    color : black;
+    color: black;
 }
 
 .button-page:hover {
     scale: 1.1;
     cursor: pointer;
-    color : #070EC2;
+    color: #070EC2;
 }
 
 .button-page:active {
@@ -456,25 +479,25 @@
 #pages {
     display: flex;
     flex-direction: row;
-    justify-content : center;
-    align-items : center;
+    justify-content: center;
+    align-items: center;
     gap: 10px;
-    width:80%;
-    margin-top : 10px;
-    margin-bottom : 0;
+    width: 80%;
+    margin-top: 10px;
+    margin-bottom: 0;
 }
 
 .svgbtn {
     width: 1.1em;
     height: auto;
     display: flex;
-    justify-content : center;
-    align-items : center;
+    justify-content: center;
+    align-items: center;
 }
 
 
 .skill-people-modal {
-    margin : 15px 20px 20px 20px;
+    margin: 15px 20px 20px 20px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -484,8 +507,8 @@
 }
 
 
-.skill-text-modal{
-    background-color : red;
+.skill-text-modal {
+    background-color: red;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -503,9 +526,9 @@
 .skill-info-modal svg {
     width: 15px;
     height: auto;
-        display: flex;
-            flex-direction: row;
-                align-items: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .pen {
@@ -517,7 +540,7 @@
     right: 10px;
     cursor: pointer;
     border: none;
-    background-color : transparent;
+    background-color: transparent;
 }
 
 .pen:hover {
@@ -542,4 +565,66 @@
 .skill-text svg {
     width: 15px;
     height: auto;
+}
+
+#btn-addperson {
+    width: 100%;
+    background-color: #7B69ED;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9em;
+}
+
+#btn-addperson > svg {
+    width: 20px;
+    height: auto;
+    fill: white;
+}
+
+#buttons-add-person {
+    gap: 10px;
+    bottom: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+#buttons-add-person > div:first-child {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    gap: 10px;
+    width: 100%;
+}
+
+button.add-person {
+    border: none;
+    outline: none;
+    color: white;
+    border-radius: 8px;
+    padding: 5px 20px;
+    background: #7B69ED;
+    cursor: pointer;
+    height: fit-content;
+}
+
+button.cancel-add-person {
+    outline: none;
+    border-radius: 8px;
+    padding: 5px 20px;
+    cursor: pointer;
+    border: 1px solid #FF4D4D;
+    background: transparent;
+    color: #FF4D4D;
+    height: fit-content;
 }

@@ -13,11 +13,22 @@ public class StatisticsSkillsController extends Controller {
         this.render("statistics-skills_view", super.params);
     }
 
+    /**
+     * Récupère les statistiques sur les personnes ayant une compétence
+     *
+     * @param skillId : id de la compétence
+     * @return les statistiques sur les personnes ayant une compétence
+     */
     public String getStatPersonsHaveSkills(int skillId) {
         StatisticModel model = Model.get(StatisticModel.class);
         return model.getStatPersonsHaveSkills(skillId).toJson();
     }
 
+    /**
+     * Récupère les statistiques sur les personnes ayant une compétence
+     *
+     * @return les statistiques sur les personnes ayant une compétence
+     */
     public String getStatTop5Skills() {
         StatisticModel model = Model.get(StatisticModel.class);
         return model.getStatTop5Skills().toJson();
