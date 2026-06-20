@@ -7,10 +7,10 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    background: rgba(255, 255, 255, 0.23);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    
+    -webkit-
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -46,9 +46,9 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.96);
+    
+    -webkit-
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -120,7 +120,7 @@
     flex-direction: column;
     gap: 10px;
     font-size: 0.75em;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     height: auto;
 }
 

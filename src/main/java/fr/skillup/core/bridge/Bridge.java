@@ -12,11 +12,17 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
 public class Bridge {
 
     private static Bridge bridge = null;
+
+    private static final ObjectMapper MAPPER = new ObjectMapper();
+    private static final ConcurrentHashMap<String, Class<? extends Controller>> classCache = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, Method> methodCache = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, Controller> instanceCache = new ConcurrentHashMap<>();
 
     private Bridge() {
         Bridge.bridge = this;
@@ -31,25 +37,22 @@ public class Bridge {
      * @return : Résultat de la méthode
      */
     public Object get(String controller, String method, String json) {
-        Class<? extends Controller> clazz = null;
         try {
-            clazz = Class.forName("fr.skillup.controllers." + controller).asSubclass(Controller.class);
-            Controller instance = clazz.getConstructor().newInstance();
-            ObjectMapper mapper = new ObjectMapper();
-            List<Object> data = mapper.readValue(json, new TypeReference<>() {
-            });
+            Class<? extends Controller> clazz = resolveClass(controller);
+            if (clazz == null) return null;
+            Controller instance = resolveInstance(controller, clazz);
+            List<Object> data = MAPPER.readValue(json, new TypeReference<>() {});
             if (data.isEmpty()) {
                 return clazz.getMethod(method).invoke(instance);
             } else {
-                Method m = this.getMethod(clazz, method);
+                Method m = resolveMethod(clazz, controller, method);
                 if (m != null) {
-                    Object[] args = data.toArray();
-                    return m.invoke(instance, args);
+                    return m.invoke(instance, data.toArray());
                 } else {
-                    Logger.getLogger(Bridge.class.getName()).severe("Method not found");
+                    Logger.getLogger(Bridge.class.getName()).severe("Method not found: " + method);
                 }
             }
-        } catch (ClassNotFoundException | InvocationTargetException | InstantiationException | IllegalAccessException |
+        } catch (InvocationTargetException | InstantiationException | IllegalAccessException |
                  NoSuchMethodException | JsonProcessingException e) {
             Logger.getLogger(Bridge.class.getName()).severe(e.getMessage());
         }
@@ -64,25 +67,22 @@ public class Bridge {
      * @param json       : Paramètres de la méthode au format JSON
      */
     public void call(String controller, String method, String json) {
-        Class<? extends Controller> clazz = null;
         try {
-            clazz = Class.forName("fr.skillup.controllers." + controller).asSubclass(Controller.class);
-            Controller instance = clazz.getConstructor().newInstance();
-            ObjectMapper mapper = new ObjectMapper();
-            List<Object> data = mapper.readValue(json, new TypeReference<>() {
-            });
+            Class<? extends Controller> clazz = resolveClass(controller);
+            if (clazz == null) return;
+            Controller instance = resolveInstance(controller, clazz);
+            List<Object> data = MAPPER.readValue(json, new TypeReference<>() {});
             if (data.isEmpty()) {
                 clazz.getMethod(method).invoke(instance);
             } else {
-                Method m = this.getMethod(clazz, method);
+                Method m = resolveMethod(clazz, controller, method);
                 if (m != null) {
-                    Object[] args = data.toArray();
-                    m.invoke(instance, args);
+                    m.invoke(instance, data.toArray());
                 } else {
-                    Logger.getLogger(Bridge.class.getName()).severe("Method not found");
+                    Logger.getLogger(Bridge.class.getName()).severe("Method not found: " + method);
                 }
             }
-        } catch (ClassNotFoundException | InvocationTargetException | InstantiationException | IllegalAccessException |
+        } catch (InvocationTargetException | InstantiationException | IllegalAccessException |
                  NoSuchMethodException | JsonProcessingException e) {
             Logger.getLogger(Bridge.class.getName()).severe(e.getMessage());
         }
@@ -117,6 +117,57 @@ public class Bridge {
                     Platform.runLater(() -> webView.getEngine().executeScript("Bridge.callback('" + id + "', 'reject', '" + ex.getMessage() + "')"));
                     return null;
                 });
+    }
+
+    /**
+     * Résout l'instance d'un controller depuis le cache ou l'instancie
+     *
+     * @param controller : Nom du controller
+     * @param clazz      : Classe du controller
+     * @return : Instance du controller
+     */
+    private Controller resolveInstance(String controller, Class<? extends Controller> clazz) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        Controller cached = instanceCache.get(controller);
+        if (cached != null) return cached;
+        Controller instance = clazz.getConstructor().newInstance();
+        instanceCache.put(controller, instance);
+        return instance;
+    }
+
+    /**
+     * Résout la classe d'un controller depuis le cache ou le classloader
+     *
+     * @param controller : Nom du controller
+     * @return : Classe du controller
+     */
+    private Class<? extends Controller> resolveClass(String controller) {
+        Class<? extends Controller> cached = classCache.get(controller);
+        if (cached != null) return cached;
+        try {
+            Class<? extends Controller> clazz = Class.forName("fr.skillup.controllers." + controller).asSubclass(Controller.class);
+            classCache.put(controller, clazz);
+            return clazz;
+        } catch (ClassNotFoundException e) {
+            Logger.getLogger(Bridge.class.getName()).severe(e.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Résout la méthode d'un controller depuis le cache ou la reflection
+     *
+     * @param clazz      : Classe du controller
+     * @param controller : Nom du controller
+     * @param methodName : Nom de la méthode
+     * @return : Méthode
+     */
+    private Method resolveMethod(Class<? extends Controller> clazz, String controller, String methodName) {
+        String key = controller + "#" + methodName;
+        Method cached = methodCache.get(key);
+        if (cached != null) return cached;
+        Method m = getMethod(clazz, methodName);
+        if (m != null) methodCache.put(key, m);
+        return m;
     }
 
     /**
