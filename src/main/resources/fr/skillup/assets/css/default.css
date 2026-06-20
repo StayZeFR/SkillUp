@@ -22,10 +22,10 @@ body > main {
     grid-template-columns: clamp(200px, 20%, 500px) auto;
     grid-template-rows: 100%;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.26);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4.6px);
-    -webkit-backdrop-filter: blur(4.6px);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    
+    -webkit-
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -147,10 +147,10 @@ body > main {
     grid-template-columns: clamp(200px, 20%, 500px) auto;
     grid-template-rows: 100%;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.60);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4.6px);
-    -webkit-backdrop-filter: blur(4.6px);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    
+    -webkit-
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 

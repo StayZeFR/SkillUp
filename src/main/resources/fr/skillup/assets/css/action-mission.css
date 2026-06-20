@@ -15,10 +15,10 @@
     align-items: flex-start;
     border-radius: 18px;
     height: auto;
-    background: rgba(255, 255, 255, 0.26);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    
+    -webkit-
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -43,10 +43,10 @@ h2 {
     flex: 1;
     display: flex;
     flex-direction: column;
-    background: rgba(255, 255, 255, 0.26);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    
+    -webkit-
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 18px;
     padding: 20px;
@@ -60,7 +60,7 @@ h2 {
 
 #action-mission > .container::-webkit-scrollbar-thumb {
     background: #FAFBFE;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     border-radius : 15px;
 }
 
@@ -145,7 +145,7 @@ h2 {
     padding: 15px;
     border-radius: 8px;
     background-color: white;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -286,7 +286,7 @@ h2 {
     padding: 15px;
     border-radius: 8px;
     background-color: white;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
     gap: 5px;
