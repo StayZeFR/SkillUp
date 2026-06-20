@@ -22,6 +22,7 @@ public class Bridge {
     private static final ObjectMapper MAPPER = new ObjectMapper();
     private static final ConcurrentHashMap<String, Class<? extends Controller>> classCache = new ConcurrentHashMap<>();
     private static final ConcurrentHashMap<String, Method> methodCache = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, Controller> instanceCache = new ConcurrentHashMap<>();
 
     private Bridge() {
         Bridge.bridge = this;
@@ -39,7 +40,7 @@ public class Bridge {
         try {
             Class<? extends Controller> clazz = resolveClass(controller);
             if (clazz == null) return null;
-            Controller instance = clazz.getConstructor().newInstance();
+            Controller instance = resolveInstance(controller, clazz);
             List<Object> data = MAPPER.readValue(json, new TypeReference<>() {});
             if (data.isEmpty()) {
                 return clazz.getMethod(method).invoke(instance);
@@ -69,7 +70,7 @@ public class Bridge {
         try {
             Class<? extends Controller> clazz = resolveClass(controller);
             if (clazz == null) return;
-            Controller instance = clazz.getConstructor().newInstance();
+            Controller instance = resolveInstance(controller, clazz);
             List<Object> data = MAPPER.readValue(json, new TypeReference<>() {});
             if (data.isEmpty()) {
                 clazz.getMethod(method).invoke(instance);
@@ -116,6 +117,21 @@ public class Bridge {
                     Platform.runLater(() -> webView.getEngine().executeScript("Bridge.callback('" + id + "', 'reject', '" + ex.getMessage() + "')"));
                     return null;
                 });
+    }
+
+    /**
+     * Résout l'instance d'un controller depuis le cache ou l'instancie
+     *
+     * @param controller : Nom du controller
+     * @param clazz      : Classe du controller
+     * @return : Instance du controller
+     */
+    private Controller resolveInstance(String controller, Class<? extends Controller> clazz) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        Controller cached = instanceCache.get(controller);
+        if (cached != null) return cached;
+        Controller instance = clazz.getConstructor().newInstance();
+        instanceCache.put(controller, instance);
+        return instance;
     }
 
     /**

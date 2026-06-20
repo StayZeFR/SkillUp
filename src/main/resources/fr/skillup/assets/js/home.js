@@ -102,9 +102,9 @@ App.onLoad(async () => {
 });
 
 function showPeople(people) {
-    document.getElementById("table-people").innerHTML = "";
+    let peopleHtml = "";
     people.slice(0, 8).forEach(person => {
-        let html = `
+        peopleHtml += `
             <tr>
                 <td>
                     <div class='people-card'>
@@ -118,8 +118,8 @@ function showPeople(people) {
                     </div>
                 </td>
             </tr>`;
-        document.getElementById("table-people").innerHTML += html;
     });
+    document.getElementById("table-people").innerHTML = peopleHtml;
 
     Bridge.getAsync("HomeController", "getWarningMissions").then(result => {
         document.getElementById("nb-warning").innerText = result.length;

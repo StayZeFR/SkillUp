@@ -132,9 +132,10 @@ App.onLoad(async () => {
                     updateSkillContainer(skill.skill_id);
                 }
                 Bridge.getAsync("ActionMissionController", "getMissionPeople", [id]).then((result) => {
+                    let peopleHtml = "";
                     for (const person of result) {
                         peopleSelected[person.person_id] = person;
-                        const html = `
+                        peopleHtml += `
                             <div class="person" data-id="${person.person_id}">
                                 <div>
                                     <span>${person.person_firstname} ${person.person_lastname}</span>
@@ -147,10 +148,9 @@ App.onLoad(async () => {
                                 <div class="matching">
                                     <span><span>${person.nb_matchs}</span> matching skills</span>
                                 </div>
-                            </div>
-                        `;
-                        document.getElementById("list-people").innerHTML += html;
+                            </div>`;
                     }
+                    document.getElementById("list-people").innerHTML = peopleHtml;
                 });
             });
         });

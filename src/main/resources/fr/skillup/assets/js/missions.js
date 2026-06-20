@@ -1,7 +1,9 @@
 App.onLoad(async () => {
     Bridge.getAsync("MissionsController", "getMissions").then((result) => {
-        for (mission of result) {
-            const html = `
+        const cols = { 1: "", 2: "", 3: "", 4: "" };
+        for (const mission of result) {
+            if (!cols[mission.life_cycle_id]) continue;
+            cols[mission.life_cycle_id] += `
                             <div class="mission">
                                 <header>
                                     <div class="date">
@@ -29,26 +31,15 @@ App.onLoad(async () => {
                                     ${mission.mission_title}
                                 </div>
                                 <div class="warning" style="display: ${mission.warning == 1 ? "flex" : "none"};">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F58E11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-triangle"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>   
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F58E11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-triangle"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
                                        <span>Warning</span>
                                 </div>
-                            </div>
-            `;
-            switch (mission.life_cycle_id) {
-                case 1:
-                    document.getElementById("missions-list_in-preperation").innerHTML += html;
-                    break;
-                case 2:
-                    document.getElementById("missions-list_planned").innerHTML += html;
-                    break;
-                case 3:
-                    document.getElementById("missions-list_in-progress").innerHTML += html;
-                    break;
-                case 4:
-                    document.getElementById("missions-list_done").innerHTML += html;
-                    break;
-            }
+                            </div>`;
         }
+        document.getElementById("missions-list_in-preperation").innerHTML = cols[1];
+        document.getElementById("missions-list_planned").innerHTML = cols[2];
+        document.getElementById("missions-list_in-progress").innerHTML = cols[3];
+        document.getElementById("missions-list_done").innerHTML = cols[4];
     });
 });
 

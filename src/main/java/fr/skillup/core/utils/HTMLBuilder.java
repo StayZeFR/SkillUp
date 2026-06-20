@@ -10,9 +10,12 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
 public class HTMLBuilder {
+
+    private static final ConcurrentHashMap<String, String> viewCache = new ConcurrentHashMap<>();
 
     private HTMLBuilder() {
         throw new IllegalStateException("Class utilitaire");
@@ -22,9 +25,22 @@ public class HTMLBuilder {
      * Construit une vue HTML à partir d'un fichier de ressource
      *
      * @param resourcePath : Chemin du fichier de ressource
+     * @param params       : Paramètres à injecter dans la vue
      * @return String : Vue HTML
      */
     public static String buildView(String resourcePath, Map<String, Object> params) {
+        String template = viewCache.computeIfAbsent(resourcePath, HTMLBuilder::buildTemplate);
+        if (template == null) return null;
+        return params.isEmpty() ? template : insertParams(template, params);
+    }
+
+    /**
+     * Construit le template HTML (parsing jsoup + héritage de layout) et le met en cache
+     *
+     * @param resourcePath : Chemin du fichier de ressource
+     * @return String : Template HTML sans injection de paramètres
+     */
+    private static String buildTemplate(String resourcePath) {
         try {
             String path = "/fr/skillup/views/" + resourcePath;
             String mainHtml = new String(HTMLBuilder.class.getResourceAsStream(path).readAllBytes());
@@ -85,7 +101,7 @@ public class HTMLBuilder {
                 titleElement.after("<script src=\"assets/js/core/bridge.js\"></script>");
             }
 
-            return HTMLBuilder.insertParams(mainDoc.html(), params);
+            return mainDoc.html();
         } catch (Exception e) {
             Logger.getLogger(HTMLBuilder.class.getName()).severe(e.getMessage());
         }
