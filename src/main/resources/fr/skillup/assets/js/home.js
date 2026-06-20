@@ -1,7 +1,7 @@
 let selectedDay = null;
 
 App.onLoad(async () => {
-    const people = JSON.parse(Bridge.get("PeopleController", "getPeople"));
+    const people = await Bridge.getAsync("PeopleController", "getPeople");
     if (people !== null) {
         showPeople(people);
     }
@@ -200,4 +200,3 @@ const Toast = Swal.mixin({
         toast.onmouseleave = Swal.resumeTimer;
     }
 });
-
