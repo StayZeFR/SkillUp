@@ -33,6 +33,7 @@ class Bridge {
     }
 
     static callback(id, type, response) {
+        if (!Bridge.#callbacks[id]) return;
         Bridge.#callbacks[id][type](response);
         delete Bridge.#callbacks[id];
     }
